@@ -128,7 +128,6 @@
     <None Include="Readme.md" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Source\Config\" />
     <Folder Include="Source\Database\" />
     <Folder Include="Source\Room\" />
   </ItemGroup>
