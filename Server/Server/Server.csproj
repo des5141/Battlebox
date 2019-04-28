@@ -51,6 +51,9 @@
     <Reference Include="MongoDB.Driver.Core, Version=2.8.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MongoDB.Driver.Core.2.8.0\lib\net452\MongoDB.Driver.Core.dll</HintPath>
     </Reference>
+    <Reference Include="MongoDB.Driver.Legacy, Version=2.3.0.157, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\mongocsharpdriver.2.3.0\lib\net45\MongoDB.Driver.Legacy.dll</HintPath>
+    </Reference>
     <Reference Include="SuperSocket.ClientEngine.Common">
       <HintPath>..\..\DLL\SuperSocket.ClientEngine.Common.dll</HintPath>
     </Reference>
@@ -99,6 +102,7 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Source\Database\SQLManager.cs" />
     <Compile Include="Source\Signal\Signal.cs" />
     <Compile Include="Source\Core\AsyncLock.cs" />
     <Compile Include="Source\Core\AsyncSemaphore.cs" />
@@ -128,7 +132,6 @@
     <None Include="Readme.md" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Source\Database\" />
     <Folder Include="Source\Room\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

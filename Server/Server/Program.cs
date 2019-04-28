@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Server.Source.Core;
+using Server.Source.Database;
 using Server.Source.Event;
 using SuperSocket.SocketBase;
 using SuperSocket.SocketBase.Config;
@@ -14,6 +15,8 @@ namespace Server
     {
         static void Main()
         {
+            var database = new SQLManager();
+
             var mConfig = new ServerConfig()
             {
                 Port = 65535,
