@@ -2,7 +2,7 @@
 {
     public class Signal
     {
-        public const int
+        public const short
             Login = 1;
     }
 }

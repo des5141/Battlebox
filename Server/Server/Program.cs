@@ -15,7 +15,7 @@ namespace Server
     {
         static void Main()
         {
-            var database = new SQLManager();
+            //var database = new SQLManager();
 
             var mConfig = new ServerConfig()
             {

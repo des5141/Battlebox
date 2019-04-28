@@ -1,4 +1,5 @@
 ﻿using System;
+using CGD;
 using Server.Source.Core;
 
 namespace Server.Source.Signal.Func
@@ -9,7 +10,9 @@ namespace Server.Source.Signal.Func
         {
             Msg[Signal.Login] = (user, requestinfo) =>
             {
-                Console.WriteLine("Hello");
+                //var buffer = NewBuffer.Func(16);
+                //buffer.append<byte>(1);
+                user.Send(NcsTemplateBuffer.HeartbeatBuffer1, 1);
             };
         }
     }
