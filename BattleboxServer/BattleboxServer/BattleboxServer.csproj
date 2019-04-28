@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DF660B97-9A83-4C98-BFCA-39EA6C4311B0}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>BattleboxServer</RootNamespace>
+    <AssemblyName>BattleboxServer</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CGDbuffer%28for CSharp%29, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DLL\CGD\Debug\CGDbuffer(for CSharp).dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.5.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.5.1\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=8.0.15.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.0.15\lib\net452\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.ClientEngine.Common">
+      <HintPath>..\..\DLL\SuperSocket.ClientEngine.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.ClientEngine.Core">
+      <HintPath>..\..\DLL\SuperSocket.ClientEngine.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.ClientEngine.Protocol">
+      <HintPath>..\..\DLL\SuperSocket.ClientEngine.Protocol.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.ClientEngine.Proxy">
+      <HintPath>..\..\DLL\SuperSocket.ClientEngine.Proxy.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.Common, Version=1.6.6.1, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperSocket.1.6.6.1\lib\net45\SuperSocket.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.Facility, Version=1.6.6.1, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperSocket.1.6.6.1\lib\net45\SuperSocket.Facility.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.SocketBase, Version=1.6.6.1, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperSocket.1.6.6.1\lib\net45\SuperSocket.SocketBase.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.SocketEngine, Version=1.6.6.1, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperSocket.Engine.1.6.6.1\lib\net45\SuperSocket.SocketEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.SocketService, Version=1.6.6.1, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperSocket.Engine.1.6.6.1\lib\net45\SuperSocket.SocketService.exe</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Source\Action\RoomOut.cs" />
+    <Compile Include="Source\Action\RoomJoin.cs" />
+    <Compile Include="Source\Background\SpaceMove.cs" />
+    <Compile Include="Source\Event\Signal\SignalGameUse.cs" />
+    <Compile Include="Source\Event\Signal\SignalGameDrop.cs" />
+    <Compile Include="Source\Event\Signal\SignalUserInfo.cs" />
+    <Compile Include="Source\NcsServer.cs" />
+    <Compile Include="Source\Main.cs" />
+    <Compile Include="Source\Additional\LinkedQueue.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Source\Additional\IRandom.cs" />
+    <Compile Include="Source\Database\Event\DatabaseUserInfo.cs" />
+    <Compile Include="Source\Database\Event\DatabaseLogin.cs" />
+    <Compile Include="Source\Database\Event\DatabaseCheckBlocked.cs" />
+    <Compile Include="Source\Database\Event\DatabaseCheckConnection.cs" />
+    <Compile Include="Source\Database\Event\DatabaseRegister.cs" />
+    <Compile Include="Source\Database\Event\DatabaseUserConnection.cs" />
+    <Compile Include="Source\Database\SqlManager.cs" />
+    <Compile Include="Source\Event\ServerStarted.cs" />
+    <Compile Include="Source\Event\Session\ServerNewRequestReceived.cs" />
+    <Compile Include="Source\Event\Session\ServerNewSessionConnected.cs" />
+    <Compile Include="Source\Event\Session\ServerSessionClosed.cs" />
+    <Compile Include="Source\Event\User\UserOnSessionClosed.cs" />
+    <Compile Include="Source\Event\User\UserOnSessionStarted.cs" />
+    <Compile Include="Source\Room\NcsRoom.cs" />
+    <Compile Include="Source\Event\Signal\SignalRegister.cs" />
+    <Compile Include="Source\Event\Signal\SignalLogin.cs" />
+    <Compile Include="Source\Event\Signal.cs" />
+    <Compile Include="Source\Event\SendSpace.cs" />
+    <Compile Include="Source\Background\RoomAlive.cs" />
+    <Compile Include="Source\Background\UserDelete.cs" />
+    <Compile Include="Source\Background\UserAdd.cs" />
+    <Compile Include="Source\Action\SpaceMoveInTask.cs" />
+    <Compile Include="Source\Background\UserCounting.cs" />
+    <Compile Include="Source\Background\UserMatching.cs" />
+    <Compile Include="Source\User\NcsUserHeartbeat.cs" />
+    <Compile Include="Source\User\NcsUser.cs" />
+    <Compile Include="Source\User\NcsUserData.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Networking with Supersocket\Networking with Supersocket.csproj">
+      <Project>{6fcda62c-e7e0-42d8-9b85-dd78b508477b}</Project>
+      <Name>Networking with Supersocket</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

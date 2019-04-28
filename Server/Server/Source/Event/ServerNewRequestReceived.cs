@@ -1,0 +1,51 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Server.Source.Core;
+using Server.Source.User;
+
+namespace Server.Source.Event
+{
+    class ServerNewRequestReceived
+    {
+        public static void Func(NcsUser user, NcsRequestInfo requestinfo)
+        {
+            try
+            {
+                // Header ----------------------------------------------------------------- //
+                var buffer = requestinfo.Buffer; // 받은 버퍼
+                var bufferLength = buffer.extract_uint(); // 받은 버퍼의 길이
+
+                // ------------------------------------------------------------------------ //
+                // 여기서부터 패킷 처리
+                var sendTo = buffer.extract_byte(); // 누구에게 전송하여야 할 패킷인가 - u8
+                var spaceType = buffer.extract_short(); // 누구에게 전송하여야 할 패킷인가 -s16
+                var type = buffer.extract_short(); // 패킷 타입 ( 시그널 ) - s16
+
+                // 서버에게 보낸 것
+                if (sendTo == 1)
+                {
+                    // 존재하는 SignalEvent 인지 확인
+                    if (SignalBase.BufferDictionary.ContainsKey(type))
+                        SignalBase.BufferDictionary[type](user, requestinfo);
+                    // 없는 경우
+                    else
+                        Console.WriteLine("None Signal Event");
+                }
+
+                // 다른 유저에게 보낸 것
+                else if (sendTo == 2)
+                {
+
+                }
+                // ------------------------------------------------------------------------ //
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine(err);
+            }
+        }
+    }
+}
