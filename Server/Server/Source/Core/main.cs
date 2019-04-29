@@ -12,6 +12,11 @@ namespace Server.Source.Core
     public class Main
     {
         readonly NcsServer _ncsServer = new NcsServer();
+        public static List<List<NcsUser>> UserList = new List<List<NcsUser>>();
+        public static LinkedQueue<NcsUser> MatchingList = new LinkedQueue<NcsUser>();
+        public static AsyncLock TaskLockInUserList = new AsyncLock();
+        public static AsyncLock TaskLockInMatchingList = new AsyncLock();
+        public static int SpaceMax = 10;
 
         public Main(ServerConfig config, Action serverStarted, SessionHandler<NcsUser> newSessionConnected, SessionHandler<NcsUser, CloseReason> sessionClosed, RequestHandler<NcsUser, NcsRequestInfo> newRequestReceived)
         {
@@ -22,6 +27,8 @@ namespace Server.Source.Core
             _ncsServer.NewSessionConnected += new SessionHandler<NcsUser>(newSessionConnected);
             _ncsServer.SessionClosed += new SessionHandler<NcsUser, CloseReason>(sessionClosed);
             _ncsServer.NewRequestReceived += new RequestHandler<NcsUser, NcsRequestInfo>(newRequestReceived);
+            for (int i = 0; i < Main.SpaceMax; i++)
+                Main.UserList.Add(new List<NcsUser>());
         }
     }
 }

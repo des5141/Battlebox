@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Server.Source.Core
 {
-    class LinkedQueue<T>
+    public class LinkedQueue<T>
     {
         public int Count => _items.Count;
 

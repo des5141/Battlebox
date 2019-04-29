@@ -12,7 +12,7 @@ namespace Server.Source.Core
         public AsyncLock()
         {
             _mSemaphore = new AsyncSemaphore(1);
-            _mReleaser = Task.FromResult(new Releaser(this));
+            _mReleaser = System.Threading.Tasks.Task.FromResult(new Releaser(this));
         }
 
         public Task<Releaser> LockAsync()

@@ -6,7 +6,7 @@ namespace Server.Source.Core
 {
     public class AsyncSemaphore
     {
-        private static readonly Task SCompleted = Task.FromResult(true);
+        private static readonly System.Threading.Tasks.Task SCompleted = System.Threading.Tasks.Task.FromResult(true);
         private readonly Queue<TaskCompletionSource<bool>> _mWaiters = new Queue<TaskCompletionSource<bool>>();
         private int _mCurrentCount;
 
@@ -16,7 +16,7 @@ namespace Server.Source.Core
             _mCurrentCount = initialCount;
         }
 
-        public Task WaitAsync()
+        public System.Threading.Tasks.Task WaitAsync()
         {
             lock (_mWaiters)
             {

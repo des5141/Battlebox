@@ -8,7 +8,7 @@ namespace Server.Source.Core
         {
             var buffer = new buffer(size);
             buffer.append<uint>(0); // size
-            buffer.append<ushort>(0);  // type
+            buffer.append<short>(0);  // type
             return buffer;
         }
     }

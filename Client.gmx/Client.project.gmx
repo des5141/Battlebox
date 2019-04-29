@@ -56,6 +56,10 @@
         <script>scripts\buf_read.gml</script>
       </scripts>
     </scripts>
+    <scripts name="Signal">
+      <script>scripts\signal_test.gml</script>
+      <script>scripts\signalLogin.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_debug_text</font>
@@ -64,12 +68,14 @@
     <object>objects\sys_init</object>
     <object>objects\sys_network</object>
     <object>objects\obj_network</object>
+    <object>objects\obj_test</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_init</room>
     <room>rooms\rm_connect</room>
     <room>rooms\rm_login</room>
     <room>rooms\rm_main</room>
+    <room>rooms\rm_test</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

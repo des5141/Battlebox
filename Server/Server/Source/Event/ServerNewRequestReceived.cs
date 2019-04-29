@@ -20,11 +20,11 @@ namespace Server.Source.Event
 
                 // 여기서부터 패킷 처리 -------------------------------------------------- //
                 var sendTo = buffer.extract_short(); // 누구에게 전송하여야 할 패킷인가 - s16 6 byte
-                var type = buffer.extract_short(); // 패킷 타입 ( 시그널 ) - s16 8 byte
 
                 // 서버에게 보낸 것
-                if (sendTo == 1)
+                if (sendTo == SendTo.Server)
                 {
+                    var type = buffer.extract_short(); // 패킷 타입 ( 시그널 ) - s16 8 byte
                     // 존재하는 SignalEvent 인지 확인
                     if (SignalBase.BufferDictionary.ContainsKey(type))
                      SignalBase.BufferDictionary[type](user, requestinfo);
@@ -34,9 +34,17 @@ namespace Server.Source.Event
                 }
 
                 // 다른 유저에게 보낸 것
-                else if (sendTo == 2)
+                else if (sendTo == SendTo.MySpace)
                 {
-
+                    var type = buffer.extract_short(); // 패킷 타입 ( 시그널 ) - s16 8 byte
+                }
+                else
+                {
+                    if (sendTo == Signal.HeartbeatFirst)
+                    {
+                        user.Send(NcsTemplateBuffer.HeartbeatBuffer2);
+                        user.Heartbeat = true;
+                    }
                 }
                 // ------------------------------------------------------------------------ //
             }

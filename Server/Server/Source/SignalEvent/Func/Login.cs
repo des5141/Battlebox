@@ -2,9 +2,9 @@
 using CGD;
 using Server.Source.Core;
 
-namespace Server.Source.Signal.Func
+namespace Server.Source.SignalEvent.Func
 {
-    class Login : SignalEvent
+    class Login : Core.SignalEvent
     {
         public Login()
         {
