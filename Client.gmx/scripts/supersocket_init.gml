@@ -5,7 +5,7 @@ global.message_buffer = -1;
 global.check_bytes_recv = 0;
 global.check_bytes_send = 0;
 global.timeout = 5000;
-global.login = false;
+global.auth = false;
 
 global.reconnect_ip = "";
 global.reconnect_port = -1;

@@ -1,0 +1,1 @@
+return global._39_player_c_socket_max_

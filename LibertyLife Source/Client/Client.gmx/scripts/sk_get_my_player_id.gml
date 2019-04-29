@@ -1,0 +1,1 @@
+return global._39_player_id_

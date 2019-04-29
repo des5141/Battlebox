@@ -8,11 +8,9 @@ namespace Server.Source.SignalEvent.Func
     {
         public Login()
         {
-            Msg[Signal.Login] = (user, requestinfo) =>
+            Msg[Signal.Login] = (user, requestinfo, buffer) =>
             {
-                //var buffer = NewBuffer.Func(16);
-                //buffer.append<byte>(1);
-                user.Send(NcsTemplateBuffer.HeartbeatBuffer1, 1);
+
             };
         }
     }

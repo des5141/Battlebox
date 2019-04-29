@@ -1,0 +1,6 @@
+아이템 type-index 형으로 txt 생성
+item_code[]
+item_name[]
+item_cost[]
+로 저장
+상대방이 해당 아이템 구입시 item_name 플레이어에게 수익금을 우편으로 전달

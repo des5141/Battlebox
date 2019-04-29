@@ -1,0 +1,1 @@
+return global._39_send_message_max_

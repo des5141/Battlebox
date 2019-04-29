@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CGD;
 using Server.Source.User;
 
 namespace Server.Source.Core
 {
     public class SignalBase
     {
-        public void Add(dynamic type, Action<NcsUser, NcsRequestInfo> action)
+        public void Add(dynamic type, Action<NcsUser, NcsRequestInfo, buffer> action)
         {
             BufferDictionary.Add(type, action);
         }
-        public Action<NcsUser, NcsRequestInfo> this[dynamic i]
+        public Action<NcsUser, NcsRequestInfo, buffer> this[dynamic i]
         {
             set
             {
@@ -21,6 +22,6 @@ namespace Server.Source.Core
                 this.Add(i, value);
             }
         }
-        public static Dictionary<dynamic, Action<NcsUser, NcsRequestInfo>> BufferDictionary = new Dictionary<dynamic, Action<NcsUser, NcsRequestInfo>>();
+        public static Dictionary<dynamic, Action<NcsUser, NcsRequestInfo, buffer>> BufferDictionary = new Dictionary<dynamic, Action<NcsUser, NcsRequestInfo, buffer>>();
     }
 }

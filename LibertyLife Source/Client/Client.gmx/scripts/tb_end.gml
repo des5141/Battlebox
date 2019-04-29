@@ -1,0 +1,2 @@
+instance_destroy_other(obj_tb_main)
+instance_destroy_other(p_talk)

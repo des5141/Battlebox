@@ -22,4 +22,5 @@
   * `Config.cs` 로 서버 값 셋팅하도록 함
 * 클라이언트 기능 추가
   * 기본적인 **Networking** 통신
+* 데이터베이스를 `mongodb`에서 `mysql`로 변경함
 

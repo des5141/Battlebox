@@ -1,35 +1,98 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MongoDB.Bson;
-using MongoDB.Driver;
+using MySql.Data.MySqlClient;
 
 namespace Server.Source.Database
 {
-    class SQLManager
+    public class SqlManager
     {
-        static string connectionString = "mongodb://61.84.196.75:20002";
-        MongoClient cli = new MongoClient(connectionString);
-        public SQLManager()
+        MySqlConnection _connection;
+        readonly string _mySqlConnection;
+
+        public SqlManager(string strConnection)
         {
-            Test();
+            _mySqlConnection = strConnection;
+            try
+            {
+                _connection = new MySqlConnection(strConnection);
+                _connection.Open();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                ConnectionCheck();
+            }
+            Console.WriteLine(" - Database start");
         }
 
-        public void Test()
+        public bool Insert(string sql)
         {
-            var db = cli.GetDatabase("test");
-            var Collec = db.GetCollection<BsonDocument>("computers");
-            var documnt = new BsonDocument
+            ConnectionCheck();
+            try
             {
-                {"Brand","Dell"},
-                {"Price","400"},
-                {"Ram","8GB"},
-                {"HardDisk","1TB"},
-                {"Screen","16inch"}
-            };
-            Collec.InsertOneAsync(documnt);
+                var cmd = new MySqlCommand(sql, _connection);
+                var result = cmd.ExecuteNonQuery();
+                return result >= 0;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+        }
+
+        public bool Insert(MySqlCommand sql)
+        {
+            ConnectionCheck();
+            try
+            {
+                sql.Connection = _connection;
+                var result = sql.ExecuteNonQuery();
+                return result >= 0;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+        }
+
+        public DataTable Read(string sql)
+        {
+            ConnectionCheck();
+            var Dt = new DataTable();
+            var command = new MySqlCommand(sql, _connection);
+            try
+            {
+                using (var data = command.ExecuteReader())
+                {
+                    if (data.HasRows)
+                    {
+                        Dt.Load(data);
+                        return Dt;
+                    }
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+        }
+
+        private void ConnectionCheck()
+        {
+            if (_connection.State != System.Data.ConnectionState.Open)
+            {
+                _connection = new MySqlConnection(_mySqlConnection);
+                _connection.Open();
+                Console.WriteLine(" - Reconnect database");
+            }
         }
     }
 }

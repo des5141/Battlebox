@@ -3,7 +3,79 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <NewExtensions/>
+  <datafiles number="4" name="datafiles">
+    <datafile>
+      <name>NanumSquareRoundB.ttf</name>
+      <exists>-1</exists>
+      <size>1030948</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>NanumSquareRoundB.ttf</filename>
+    </datafile>
+    <datafile>
+      <name>NanumSquareRoundEB.ttf</name>
+      <exists>-1</exists>
+      <size>1029388</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>NanumSquareRoundEB.ttf</filename>
+    </datafile>
+    <datafile>
+      <name>NanumSquareRoundL.ttf</name>
+      <exists>-1</exists>
+      <size>1015112</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>NanumSquareRoundL.ttf</filename>
+    </datafile>
+    <datafile>
+      <name>NanumSquareRoundR.ttf</name>
+      <exists>-1</exists>
+      <size>1063276</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>NanumSquareRoundR.ttf</filename>
+    </datafile>
+  </datafiles>
+  <NewExtensions>
+    <extension index="0">extensions\GooglePlayServicesExtension</extension>
+  </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites"/>
   <backgrounds name="background"/>
@@ -46,7 +118,6 @@
       <script>scripts\supersocket_init.gml</script>
       <script>scripts\supersocket_connect.gml</script>
       <script>scripts\supersocket_disconnect.gml</script>
-      <script>scripts\supersocket_createbuffer.gml</script>
       <script>scripts\supersocket_send.gml</script>
       <script>scripts\supersocket_status.gml</script>
       <script>scripts\supersocket_reconnect.gml</script>
@@ -54,6 +125,8 @@
       <scripts name="buf">
         <script>scripts\buf_write.gml</script>
         <script>scripts\buf_read.gml</script>
+        <script>scripts\buf_new.gml</script>
+        <script>scripts\buf_del.gml</script>
       </scripts>
     </scripts>
     <scripts name="Signal">
@@ -65,15 +138,28 @@
     <font>fonts\fnt_debug_text</font>
   </fonts>
   <objects name="objects">
-    <object>objects\sys_init</object>
-    <object>objects\sys_network</object>
-    <object>objects\obj_network</object>
+    <objects name="init">
+      <object>objects\sys_init</object>
+    </objects>
+    <objects name="system">
+      <object>objects\sys_network</object>
+    </objects>
+    <objects name="network">
+      <object>objects\obj_network</object>
+    </objects>
+    <objects name="login">
+      <object>objects\obj_google_login</object>
+    </objects>
+    <objects name="auth">
+      <object>objects\obj_auth</object>
+    </objects>
     <object>objects\obj_test</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_init</room>
-    <room>rooms\rm_connect</room>
     <room>rooms\rm_login</room>
+    <room>rooms\rm_connect</room>
+    <room>rooms\rm_auth</room>
     <room>rooms\rm_main</room>
     <room>rooms\rm_test</room>
   </rooms>

@@ -1,0 +1,29 @@
+password
+ ¾ÏÈ£
+appearance
+ sex
+ hair
+ c_hair
+item
+ money
+ left
+ right
+ body
+ item[0,0]-item[4,9]
+state
+ s_str
+ s_end
+ s_agi
+ s_per
+ s_int
+ k_com
+ k_mas
+ k_mag
+ k_cra
+ k_fis
+mail
+ mail[0]-mail[x]
+  name
+  text
+  item
+  cost

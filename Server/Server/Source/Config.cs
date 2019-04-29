@@ -3,8 +3,8 @@
     public class SendTo
     {
         public const short
-            Server = 1,
-            MySpace = 2;
+            Server = -1,
+            MySpace = -2;
     }
     public class Signal
     {
