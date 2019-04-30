@@ -77,7 +77,14 @@
     <extension index="0">extensions\GooglePlayServicesExtension</extension>
   </NewExtensions>
   <sounds name="sound"/>
-  <sprites name="sprites"/>
+  <sprites name="sprites">
+    <sprite>sprites\spr_chr_leg</sprite>
+    <sprite>sprites\spr_chr_body</sprite>
+    <sprite>sprites\spr_chr_mask</sprite>
+    <sprite>sprites\spr_item_clothes</sprite>
+    <sprite>sprites\spr_item_weapon</sprite>
+    <sprite>sprites\spr_item_suplies</sprite>
+  </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -153,15 +160,16 @@
     <objects name="auth">
       <object>objects\obj_auth</object>
     </objects>
-    <object>objects\obj_test</object>
+    <objects name="main">
+      <object>objects\obj_player</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_init</room>
     <room>rooms\rm_login</room>
     <room>rooms\rm_connect</room>
     <room>rooms\rm_auth</room>
-    <room>rooms\rm_main</room>
-    <room>rooms\rm_test</room>
+    <room>rooms\rm_choose</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

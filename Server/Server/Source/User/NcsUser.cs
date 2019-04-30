@@ -13,6 +13,7 @@ namespace Server.Source.User
     {
         public int Space = -1;
         public int HeartbeatCount = 0;
+        public int Character = -1;
         public bool Heartbeat = false;
         public bool Die = false;
         public bool Authentication = false;
