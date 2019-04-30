@@ -78,7 +78,7 @@ enum signal {
           <argument>
             <kind>1</kind>
             <string>/// set signal event
-global.signalEvent[0] = signalLogin;
+global.signalEvent[signal.login] = signal_login;
 </string>
           </argument>
         </arguments>

@@ -15,6 +15,9 @@ namespace Server.Source.User
         public int HeartbeatCount = 0;
         public bool Heartbeat = false;
         public bool Die = false;
+        public bool Authentication = false;
+        public string Nickname = "";
+        public string Id = "";
 
         public void HeartBeatStart()
         {

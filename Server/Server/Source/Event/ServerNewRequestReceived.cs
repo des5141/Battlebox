@@ -25,7 +25,7 @@ namespace Server.Source.Event
                 if (sendTo == SendTo.Server)
                 {
                     var type = buffer.extract_short(); // 패킷 타입 ( 시그널 ) - s16 8 byte
-                    Console.WriteLine(type);
+                    
                     // 존재하는 SignalEvent 인지 확인
                     if (SignalBase.BufferDictionary.ContainsKey(type))
                      SignalBase.BufferDictionary[type](user, requestinfo, buffer);

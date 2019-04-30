@@ -122,7 +122,10 @@
     <Compile Include="Source\Core\Ran.cs" />
     <Compile Include="Source\Core\KeyWaiting.cs" />
     <Compile Include="Source\Core\SignalEvent.cs" />
+    <Compile Include="Source\Database\Event\DatabaseUserConnection.cs" />
     <Compile Include="Source\Database\Event\DatabaseCheckBlocked.cs" />
+    <Compile Include="Source\Database\Event\DatabaseRegister.cs" />
+    <Compile Include="Source\Database\Event\DatabaseLogin.cs" />
     <Compile Include="Source\Database\SqlManager.cs" />
     <Compile Include="Source\Event\ServerNewRequestReceived.cs" />
     <Compile Include="Source\Event\ServerSessionClosed.cs" />

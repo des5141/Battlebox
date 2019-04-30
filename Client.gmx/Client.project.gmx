@@ -131,7 +131,7 @@
     </scripts>
     <scripts name="Signal">
       <script>scripts\signal_test.gml</script>
-      <script>scripts\signalLogin.gml</script>
+      <script>scripts\signal_login.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
