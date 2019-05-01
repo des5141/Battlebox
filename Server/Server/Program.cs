@@ -21,10 +21,9 @@ namespace Server
         public static MessageSwitch Msg;
         public static DiscordSocketClient Discord;
         public const string Token = "NTczMTEwODA0MTg3MTg1MTUy.XMmFGg.QkctThj48AY_CZrY1PWXKbvqv8A";
+
         static void Main()
         {
-            //var database = new SQLManager();
-
             var mConfig = new ServerConfig()
             {
                 Port = 20000,
@@ -40,11 +39,9 @@ namespace Server
             // 서버 시작
             var server = new Main(mConfig, ServerStarted.Func, ServerNewSessionConnected.Func, ServerSessionClosed.Func, ServerNewRequestReceived.Func);
 
-
             // 디스코드 서버
             FunctionScan.StartScan();
             new Program().MainAsync().GetAwaiter().GetResult();
-
 
             // 서버 꺼짐 방지
             KeyWaiting.Func();
