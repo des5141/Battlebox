@@ -72,17 +72,13 @@ namespace Server
 
         protected Task Client_Ready()
         {
-            EmbedBuilder builder = new EmbedBuilder();
-
-            builder.WithTitle("Ice Wizard Stats");
-            builder.AddField("Cost", "3", true);    // true - for inline
-            builder.AddField("HP", "665", true);
-            builder.AddField("DPS", "42", true);
-            builder.AddField("Hit Speed", "1.5sec", true);
-            builder.AddField("SlowDown", "35%", true);
-            builder.AddField("AOE", "63", true);
-            builder.WithThumbnailUrl("http://...");
-            Client.GetGuild(573111073616560128).GetTextChannel(573111191468245002).SendMessageAsync("", false, builder.Build());
+            DateTimeOffset testTimeLocal = new DateTimeOffset(2018, 1, 1, 0, 0, 0, 0, TimeSpan.FromHours(-8));
+            var embed = new EmbedBuilder()
+                .WithTitle("Pacific")
+                .WithDescription(testTimeLocal.ToUnixTimeSeconds().ToString() + "\nOffset: " + testTimeLocal.Offset.ToString())
+                .WithTimestamp(testTimeLocal)
+                .Build();
+            Client.GetGuild(573111073616560128).GetTextChannel(573111191468245002).SendMessageAsync("", embed: embed);
 
             return Task.CompletedTask;
         }

@@ -16,6 +16,7 @@ namespace Server.Additional.Discord
             var userMessage = message as SocketUserMessage;
             SocketCommandContext context = new SocketCommandContext(Program.Client, userMessage);
             var cmd = message.Content.Split(' ');
+
             if (!context.User.IsBot)
             {
                 if (Msg.BufferDictionary.ContainsKey("MessageReceived"))

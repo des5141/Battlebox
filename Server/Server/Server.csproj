@@ -260,6 +260,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Additional\Discord\MessageSwitch.cs" />
+    <Compile Include="Additional\Discord\Message\ping.cs" />
     <Compile Include="Additional\Discord\Routing\Function.cs" />
     <Compile Include="Additional\Discord\Routing\FunctionScan.cs" />
     <Compile Include="Additional\Discord\Routing\Msg.cs" />
