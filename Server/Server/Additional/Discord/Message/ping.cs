@@ -12,8 +12,7 @@ namespace Server.Additional.Discord.Message
         {
             Msg["--ping"] = (message, list) =>
             {
-                if (message.Author.Id == Config.Admin)
-                    message.Channel.SendMessageAsync("pong");
+                message.Channel.SendMessageAsync("pong");
             };
         }
 
