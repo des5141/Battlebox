@@ -29,7 +29,7 @@ namespace Server.Additional.Discord.Message
 
             while (msgEnumerator.MoveNext())
             {
-                await msgEnumerator.Current.DeleteAsync();
+                msgEnumerator.Current.DeleteAsync();
             }
         }
     }
