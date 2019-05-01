@@ -23,14 +23,8 @@ namespace Server.Additional.Discord.Message
 
         public async Task Processing(SocketMessage message)
         {
-            var msgList = await message.Channel.GetMessagesAsync(100).FlattenAsync();
-
-            var msgEnumerator = msgList.GetEnumerator();
-
-            while (msgEnumerator.MoveNext())
-            {
-                msgEnumerator.Current.DeleteAsync();
-            }
+            IEnumerable<IMessage> messages = await message.Channel.GetMessagesAsync(100).FlattenAsync();
+            await ((ITextChannel)message.Channel).DeleteMessagesAsync(messages);
         }
     }
 }
