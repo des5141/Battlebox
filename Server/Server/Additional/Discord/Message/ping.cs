@@ -10,9 +10,9 @@ namespace Server.Additional.Discord.Message
     {
         public ping()
         {
-            Msg["ping"] = (message, list) =>
+            Msg["--ping"] = (message, list) =>
             {
-                if (message.Author.Id == 518286982288506880)
+                if (message.Author.Id == Config.Admin)
                     message.Channel.SendMessageAsync("pong");
             };
         }

@@ -14,7 +14,7 @@ namespace Server.Additional.Discord.Message
         {
             Msg["--delete"] = (message, list) =>
             {
-                if (message.Author.Id == 518286982288506880)
+                if (message.Author.Id == Config.Admin)
                 {
                     Processing(message).Wait();
                 }
