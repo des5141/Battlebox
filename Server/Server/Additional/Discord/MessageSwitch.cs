@@ -14,7 +14,7 @@ namespace Server.Additional.Discord
             //try
             //{
             var userMessage = message as SocketUserMessage;
-            SocketCommandContext context = new SocketCommandContext(Program.Client, userMessage);
+            SocketCommandContext context = new SocketCommandContext(Program.Discord, userMessage);
             var cmd = message.Content.Split(' ');
 
             if (!context.User.IsBot)

@@ -19,7 +19,7 @@ namespace Server
     class Program
     {
         public static MessageSwitch Msg;
-        public static DiscordSocketClient Client;
+        public static DiscordSocketClient Discord;
         public const string Token = "NTczMTEwODA0MTg3MTg1MTUy.XMmFGg.QkctThj48AY_CZrY1PWXKbvqv8A";
         static void Main()
         {
@@ -52,16 +52,16 @@ namespace Server
 
         public async Task MainAsync()
         {
-            Client = new DiscordSocketClient();
+            Discord = new DiscordSocketClient();
             Msg = new MessageSwitch();
 
-            Client.Log += Log;
-            Client.MessageReceived += Msg.MessageReceived;
-            Client.Ready += Client_Ready;
-            Client.GuildAvailable += Client_GuildAvailable;
+            Discord.Log += Log;
+            Discord.MessageReceived += Msg.MessageReceived;
+            Discord.Ready += Client_Ready;
+            Discord.GuildAvailable += Client_GuildAvailable;
 
-            await Client.LoginAsync(TokenType.Bot, Token);
-            await Client.StartAsync();
+            await Discord.LoginAsync(TokenType.Bot, Token);
+            await Discord.StartAsync();
             await Task.Delay(-1);
         }
 
@@ -72,12 +72,14 @@ namespace Server
 
         protected Task Client_Ready()
         {
+            Discord.SetGameAsync("--help 으로 도움말", "https://www.twitch.tv/libertycode").Wait();
+
             var embed = new EmbedBuilder()
                 .WithTitle("Server Info")
-                .WithDescription(" - 서버의 **동작**이 시작되었습니다")
+                .WithDescription("서버의 **동작**이 시작되었습니다")
                 .WithTimestamp(DateTimeOffset.Now)
                 .Build();
-            Client.GetGuild(573111073616560128).GetTextChannel(573111191468245002).SendMessageAsync("", embed: embed);
+            Discord.GetGuild(573111073616560128).GetTextChannel(573111191468245002).SendMessageAsync("", embed: embed);
 
             return Task.CompletedTask;
         }
