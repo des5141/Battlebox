@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using Discord;
@@ -69,7 +70,22 @@ namespace Server
             return Task.CompletedTask;
         }
 
-        protected Task Client_Ready() { Client.GetGuild(573111073616560128).GetTextChannel(573111191468245002).SendMessageAsync("Server run!");  return Task.CompletedTask; }
+        protected Task Client_Ready()
+        {
+            EmbedBuilder builder = new EmbedBuilder();
+
+            builder.WithTitle("Ice Wizard Stats");
+            builder.AddField("Cost", "3", true);    // true - for inline
+            builder.AddField("HP", "665", true);
+            builder.AddField("DPS", "42", true);
+            builder.AddField("Hit Speed", "1.5sec", true);
+            builder.AddField("SlowDown", "35%", true);
+            builder.AddField("AOE", "63", true);
+            builder.WithThumbnailUrl("http://...");
+            Client.GetGuild(573111073616560128).GetTextChannel(573111191468245002).SendMessageAsync("", false, builder.Build());
+
+            return Task.CompletedTask;
+        }
 
         protected static Task Log(LogMessage msg)
         {
