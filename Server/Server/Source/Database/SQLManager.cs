@@ -89,9 +89,16 @@ namespace Server.Source.Database
         {
             if (_connection.State != System.Data.ConnectionState.Open)
             {
-                _connection = new MySqlConnection(_mySqlConnection);
-                _connection.Open();
-                Console.WriteLine(" - Reconnect database");
+                try
+                {
+                    _connection = new MySqlConnection(_mySqlConnection);
+                    _connection.Open();
+                    Console.WriteLine(" - Reconnect database");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
             }
         }
     }

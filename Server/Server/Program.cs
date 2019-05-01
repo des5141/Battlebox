@@ -59,6 +59,8 @@ namespace Server
             Client.Ready += Client_Ready;
             Client.GuildAvailable += Client_GuildAvailable;
 
+            await Client.GetGuild(573111073616560128).GetTextChannel(573111191468245002).SendMessageAsync("Server run!");
+
             await Client.LoginAsync(TokenType.Bot, Token);
             await Client.StartAsync();
             await Task.Delay(-1);
