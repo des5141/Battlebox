@@ -13,7 +13,7 @@ using Server.Source.Database;
 using Server.Source.Event;
 using SuperSocket.SocketBase;
 using SuperSocket.SocketBase.Config;
-
+    
 namespace Server
 {
     class Program
@@ -72,11 +72,10 @@ namespace Server
 
         protected Task Client_Ready()
         {
-            DateTimeOffset testTimeLocal = new DateTimeOffset(2018, 1, 1, 0, 0, 0, 0, TimeSpan.FromHours(-8));
             var embed = new EmbedBuilder()
-                .WithTitle("Pacific")
-                .WithDescription(testTimeLocal.ToUnixTimeSeconds().ToString() + "\nOffset: " + testTimeLocal.Offset.ToString())
-                .WithTimestamp(testTimeLocal)
+                .WithTitle("Server Info")
+                .WithDescription(" - 서버의 **동작**이 시작되었습니다")
+                .WithTimestamp(DateTimeOffset.Now)
                 .Build();
             Client.GetGuild(573111073616560128).GetTextChannel(573111191468245002).SendMessageAsync("", embed: embed);
 
