@@ -19,7 +19,7 @@ namespace Server
 
             var mConfig = new ServerConfig()
             {
-                Port = 65535,
+                Port = 20000,
                 Ip = "Any",
                 MaxConnectionNumber = 5000,
                 Mode = SocketMode.Tcp,
