@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>/// init
 only_single();
-supersocket_connect("127.0.0.1", 65535);
+supersocket_connect("61.84.196.75", 20000);
 </string>
           </argument>
         </arguments>
@@ -52,30 +52,6 @@ supersocket_connect("127.0.0.1", 65535);
             <kind>1</kind>
             <string>/// Network status
 supersocket_status();
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="10">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Incomming Messages
-
 </string>
           </argument>
         </arguments>
