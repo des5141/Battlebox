@@ -14,7 +14,7 @@
  SQL : delete from users where _id=”terry”
  Mongo DB : db.users.remove({_id:”terry”})
 
-[MYSQL]
+# MYSQL
 cmd에서 원격 접속하는 방법
 mysql -h ika.today -P 4000 -u root -p
 
