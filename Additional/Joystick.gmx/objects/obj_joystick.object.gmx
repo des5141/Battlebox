@@ -89,9 +89,7 @@ left_basic[1] = view_hview[0] - left_size - left_padding;
 joyEnable = array_create(2);
 joyDistance = array_create(2);
 joyDirection = array_create(2);
-
-/// joystick base
-
+joyStickTrigger = false;
 </string>
           </argument>
         </arguments>
@@ -129,8 +127,10 @@ if (active == true) {
                     point_index[0] = i;
                     left_point[0] = mx;
                     left_point[1] = my;
-                    left_basic[0] = mx;
-                    left_basic[1] = my;
+                    if (joyStickTrigger) {
+                        left_basic[0] = mx;
+                        left_basic[1] = my;
+                    }
                 }
             }   
         } else if(point_index[0] == i) {
@@ -153,13 +153,16 @@ if (active == true) {
                     point_index[1] = i;
                     right_point[0] = mx;
                     right_point[1] = my;
-                    right_basic[0] = mx;
-                    right_basic[1] = my;
+                    if (joyStickTrigger) {
+                        right_basic[0] = mx;
+                        right_basic[1] = my;
+                    }
                 }
             }   
         } else if(point_index[1] == i) {
             if (device_mouse_check_button_released(i, mb_left)) {
                 point_index[1] = -1;
+                // 터치를 놓으면 원점으로 돌아가도록 
                 right_basic[0] = view_wview[0] - right_size - left_padding - 120;
                 right_basic[1] = view_hview[0] - right_size - 70;
             }
