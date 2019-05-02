@@ -138,7 +138,7 @@ if (active == true) {
                 point_index[0] = -1;
                 // 터치를 놓으면 원점으로 돌아가도록 
                 left_basic[0] = left_size + left_padding;
-                left_basic[1] = view_hview[0] - left_size - left_padding;
+                left_basic[1] = 720 - left_size - left_padding;
             }
             else {
                 left_point[0] = mx;
@@ -163,8 +163,8 @@ if (active == true) {
             if (device_mouse_check_button_released(i, mb_left)) {
                 point_index[1] = -1;
                 // 터치를 놓으면 원점으로 돌아가도록 
-                right_basic[0] = view_wview[0] - right_size - left_padding - 120;
-                right_basic[1] = view_hview[0] - right_size - 70;
+                right_basic[0] = 1280 - right_size - left_padding - 120;
+                right_basic[1] = 720 - right_size - 70;
             }
             else {
                 right_point[0] = mx;
@@ -177,8 +177,8 @@ if (active == true) {
     /// Set 
     joyEnable[0] = point_index[0] != -1;
     joyEnable[1] = point_index[1] != -1;
-    joyDistance[0] = point_distance(left_point[0], left_point[1], left_basic[0], left_basic[1]);
-    joyDistance[1] = point_distance(right_point[0], right_point[1], right_basic[0], right_basic[1]);
+    joyDistance[0] = min(left_size, point_distance(left_point[0], left_point[1], left_basic[0], left_basic[1]));
+    joyDistance[1] = min(right_size, point_distance(right_point[0], right_point[1], right_basic[0], right_basic[1]));
     joyDirection[0] = point_direction(left_point[0], left_point[1], left_basic[0], left_basic[1]);
     joyDirection[1] = point_direction(right_point[0], right_point[1], right_basic[0], right_basic[1]);
     if(joyEnable[0] == false)
