@@ -42,6 +42,29 @@ select = -1; // none select
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// ui variable init
+title_y = 0;
+title_text = "";
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="3" enumb="0">
       <action>
@@ -84,6 +107,121 @@ y += (target_y-16 - y)/5;
 
 view_xview = x - view_wview/2;
 view_yview = y - view_hview/2;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="75">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// disable check
+if(mode == 0) {
+    var mx, my;
+    for(var i = 0; i &lt; 4; i++) {
+    if(device_mouse_check_button_released(i, mb_left)) {
+        mx = device_mouse_x_to_gui(i);
+        my = device_mouse_y_to_gui(i);
+        
+        if(mx &lt; title_y * 2) and (my &lt; 700) and (my &gt; 600) {
+            mode = -1;
+            select = -1;
+            zoom = 1;
+            target_x = 480/2;
+            target_y = 270/2;
+        }
+    }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// draw ui
+if(mode == 0)
+    title_y += (100 - title_y)/10;
+else
+    title_y += (0 - title_y)/10;
+
+if(title_y &gt; 1) {
+draw_set_color(c_black);
+draw_rectangle(0, 0, 1280, title_y, false);
+
+draw_set_color(c_white);
+draw_set_font(global.font[30]);
+draw_set_halign(fa_center);
+draw_set_valign(fa_middle);
+draw_text(640, title_y - 50, title_text);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// another ui
+if(title_y &gt; 1) {
+draw_set_color(c_white);
+draw_rectangle(0, 650 - 50, title_y * 2, 650 + 50, false);
+draw_rectangle(1280, 650 - 50, 1280 - title_y * 2, 650 + 50, false);
+
+
+draw_set_color(c_black);
+draw_set_alpha(0.5);
+draw_rectangle(0, 500, title_y * 3.5, 150, false);
+draw_rectangle(1280, 500, 1280 - title_y * 3.5, 150, false);
+draw_set_alpha(1);
+draw_set_halign(fa_right);
+draw_text(title_y * 2 - 50, 650, "나가기");
+draw_set_halign(fa_left);
+draw_text(1280 - title_y * 2 + 50, 650, "선택");
+}
 </string>
           </argument>
         </arguments>

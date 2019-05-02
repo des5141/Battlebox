@@ -51,6 +51,7 @@ move = false;
             <kind>1</kind>
             <string>/// id set
 type = 0; // knight
+name = "기사";
 </string>
           </argument>
         </arguments>
@@ -111,6 +112,7 @@ with (obj_choose_view) {
     zoom = 0.5
     target_x = other.x
     target_y = other.y
+    title_text = other.name;
 }
 </string>
           </argument>
