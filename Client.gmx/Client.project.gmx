@@ -172,6 +172,9 @@
     <objects name="choose">
       <object>objects\obj_choose_wall</object>
       <object>objects\obj_choose_view</object>
+      <objects name="characters">
+        <object>objects\obj_choose_knight</object>
+      </objects>
     </objects>
   </objects>
   <rooms name="rooms">

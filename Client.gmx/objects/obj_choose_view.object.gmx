@@ -26,11 +26,18 @@
           <argument>
             <kind>1</kind>
             <string>/// instance init
-x = 640
-y = 360
+x = view_wview/2
+y = view_hview/2
+target_x = x;
+target_y = y;
+
 
 target = -1;
 zoom = 1;
+mode = -1; // -1 is non select mode, 0 is select mode, 1 is character mode
+
+
+select = -1; // none select
 </string>
           </argument>
         </arguments>
@@ -56,16 +63,27 @@ zoom = 1;
             <string>/// view movement
 
 // zoom
-view_wview += (16*(80*zoom) - view_wview)/5;
-view_hview += (9*(80*zoom) - view_hview)/5;
+view_wview += (16*(30*zoom) - view_wview)/10;
+view_hview += (9*(30*zoom) - view_hview)/10;
 
 if not(target == -1) {
-    x += (mouse_x - x)/5;
-    y += (mouse_y - y)/5;
+    if (mode == 1) {
+        x += (target.x - tax)/5;
+        y += (target.y-16 - y)/5;
+    }
     
-    view_xview = x - view_wview/2;
-    view_yview = y - view_hview/2;
+    if (mode == 0) {
+        x += (target_x - x)/5;
+        y += (target_y-16 - y)/5;
+    }
 }
+if(mode == -1) {
+x += (target_x - x)/5;
+y += (target_y-16 - y)/5;
+}
+
+view_xview = x - view_wview/2;
+view_yview = y - view_hview/2;
 </string>
           </argument>
         </arguments>
