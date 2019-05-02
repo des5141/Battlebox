@@ -77,12 +77,12 @@ point_index[1] = -1;
 left_point = array_create(2);
 right_point = array_create(2);
 left_size = 100;
-right_size = 60;
+right_size = 80;
 
 left_padding = 100;
 
-right_basic[0] = view_wview[0] - left_size - left_padding;
-right_basic[1] = view_hview[0] - left_size - left_padding;
+right_basic[0] = view_wview[0] - right_size - left_padding - 120;
+right_basic[1] = view_hview[0] - right_size - 70;
 left_basic[0] = left_size + left_padding;
 left_basic[1] = view_hview[0] - left_size - left_padding;
 
@@ -97,7 +97,7 @@ joyDirection = array_create(2);
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="0">
+    <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -125,7 +125,7 @@ if (active == true) {
         // LEFT joystick
         if(point_index[0] == -1) {
             if (device_mouse_check_button_pressed(i, mb_left)) {
-                if (mx &lt; 640) and (my &gt; 360){
+                if (mx &lt; 640) and (my &gt; 360) {
                     point_index[0] = i;
                     left_point[0] = mx;
                     left_point[1] = my;
@@ -149,7 +149,7 @@ if (active == true) {
         // RIGHT joystick
         if(point_index[1] == -1) {
             if (device_mouse_check_button_pressed(i, mb_left)) {
-                if (mx &gt; 640) and (my &gt; 360) {
+                if (mx &gt; 640) and (my &gt; 360) and (mx &lt; 1060) {
                     point_index[1] = i;
                     right_point[0] = mx;
                     right_point[1] = my;
@@ -160,8 +160,8 @@ if (active == true) {
         } else if(point_index[1] == i) {
             if (device_mouse_check_button_released(i, mb_left)) {
                 point_index[1] = -1;
-                right_basic[0] = view_wview[0] - left_size - left_padding;
-                right_basic[1] = view_hview[0] - left_size - left_padding;
+                right_basic[0] = view_wview[0] - right_size - left_padding - 120;
+                right_basic[1] = view_hview[0] - right_size - 70;
             }
             else {
                 right_point[0] = mx;
@@ -188,17 +188,17 @@ if (active == true) {
     draw_set_alpha(0.4);
     draw_set_color(c_white);
     draw_circle(left_basic[0], left_basic[1], left_size, false);
-    draw_circle(right_basic[0], right_basic[1], left_size, false);
+    draw_circle(right_basic[0], right_basic[1], right_size, false);
     draw_set_alpha(0.5);
     draw_set_color(c_black);
     draw_circle(left_basic[0], left_basic[1], (left_size/10)*9, false);
-    draw_circle(right_basic[0], right_basic[1], (left_size/10)*9, false);
+    draw_circle(right_basic[0], right_basic[1], (right_size/10)*9, false);
     draw_set_alpha(0.8);
     draw_set_color(c_white);
     draw_circle(left_basic[0] - lengthdir_x(min(left_size, joyDistance[0]), joyDirection[0]),
     left_basic[1] - lengthdir_y(min(left_size, joyDistance[0]), joyDirection[0]), 20, false);
-    draw_circle(right_basic[0] - lengthdir_x(min(left_size, joyDistance[1]), joyDirection[1]),
-    right_basic[1] - lengthdir_y(min(left_size, joyDistance[1]), joyDirection[1]), 20, false);
+    draw_circle(right_basic[0] - lengthdir_x(min(right_size, joyDistance[1]), joyDirection[1]),
+    right_basic[1] - lengthdir_y(min(right_size, joyDistance[1]), joyDirection[1]), 20, false);
     // ---------
 }
 

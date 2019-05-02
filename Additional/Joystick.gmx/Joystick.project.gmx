@@ -10,6 +10,8 @@
   <paths name="paths"/>
   <objects name="objects">
     <object>objects\obj_joystick</object>
+    <object>objects\obj_skill_button</object>
+    <object>objects\obj_change_button</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
