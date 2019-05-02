@@ -84,8 +84,14 @@
     <sprite>sprites\spr_item_clothes</sprite>
     <sprite>sprites\spr_item_weapon</sprite>
     <sprite>sprites\spr_item_suplies</sprite>
+    <sprites name="wall">
+      <sprite>sprites\spr_choose_wall</sprite>
+    </sprites>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\back_choose</background>
+    <background>background\back_choose_wall</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\only_single.gml</script>
@@ -162,6 +168,10 @@
     </objects>
     <objects name="main">
       <object>objects\obj_player</object>
+    </objects>
+    <objects name="choose">
+      <object>objects\obj_choose_wall</object>
+      <object>objects\obj_choose_view</object>
     </objects>
   </objects>
   <rooms name="rooms">
