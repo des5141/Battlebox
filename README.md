@@ -7,6 +7,7 @@ This repo is made for the purpose of battle-royal game
 - **IDE** - Visual Studio Code, Gamemaker Studio 1.4
 - **Markdown Editor** - Typora
 - **Tablet** - PENPAD
+- **Test** - Galaxy Note Fan Edition
 
 ## Support Git History
 
