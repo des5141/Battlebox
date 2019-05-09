@@ -33,8 +33,6 @@ namespace Server.Source.SignalEvent.Func
                         // 성공적으로 만듬
                         user.Nickname = playerNickname;
                         user.Id = playerId;
-
-                        // 성공적으로 만들었다고 돌려주기
                         var buf = NewBuffer.Func(16);
                         buf.append<byte>(2);
                         user.Send(buf, Signal.Login);
