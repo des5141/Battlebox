@@ -73,7 +73,7 @@ namespace Server
 
             var embed = new EmbedBuilder()
                 .WithTitle("Server Info")
-                .WithDescription("서버의 **동작**이 시작되었습니다")
+                .WithDescription("서버의 **동작**이 시작되었습니다 :D")
                 .WithTimestamp(DateTimeOffset.Now)
                 .Build();
             Discord.GetGuild(573111073616560128).GetTextChannel(573111191468245002).SendMessageAsync("", embed: embed);
