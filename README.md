@@ -13,6 +13,6 @@ This repo is made for the purpose of battle-royal game
 
 ### Credits
 
-Based on these amazing projects:
+Based on these amazing projects
 
 - Liberty🌠 by [Jeong Hyeon Kim](https://github.com/des5141)
