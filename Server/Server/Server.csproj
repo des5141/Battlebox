@@ -261,7 +261,6 @@
   <ItemGroup>
     <Compile Include="Additional\Discord\Config.cs" />
     <Compile Include="Additional\Discord\MessageSwitch.cs" />
-    <Compile Include="Additional\Discord\Message\delete.cs" />
     <Compile Include="Additional\Discord\Message\stop.cs" />
     <Compile Include="Additional\Discord\Message\ping.cs" />
     <Compile Include="Additional\Discord\Routing\Function.cs" />
