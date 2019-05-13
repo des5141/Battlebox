@@ -156,6 +156,9 @@
     </objects>
     <objects name="system">
       <object>objects\sys_network</object>
+      <object>objects\sys_joystick</object>
+      <object>objects\sys_skill_button</object>
+      <object>objects\sys_charge_button</object>
     </objects>
     <objects name="network">
       <object>objects\obj_network</object>
@@ -173,6 +176,7 @@
       <object>objects\obj_choose_wall</object>
       <object>objects\obj_choose_view</object>
       <objects name="characters">
+        <object>objects\par_choose</object>
         <object>objects\obj_choose_knight</object>
       </objects>
     </objects>
