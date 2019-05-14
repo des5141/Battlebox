@@ -179,7 +179,11 @@
       <objects name="characters">
         <object>objects\par_choose</object>
         <object>objects\obj_choose_knight</object>
+        <object>objects\obj_choose_doctor</object>
       </objects>
+    </objects>
+    <objects name="movement">
+      <object>objects\par_unit</object>
     </objects>
   </objects>
   <rooms name="rooms">
