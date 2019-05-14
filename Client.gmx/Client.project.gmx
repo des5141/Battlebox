@@ -155,6 +155,7 @@
       <object>objects\sys_init</object>
     </objects>
     <objects name="system">
+      <object>objects\system</object>
       <object>objects\sys_network</object>
       <object>objects\sys_joystick</object>
       <object>objects\sys_skill_button</object>

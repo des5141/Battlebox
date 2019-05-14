@@ -25,6 +25,28 @@
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>/// make system
+instance_create(0, 0, system);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>/// enum type
 enum sendTo {
     Server = -1,
@@ -212,8 +234,12 @@ global.font[30] = font_add('NanumSquareRoundR.ttf', 30, false, false, 0, 0);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Joystick load
+            <string>/// controller load
 instance_create(0, 0, sys_joystick);
+instance_create(0, 0, sys_skill_button);
+instance_create(0, 0, sys_charge_button);
+
+global.controller = false;
 </string>
           </argument>
         </arguments>

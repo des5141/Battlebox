@@ -91,7 +91,7 @@ view_hview += (9*(30*zoom) - view_hview)/10;
 
 if not(target == -1) {
     if (mode == 1) {
-        x += (target.x - tax)/5;
+        x += (target.x - x)/5;
         y += (target.y-16 - y)/5;
     }
     
@@ -143,6 +143,14 @@ if(mode == 0) {
             zoom = 1;
             target_x = 480/2;
             target_y = 270/2;
+        }
+        
+        if(mx &gt; 1280 - title_y * 2) and (my &lt; 700) and (my &gt; 600) {
+            mode = 1;
+            select = -1;
+            zoom = 1;
+            global.controller = true;
+            target.active = true;
         }
     }
     }
@@ -221,6 +229,40 @@ draw_set_halign(fa_right);
 draw_text(title_y * 2 - 50, 650, "나가기");
 draw_set_halign(fa_left);
 draw_text(1280 - title_y * 2 + 50, 650, "선택");
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// character exit ui
+if(mode == 1) {
+    draw_set_alpha(1);
+    draw_set_color(c_white);
+    draw_rectangle(10, 10, 170, 70, false);
+    draw_set_color(c_black);
+    draw_set_alpha(1);
+    draw_set_halign(fa_center);
+    draw_set_valign(fa_middle);
+    draw_set_font(global.font[30]);
+    draw_text(90, 40, "나가기");
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_top);
 }
 </string>
           </argument>
