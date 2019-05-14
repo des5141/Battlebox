@@ -52,6 +52,8 @@ move = false;
             <string>/// id set
 type = -1; // null
 name = "NULL";
+nuckback = 0;
+target_speed = 0;
 </string>
           </argument>
         </arguments>
@@ -175,8 +177,94 @@ with (obj_choose_view) {
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>/// movement
+if(active) {
+    if(sys_joystick.joyEnable[0]) {
+        direction = sys_joystick.joyDirection[0]
+        target_speed += sys_joystick.joyDistance[0] / 30 * system.delta;
+    }else
+        target_speed += (0 - target_speed)/20;
+        
+    nuckback += ( 0 - nuckback )/20;
+    if(target_speed &gt; 1) target_speed = 1
+    
+    var _spd = nuckback + target_speed;
+    hspeed = lengthdir_x(_spd, direction);
+    vspeed = lengthdir_y(_spd, direction);
+    if (collision_rectangle(x - 8 + ceil(hspeed), y - 5, x + 8 + ceil(hspeed), y, par_wall, false, false) != noone ) {
+        hspeed = 0;
+        x = xprevious;
+    }
+    if (collision_rectangle(x - 8, y - 5 + floor(vspeed), x + 8, y + floor(vspeed)+ 1, par_wall, false, false) != noone ) {
+        vspeed = 0;
+        y = yprevious;
+    }
+    
+    var ins = collision_rectangle(x - 8 + hspeed, y - 5 + vspeed, x + 8 + hspeed, y + vspeed, obj_door, false, false);
+    if (ins != noone) {
+        /// start matching
+        if(ins.open == false) {
+            ins.open = true;
+            
+            // 매칭 시작
+            if(trigger == false) {
+                trigger = true;
+                
+                
+            }
+        }
+    }else{
+        obj_door.trigger = false;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>draw_self();
 draw_sprite(spr_chr_body, type, x, y);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="32">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(active) {
+    direction = irandom_range(0, 360);
+    nuckback = -6;
+}
 </string>
           </argument>
         </arguments>
