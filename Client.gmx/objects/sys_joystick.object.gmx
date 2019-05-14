@@ -77,7 +77,7 @@ if (global.controller == true) {
         // LEFT joystick
         if(point_index[0] == -1) {
             if (device_mouse_check_button_pressed(i, mb_left)) {
-                if (mx &lt; 640) and (my &gt; 360) {
+                if ((mx &lt; 640) and (my &gt; 360) and (joyStickTrigger == true)) or ((joyStickTrigger == false) and (point_distance(left_basic[0], left_basic[1], mx, my) &lt; left_size)){
                     point_index[0] = i;
                     left_point[0] = mx;
                     left_point[1] = my;
@@ -179,7 +179,6 @@ left_basic[1] = 720 - left_size - left_padding;
 joyEnable = array_create(2);
 joyDistance = array_create(2);
 joyDirection = array_create(2);
-joyStickTrigger = false;
 }
 </string>
           </argument>

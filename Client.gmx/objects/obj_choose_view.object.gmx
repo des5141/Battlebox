@@ -154,6 +154,27 @@ if(mode == 0) {
         }
     }
     }
+}else if (mode == 1) {
+    var mx, my;
+    for(var i = 0; i &lt; 4; i++) {
+    if(device_mouse_check_button_released(i, mb_left)) {
+        mx = device_mouse_x_to_gui(i);
+        my = device_mouse_y_to_gui(i);
+        
+        if(mx &lt; 170) and (mx &gt; 10) and (my &gt; 10) and (my &lt; 70) {
+            mode = -1;
+            select = -1;
+            zoom = 1;
+            target_x = 480/2;
+            target_y = 270/2;
+            global.controller = false;
+            target.active = false;
+            target.x = target.xstart
+            target.y = target.ystart
+            target = -1
+        }
+    }
+    }
 }
 </string>
           </argument>

@@ -129,13 +129,15 @@ active = false;
             <kind>1</kind>
             <string>/// select
 with (obj_choose_view) {
-    select = other.type;
-    target = other.id;
-    mode = 0;
-    zoom = 0.5
-    target_x = other.x
-    target_y = other.y
-    title_text = other.name;
+    if(target == -1) and (mode == -1) {
+        select = other.type;
+        target = other.id;
+        mode = 0;
+        zoom = 0.5
+        target_x = other.x
+        target_y = other.y
+        title_text = other.name;
+    }
 }
 </string>
           </argument>
