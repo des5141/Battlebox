@@ -207,14 +207,15 @@ if(active) {
             ins.open = true;
             
             // 매칭 시작
-            if(trigger == false) {
-                trigger = true;
+            if(ins.trigger == false) {
+                ins.trigger = true;
                 
                 
             }
         }
     }else{
         obj_door.trigger = false;
+        obj_door.open = false;
     }
 }
 </string>
