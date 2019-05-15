@@ -54,6 +54,7 @@ type = -1; // null
 name = "NULL";
 nuckback = 0;
 target_speed = 0;
+dir = 0;
 </string>
           </argument>
         </arguments>
@@ -179,18 +180,24 @@ with (obj_choose_view) {
             <kind>1</kind>
             <string>/// movement
 if(active) {
-    if(sys_joystick.joyEnable[0]) {
-        direction = sys_joystick.joyDirection[0]
+    if(sys_joystick.joyEnable[0]) and (global.controller == true) and (nuckback == 0){
+        dir = sys_joystick.joyDirection[0]
         target_speed += sys_joystick.joyDistance[0] / 30 * system.delta;
-    }else
+    }else {
         target_speed += (0 - target_speed)/20;
-        
+    }
     nuckback += ( 0 - nuckback )/20;
+    show_debug_message(nuckback)
+    if(nuckback &gt; -0.3) {
+        nuckback = 0;
+    }
     if(target_speed &gt; 1) target_speed = 1
     
-    var _spd = nuckback + target_speed;
-    hspeed = lengthdir_x(_spd, direction);
-    vspeed = lengthdir_y(_spd, direction);
+    var _spd;
+    _spd = nuckback + target_speed;
+    
+    hspeed = lengthdir_x(_spd, dir);
+    vspeed = lengthdir_y(_spd, dir);
     if (collision_rectangle(x - 8 + ceil(hspeed), y - 5, x + 8 + ceil(hspeed), y, par_wall, false, false) != noone ) {
         hspeed = 0;
         x = xprevious;
@@ -199,6 +206,18 @@ if(active) {
         vspeed = 0;
         y = yprevious;
     }
+    
+    if ( (hspeed != 0) or (vspeed != 0) )and(nuckback == 0) {
+        image_speed = (0.2)*target_speed;
+    }else {
+        image_speed = 0;
+        image_index = 0;
+    }
+    
+    if(dir &gt; 90) and (dir &lt; 270)
+        image_xscale = -1;
+    else
+        image_xscale = 1;
     
     var ins = collision_rectangle(x - 8 + hspeed, y - 5 + vspeed, x + 8 + hspeed, y + vspeed, obj_door, false, false);
     if (ins != noone) {
@@ -209,14 +228,27 @@ if(active) {
             // 매칭 시작
             if(ins.trigger == false) {
                 ins.trigger = true;
-                
-                
+                obj_choose_view.zoom = 0.5;
+                obj_choose_view.mode = 2;
+                global.controller = false;
             }
         }
     }else{
+        if(obj_door.trigger == true) {
+            obj_choose_view.zoom = 1;
+            obj_choose_view.mode = 1;
+            global.controller = true;
+        }
         obj_door.trigger = false;
         obj_door.open = false;
     }
+}else{
+    hspeed = 0;
+    vspeed = 0;
+    target_speed = 0;
+    nuckback = 0;
+    image_index = 0;
+    image_speed = 0;
 }
 </string>
           </argument>
@@ -238,8 +270,9 @@ if(active) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_self();
-draw_sprite(spr_chr_body, type, x, y);
+            <string>/// draw
+draw_self();
+draw_sprite_ext(spr_chr_body, type, x, y, image_xscale, image_yscale, image_angle, c_white, 1);
 </string>
           </argument>
         </arguments>
@@ -263,7 +296,7 @@ draw_sprite(spr_chr_body, type, x, y);
           <argument>
             <kind>1</kind>
             <string>if(active) {
-    direction = irandom_range(0, 360);
+    dir = irandom_range(0, 360);
     nuckback = -6;
 }
 </string>
