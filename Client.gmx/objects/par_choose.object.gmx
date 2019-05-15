@@ -185,13 +185,16 @@ if(active) {
         target_speed += sys_joystick.joyDistance[0] / 30 * system.delta;
     }else {
         target_speed += (0 - target_speed)/20;
+        if(target_speed &lt; 0.2) {
+            target_speed = 0;
+        }
     }
     nuckback += ( 0 - nuckback )/20;
     show_debug_message(nuckback)
     if(nuckback &gt; -0.3) {
         nuckback = 0;
     }
-    if(target_speed &gt; 1) target_speed = 1
+    if(target_speed &gt; 1) target_speed = 1;
     
     var _spd;
     _spd = nuckback + target_speed;
@@ -271,6 +274,10 @@ if(active) {
           <argument>
             <kind>1</kind>
             <string>/// draw
+draw_set_alpha(0.5);
+draw_set_color(c_black);
+draw_ellipse(x - 10, y - 2, x + 10, y + 2, false);
+draw_set_alpha(1);
 draw_self();
 draw_sprite_ext(spr_chr_body, type, x, y, image_xscale, image_yscale, image_angle, c_white, 1);
 </string>
