@@ -17,6 +17,8 @@ namespace Server.Source.Room.Lock
                 {
                     Data.MatchingList.Enqueue(user);
                 }
+
+                ShowList();
             }).Start();
         }
 
@@ -28,7 +30,20 @@ namespace Server.Source.Room.Lock
                 {
                     Data.MatchingList.Dequeue();
                 }
+
+                ShowList();
             }).Start();
+        }
+
+        private static void ShowList()
+        {
+            var str = "# MATCH LIST";
+            foreach (var item in Data.MatchingList.Items)
+            {
+                str += item.Nickname + "\n";
+            }
+            str += "# END";
+            Chat.SendLog(str);
         }
     }
 }

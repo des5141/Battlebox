@@ -6,7 +6,6 @@ namespace Server.Source.SignalEvent.Func
     {
         public Match()
         {
-            var str = "# MATCH LIST";
 
             Msg[Signal.Match] = (user, requestinfo, buffer) =>
             {
@@ -19,14 +18,6 @@ namespace Server.Source.SignalEvent.Func
                 {
                     MatchManagement.Remove(user);
                 }
-
-                foreach (var item in Data.MatchingList.Items)
-                {
-                    str += item.Nickname + "\n";
-                }
-
-                str += "# END";
-                Chat.SendLog(str);
             };
         }
     }
