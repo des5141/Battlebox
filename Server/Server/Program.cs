@@ -41,7 +41,7 @@ namespace Server
 
             // 디스코드 서버
             FunctionScan.StartScan();
-            new Program().MainAsync().GetAwaiter().GetResult();
+            new Program().MainAsync().GetAwaiter();
 
             // 서버 꺼짐 방지
             KeyWaiting.Func();

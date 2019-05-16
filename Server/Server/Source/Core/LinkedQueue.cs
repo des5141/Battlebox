@@ -6,44 +6,44 @@ namespace Server.Source.Core
 {
     public class LinkedQueue<T>
     {
-        public int Count => _items.Count;
+        public int Count => Items.Count;
 
         public void Enqueue(T item)
         {
-            _items.AddLast(item);
+            Items.AddLast(item);
         }
 
         public T Dequeue()
         {
-            if (_items.First == null)
+            if (Items.First == null)
                 throw new InvalidOperationException("...");
 
-            var item = _items.First.Value;
-            _items.RemoveFirst();
+            var item = Items.First.Value;
+            Items.RemoveFirst();
 
             return item;
         }
 
         public T Peek()
         {
-            if (_items.First == null)
+            if (Items.First == null)
                 throw new InvalidOperationException("...");
 
-            var item = _items.First.Value;
+            var item = Items.First.Value;
 
             return item;
         }
 
         public void Remove(T item)
         {
-            _items.Remove(item);
+            Items.Remove(item);
         }
 
         public void RemoveAt(int index)
         {
-            Remove(_items.Skip(index).First());
+            Remove(Items.Skip(index).First());
         }
 
-        public readonly LinkedList<T> _items = new LinkedList<T>();
+        public readonly LinkedList<T> Items = new LinkedList<T>();
     }
 }
