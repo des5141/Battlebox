@@ -77,7 +77,8 @@ enum signal {
     heartbeat_first = -3,
     heartbeat_second = -4,
     
-    login = 1
+    login = 1,
+    matching = 2
 }
 </string>
           </argument>

@@ -15,12 +15,6 @@ namespace Server.Source.Core
         readonly NcsServer _ncsServer = new NcsServer();
         public static int SpaceMax = 10;
 
-        public static List<List<NcsUser>> UserList = new List<List<NcsUser>>();
-        public static AsyncLock TaskLockInUserList = new AsyncLock();
-
-        public static LinkedQueue<NcsUser> MatchingList = new LinkedQueue<NcsUser>();
-        public static AsyncLock TaskLockInMatchingList = new AsyncLock();
-
         public static SqlManager Database;
         public static AsyncLock TaskLockInDatabase = new AsyncLock();
 
@@ -34,7 +28,7 @@ namespace Server.Source.Core
             _ncsServer.SessionClosed += new SessionHandler<NcsUser, CloseReason>(sessionClosed);
             _ncsServer.NewRequestReceived += new RequestHandler<NcsUser, NcsRequestInfo>(newRequestReceived);
             for (int i = 0; i < Main.SpaceMax; i++)
-                Main.UserList.Add(new List<NcsUser>());
+                Data.UserList.Add(new List<NcsUser>());
         }
     }
 }

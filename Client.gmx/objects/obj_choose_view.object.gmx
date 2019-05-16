@@ -223,6 +223,12 @@ if(mode == 0) {
                     obj_door.matching = true;
                     time_dot = 0;
                     alarm[0] = 50;
+                    /// matching start
+                    buffer = buf_new(16);
+                    buf_write(buffer, buffer_string, global.player_id);
+                    buf_write(buffer, buffer_string, global.player_nickname);
+                    supersocket_send(buffer, signal.matching, sendTo.Server);
+                    buf_del(buffer);
                 }
             }else {
                 if(mx &lt; 170) and (mx &gt; 10) and (my &gt; 10) and (my &lt; 70) {

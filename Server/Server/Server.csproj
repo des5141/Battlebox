@@ -293,6 +293,8 @@
     <Compile Include="Source\Event\ServerSessionClosed.cs" />
     <Compile Include="Source\Event\ServerNewSessionConnected.cs" />
     <Compile Include="Source\Event\ServerStarted.cs" />
+    <Compile Include="Source\Room\NcsRoom.cs" />
+    <Compile Include="Source\SignalEvent\Func\Match.cs" />
     <Compile Include="Source\SignalEvent\Func\Login.cs" />
     <Compile Include="Source\Task\RemoveUser.cs" />
     <Compile Include="Source\Task\MoveSpace.cs" />
@@ -303,8 +305,6 @@
     <None Include="packages.config" />
     <None Include="Readme.md" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Source\Room\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

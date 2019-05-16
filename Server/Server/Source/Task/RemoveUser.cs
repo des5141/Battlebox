@@ -9,10 +9,10 @@ namespace Server.Source.Task
         {
             new System.Threading.Tasks.Task(async () =>
             {
-                using (await Main.TaskLockInUserList.LockAsync())
+                using (await Lock.UserList.LockAsync())
                 {
                     for (int i = 0; i < Main.SpaceMax; i++)
-                        Main.UserList[i].Remove(user);
+                        Data.UserList[i].Remove(user);
                 }
             }).Start();
         }
