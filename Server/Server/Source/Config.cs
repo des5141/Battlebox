@@ -13,16 +13,14 @@ namespace Server.Source
 
         public static void SendLog(string message)
         {
-            if (Trigger)
-            {
-                var embed = new EmbedBuilder()
-                    .WithTitle("Server log")
-                    .WithDescription(message ?? "~~Null message~~")
-                    .WithTimestamp(DateTimeOffset.Now)
-                    .Build();
-                Program.Discord.GetGuild(573111073616560128).GetTextChannel(573111191468245002)
-                    .SendMessageAsync("", embed: embed);
-            }
+            if (!Trigger) return;
+            var embed = new EmbedBuilder()
+                .WithTitle("Server log")
+                .WithDescription(message ?? "~~Null message~~")
+                .WithTimestamp(DateTimeOffset.Now)
+                .Build();
+            Program.Discord.GetGuild(573111073616560128).GetTextChannel(573111191468245002)
+                .SendMessageAsync("", embed: embed);
         }
     }
     public class SendTo
