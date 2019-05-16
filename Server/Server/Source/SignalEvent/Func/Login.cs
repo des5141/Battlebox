@@ -12,7 +12,7 @@ namespace Server.Source.SignalEvent.Func
         {
             Msg[Signal.Login] = (user, requestinfo, buffer) =>
             {
-                Program.Channel.SendMessageAsync( "test");
+                Discord.SendLog("test");
 
                 var playerId = buffer.extract_gmlstring();
                 var playerNickname = buffer.extract_gmlstring();
