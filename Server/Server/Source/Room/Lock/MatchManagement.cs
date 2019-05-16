@@ -37,10 +37,11 @@ namespace Server.Source.Room.Lock
 
         private static void ShowList()
         {
-            var str = "# MATCH LIST";
+            var i = 0;
+            var str = "# MATCH LIST\n";
             foreach (var item in Data.MatchingList.Items)
             {
-                str += item.Nickname + "\n";
+                str += $"[{i}] item.Nickname\n";
             }
             str += "# END";
             Chat.SendLog(str);
