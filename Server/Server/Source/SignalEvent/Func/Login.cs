@@ -1,4 +1,6 @@
-﻿using Server.Source.Core;
+﻿using System;
+using Discord;
+using Server.Source.Core;
 using Server.Source.Database.Event;
 using Server.Source.Task;
 
@@ -10,7 +12,14 @@ namespace Server.Source.SignalEvent.Func
         {
             Msg[Signal.Login] = (user, requestinfo, buffer) =>
             {
-                Discord.SendLog("로그인 시도");
+                var embed = new EmbedBuilder()
+                    .WithTitle("Server log")
+                    .WithDescription("로그인")
+                    .WithTimestamp(DateTimeOffset.Now)
+                    .Build();
+                Program.Discord.GetGuild(573111073616560128).GetTextChannel(573111191468245002)
+                    .SendMessageAsync("", embed: embed);
+
                 var playerId = buffer.extract_gmlstring();
                 var playerNickname = buffer.extract_gmlstring();
 
