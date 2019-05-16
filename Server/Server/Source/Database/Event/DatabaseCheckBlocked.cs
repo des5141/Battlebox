@@ -15,8 +15,8 @@ namespace Server.Source.Database.Event
         {
             using (await Main.TaskLockInDatabase.LockAsync())
             {
-                var Dt = Main.Database.Read($"select * from user where id=\"{playerId}\" and block=0 and connect=0");
-                return Dt != null;
+                var dt = Main.Database.Read($"select * from user where id=\"{playerId}\" and block=0 and connect=0");
+                return dt != null;
             }
         }
     }
