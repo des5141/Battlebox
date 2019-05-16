@@ -1,10 +1,30 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Discord;
 using Server.Source.Core;
 using Server.Source.Room;
 using Server.Source.User;
 
 namespace Server.Source
 {
+    public class Discord
+    {
+        public static bool Trigger = false;
+
+        public static void SendLog(string message)
+        {
+            if (Trigger)
+            {
+                var embed = new EmbedBuilder()
+                    .WithTitle("Server log")
+                    .WithDescription(message ?? "~~Null message~~")
+                    .WithTimestamp(DateTimeOffset.Now)
+                    .Build();
+                Program.Discord.GetGuild(573111073616560128).GetTextChannel(573111191468245002)
+                    .SendMessageAsync("", embed: embed);
+            }
+        }
+    }
     public class SendTo
     {
         public const short

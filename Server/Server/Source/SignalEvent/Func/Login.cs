@@ -1,5 +1,6 @@
 ﻿using Server.Source.Core;
 using Server.Source.Database.Event;
+using Server.Source.Task;
 
 namespace Server.Source.SignalEvent.Func
 {
@@ -24,6 +25,9 @@ namespace Server.Source.SignalEvent.Func
                     buf.append<byte>(1);
                     buf.append_gmlstring(user.Nickname);
                     user.Send(buf, Signal.Login);
+
+                    // 허가된 위치로 이동
+                    MoveSpace.Func(user, 1);
                 }
                 else
                 {

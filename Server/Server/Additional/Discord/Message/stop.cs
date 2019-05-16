@@ -7,9 +7,9 @@ using Discord;
 
 namespace Server.Additional.Discord.Message
 {
-    public class stop : Routing.Function
+    public class Stop : Routing.Function
     {
-        public stop()
+        public Stop()
         {
             Msg["--stop"] = (message, list) =>
             {

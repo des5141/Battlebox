@@ -12,3 +12,9 @@
 * -3 is send to server and client (client space)
 * -4 is send to server and all client
 * 0 is space 0
+### space index
+not auth
+* 0 is not auth
+-------------------------------------
+auth
+* 1 is lobby

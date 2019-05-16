@@ -44,6 +44,6 @@ namespace Server.Source.Core
             Remove(_items.Skip(index).First());
         }
 
-        private readonly LinkedList<T> _items = new LinkedList<T>();
+        public readonly LinkedList<T> _items = new LinkedList<T>();
     }
 }

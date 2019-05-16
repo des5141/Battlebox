@@ -11,10 +11,10 @@ namespace Server.Additional.Discord
     {
         public async Task MessageReceived(SocketMessage message)
         {
-            //try
-            //{
+            try
+            {
             var userMessage = message as SocketUserMessage;
-            SocketCommandContext context = new SocketCommandContext(Program.Discord, userMessage);
+            var context = new SocketCommandContext(Program.Discord, userMessage);
             var cmd = message.Content.Split(' ');
 
             if (!context.User.IsBot)
@@ -31,15 +31,15 @@ namespace Server.Additional.Discord
                 }
                 await Log(new LogMessage(LogSeverity.Info, "Command", $"{context.User} : {context.Message}"));
             }
-            //}
-            //catch (Exception e)
-            //{
-            //    await Log(new LogMessage(LogSeverity.Info, "Exception!", $"{e.Message}"));
-            //}
+            }
+            catch (Exception e)
+            {
+                await Log(new LogMessage(LogSeverity.Info, "Exception!", $"{e.Message}"));
+            }
 
         }
 
-        private Task Log(LogMessage msg)
+        private static Task Log(LogMessage msg)
         {
             Console.WriteLine(msg.ToString());
             return Task.CompletedTask;

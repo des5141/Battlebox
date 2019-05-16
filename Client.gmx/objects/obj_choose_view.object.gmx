@@ -225,14 +225,18 @@ if(mode == 0) {
                     alarm[0] = 50;
                     /// matching start
                     buffer = buf_new(16);
-                    buf_write(buffer, buffer_string, global.player_id);
-                    buf_write(buffer, buffer_string, global.player_nickname);
+                    buf_write(buffer, buffer_u8, 0);
                     supersocket_send(buffer, signal.matching, sendTo.Server);
                     buf_del(buffer);
                 }
             }else {
                 if(mx &lt; 170) and (mx &gt; 10) and (my &gt; 10) and (my &lt; 70) {
                     obj_door.matching = false;
+                    /// matching end
+                    buffer = buf_new(16);
+                    buf_write(buffer, buffer_u8, 1);
+                    supersocket_send(buffer, signal.matching, sendTo.Server);
+                    buf_del(buffer);
                 }
             }
         }

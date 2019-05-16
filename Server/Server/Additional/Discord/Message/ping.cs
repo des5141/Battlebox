@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Server.Additional.Discord.Message
 {
-    public class ping : Routing.Function
+    public class Ping : Routing.Function
     {
-        public ping()
+        public Ping()
         {
             Msg["--ping"] = (message, list) =>
             {
