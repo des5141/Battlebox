@@ -7,7 +7,7 @@ using Server.Source.User;
 
 namespace Server.Source
 {
-    public class Discord
+    public class Chat
     {
         public static void SendLog(string message)
         {

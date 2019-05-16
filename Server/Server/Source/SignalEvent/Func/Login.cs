@@ -10,7 +10,7 @@ namespace Server.Source.SignalEvent.Func
         {
             Msg[Signal.Login] = (user, requestinfo, buffer) =>
             {
-                Discord.SendLog("test");
+                Chat.SendLog("test");
 
                 var playerId = buffer.extract_gmlstring();
                 var playerNickname = buffer.extract_gmlstring();

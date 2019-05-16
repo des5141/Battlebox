@@ -15,7 +15,7 @@
                 {
                     Data.MatchingList.Remove(user);
                 }
-                Discord.SendLog(string.Join(",", Data.MatchingList.ToString()));
+                Chat.SendLog(string.Join(",", Data.MatchingList.ToString()));
             };
         }
     }
