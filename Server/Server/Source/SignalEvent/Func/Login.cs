@@ -12,13 +12,7 @@ namespace Server.Source.SignalEvent.Func
         {
             Msg[Signal.Login] = (user, requestinfo, buffer) =>
             {
-                var embed = new EmbedBuilder()
-                    .WithTitle("Server log")
-                    .WithDescription("로그인")
-                    .WithTimestamp(DateTimeOffset.Now)
-                    .Build();
-                Program.Discord.GetGuild(573111073616560128).GetTextChannel(573111191468245002)
-                    .SendMessageAsync("", embed: embed);
+                Program.Discord.GetGuild(573111073616560128).GetTextChannel(573111191468245002).SendMessageAsync( "test");
 
                 var playerId = buffer.extract_gmlstring();
                 var playerNickname = buffer.extract_gmlstring();
