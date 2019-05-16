@@ -12,7 +12,7 @@ namespace Server.Source.SignalEvent.Func
         {
             Msg[Signal.Login] = (user, requestinfo, buffer) =>
             {
-                Program.Discord.GetGuild(573111073616560128).GetTextChannel(573111191468245002).SendMessageAsync( "test");
+                Program.Channel.SendMessageAsync( "test");
 
                 var playerId = buffer.extract_gmlstring();
                 var playerNickname = buffer.extract_gmlstring();

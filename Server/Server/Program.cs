@@ -20,6 +20,7 @@ namespace Server
     {
         public static MessageSwitch Msg;
         public static DiscordSocketClient Discord;
+        public static SocketTextChannel Channel;
         public const string Token = "NTczMTEwODA0MTg3MTg1MTUy.XMmFGg.QkctThj48AY_CZrY1PWXKbvqv8A";
 
         static void Main()
@@ -41,7 +42,7 @@ namespace Server
 
             // 디스코드 서버
             FunctionScan.StartScan();
-            new Program().MainAsync().GetAwaiter();
+            new Program().MainAsync().GetAwaiter().GetResult();
 
             // 서버 꺼짐 방지
             KeyWaiting.Func();
@@ -75,7 +76,8 @@ namespace Server
                 .WithDescription("서버의 **동작**이 시작되었습니다 :D and this is test text")
                 .WithTimestamp(DateTimeOffset.Now)
                 .Build();
-            Discord.GetGuild(573111073616560128).GetTextChannel(573111191468245002).SendMessageAsync("", embed: embed);
+            Channel = Discord.GetGuild(573111073616560128).GetTextChannel(573111191468245002);
+            Channel.SendMessageAsync("", embed: embed);
             return Task.CompletedTask;
         }
 
