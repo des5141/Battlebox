@@ -59,7 +59,6 @@ namespace Server
 
             await Discord.LoginAsync(TokenType.Bot, Token);
             await Discord.StartAsync();
-            await Task.Delay(-1);
         }
 
         protected Task Client_GuildAvailable(SocketGuild arg)
