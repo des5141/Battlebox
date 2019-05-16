@@ -7,7 +7,9 @@ namespace Server.Source.Core
         public static void Func()
         {
             while (true)
+            {
                 Console.ReadLine();
+            }
         }
     }
 }

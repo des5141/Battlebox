@@ -1,6 +1,4 @@
-﻿using System;
-using Discord;
-using Server.Source.Core;
+﻿using Server.Source.Core;
 using Server.Source.Database.Event;
 using Server.Source.Task;
 
@@ -13,7 +11,6 @@ namespace Server.Source.SignalEvent.Func
             Msg[Signal.Login] = (user, requestinfo, buffer) =>
             {
                 Discord.SendLog("test");
-
 
                 var playerId = buffer.extract_gmlstring();
                 var playerNickname = buffer.extract_gmlstring();
