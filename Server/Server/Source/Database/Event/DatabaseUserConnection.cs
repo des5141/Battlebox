@@ -15,7 +15,7 @@ namespace Server.Source.Database.Event
         {
             new System.Threading.Tasks.Task(async () =>
             {
-                using (await Main.TaskLockInDatabase.LockAsync())
+                using (await Lock.Database.LockAsync())
                 {
                     Main.Database.Read($"update user set connect={connection} where id='{playerId}'");
                 }

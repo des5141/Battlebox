@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Server.Source.Room.Lock;
 using Server.Source.Task;
 using Server.Source.User;
 using SuperSocket.SocketBase;
@@ -15,6 +16,7 @@ namespace Server.Source.Event
         {
             session.Die = true;
             RemoveUser.Func(session);
+            MatchManagement.Remove(session);
         }
     }
 }

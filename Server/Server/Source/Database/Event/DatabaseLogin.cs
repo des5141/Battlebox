@@ -12,7 +12,7 @@ namespace Server.Source.Database.Event
     {
         public static async Task<DataTable> Func(string playerId)
         {
-            using (await Main.TaskLockInDatabase.LockAsync())
+            using (await Lock.Database.LockAsync())
             {
                 return Main.Database.Read($"select * from user where id=\"{playerId}\"");
             }

@@ -293,6 +293,7 @@
     <Compile Include="Source\Event\ServerSessionClosed.cs" />
     <Compile Include="Source\Event\ServerNewSessionConnected.cs" />
     <Compile Include="Source\Event\ServerStarted.cs" />
+    <Compile Include="Source\Room\Lock\MatchManagement.cs" />
     <Compile Include="Source\Room\NcsRoom.cs" />
     <Compile Include="Source\SignalEvent\Func\Match.cs" />
     <Compile Include="Source\SignalEvent\Func\Login.cs" />

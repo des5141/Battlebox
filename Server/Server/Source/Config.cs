@@ -11,7 +11,12 @@ namespace Server.Source
     {
         public static void SendLog(string message)
         {
-            Program.Channel.SendMessageAsync(message ?? "Null Message");
+            var embed = new EmbedBuilder()
+                .WithTitle("Server log")
+                .WithDescription(message ?? "~~null string~~")
+                .WithTimestamp(DateTimeOffset.Now)
+                .Build();
+            Program.Channel.SendMessageAsync("", embed : embed);
         }
     }
     public class SendTo

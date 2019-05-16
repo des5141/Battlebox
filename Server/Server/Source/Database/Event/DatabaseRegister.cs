@@ -13,7 +13,7 @@ namespace Server.Source.Database.Event
     {
         public static async Task<bool> Func(string playerId, string playerNickname)
         {
-            using (await Main.TaskLockInDatabase.LockAsync())
+            using (await Lock.Database.LockAsync())
             {
                 var dt = Main.Database.Read($"select * from user where id=\"{playerId}\"");
                 if (dt != null) return false;

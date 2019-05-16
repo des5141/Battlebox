@@ -16,7 +16,6 @@ namespace Server.Source.Core
         public static int SpaceMax = 10;
 
         public static SqlManager Database;
-        public static AsyncLock TaskLockInDatabase = new AsyncLock();
 
         public Main(ServerConfig config, Action serverStarted, SessionHandler<NcsUser> newSessionConnected, SessionHandler<NcsUser, CloseReason> sessionClosed, RequestHandler<NcsUser, NcsRequestInfo> newRequestReceived)
         {

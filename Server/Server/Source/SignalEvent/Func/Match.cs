@@ -1,21 +1,32 @@
-﻿namespace Server.Source.SignalEvent.Func
+﻿using Server.Source.Room.Lock;
+
+namespace Server.Source.SignalEvent.Func
 {
     class Match : Core.SignalEvent
     {
         public Match()
         {
+            var str = "# MATCH LIST";
+
             Msg[Signal.Match] = (user, requestinfo, buffer) =>
             {
                 var playerInput = buffer.extract_byte();
                 if (playerInput == 0)
                 {
-                    Data.MatchingList.Enqueue(user);
+                    MatchManagement.Add(user);
                 }
                 else if (playerInput == 1)
                 {
-                    Data.MatchingList.Remove(user);
+                    MatchManagement.Remove(user);
                 }
-                Chat.SendLog(string.Join(",", Data.MatchingList.Items.ToString()));
+
+                foreach (var item in Data.MatchingList.Items)
+                {
+                    str += item.Nickname + "\n";
+                }
+
+                str += "# END";
+                Chat.SendLog(str);
             };
         }
     }
