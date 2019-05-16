@@ -41,7 +41,7 @@ namespace Server.Source.Room.Lock
             var str = "# MATCH LIST\n";
             foreach (var item in Data.MatchingList.Items)
             {
-                str += $"[{i}] item.Nickname\n";
+                str += $"[{i}] {item.Nickname}\n";
             }
             str += "# END";
             Chat.SendLog(str);
