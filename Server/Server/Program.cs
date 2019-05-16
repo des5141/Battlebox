@@ -77,7 +77,6 @@ namespace Server
                 .WithTimestamp(DateTimeOffset.Now)
                 .Build();
             Discord.GetGuild(573111073616560128).GetTextChannel(573111191468245002).SendMessageAsync("", embed: embed);
-            Source.Discord.Trigger = true;
             return Task.CompletedTask;
         }
 

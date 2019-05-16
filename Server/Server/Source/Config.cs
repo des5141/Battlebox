@@ -9,11 +9,8 @@ namespace Server.Source
 {
     public class Discord
     {
-        public static bool Trigger = false;
-
         public static void SendLog(string message)
         {
-            if (!Trigger) return;
             var embed = new EmbedBuilder()
                 .WithTitle("Server log")
                 .WithDescription(message ?? "~~Null message~~")
