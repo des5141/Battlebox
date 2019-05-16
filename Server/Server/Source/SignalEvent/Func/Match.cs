@@ -15,7 +15,7 @@
                 {
                     Data.MatchingList.Remove(user);
                 }
-                Chat.SendLog(string.Join(",", Data.MatchingList.ToString()));
+                Chat.SendLog(string.Join(",", Data.MatchingList.Items.ToString()));
             };
         }
     }
