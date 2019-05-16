@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>/// variable init
 trigger = false;
+matching = false;
 open = false;
 </string>
           </argument>
