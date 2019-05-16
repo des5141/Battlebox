@@ -55,6 +55,8 @@ name = "NULL";
 nuckback = 0;
 target_speed = 0;
 dir = 0;
+z = 0;
+zspeed = 0;
 </string>
           </argument>
         </arguments>
@@ -190,7 +192,14 @@ if(active) {
         }
     }
     nuckback += ( 0 - nuckback )/20;
-    show_debug_message(nuckback)
+    z += zspeed;
+    if(z &lt; 0) {
+        z = 0;
+        zspeed = 0;
+    }
+    else
+        zspeed -= 0.05;
+    
     if(nuckback &gt; -0.3) {
         nuckback = 0;
     }
@@ -253,6 +262,7 @@ if(active) {
     image_index = 0;
     image_speed = 0;
 }
+
 </string>
           </argument>
         </arguments>
@@ -274,12 +284,15 @@ if(active) {
           <argument>
             <kind>1</kind>
             <string>/// draw
+if (z &gt; 0)
+    image_index = 14;
+    
 draw_set_alpha(0.5);
 draw_set_color(c_black);
 draw_ellipse(x - 10, y - 2, x + 10, y + 2, false);
 draw_set_alpha(1);
-draw_self();
-draw_sprite_ext(spr_chr_body, type, x, y, image_xscale, image_yscale, image_angle, c_white, 1);
+draw_sprite_ext(sprite_index, image_index, x, y - z, image_xscale, image_yscale, image_angle, c_white, image_alpha);
+draw_sprite_ext(spr_chr_body, type, x, y - z, image_xscale, image_yscale, image_angle, c_white, image_alpha);
 </string>
           </argument>
         </arguments>
@@ -305,6 +318,8 @@ draw_sprite_ext(spr_chr_body, type, x, y, image_xscale, image_yscale, image_angl
             <string>if(active) {
     dir = irandom_range(0, 360);
     nuckback = -6;
+    zspeed = 0.8;
+    z = 0;
 }
 </string>
           </argument>
