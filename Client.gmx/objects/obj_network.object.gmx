@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>/// init
 only_single();
+//supersocket_connect("127.0.0.1", 20000);
 supersocket_connect("61.84.196.75", 20000);
 </string>
           </argument>
