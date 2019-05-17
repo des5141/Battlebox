@@ -20,7 +20,7 @@ namespace Server.Source.Core
         public Main(ServerConfig config, Action serverStarted, SessionHandler<NcsUser> newSessionConnected, SessionHandler<NcsUser, CloseReason> sessionClosed, RequestHandler<NcsUser, NcsRequestInfo> newRequestReceived)
         {
             _ncsServer.Setup(new RootConfig(), config);
-            NcsTemplateBuffer.SetTempBuffer();
+            NcsUserHeartbeat.SetTempBuffer();
             if (_ncsServer.Start() == true)
                 serverStarted();
             _ncsServer.NewSessionConnected += new SessionHandler<NcsUser>(newSessionConnected);

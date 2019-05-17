@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CGD;
 using Server.Source.Core;
+using Server.Source.Room;
 using SuperSocket.SocketBase;
 
 namespace Server.Source.User
@@ -19,6 +20,8 @@ namespace Server.Source.User
         public bool Authentication = false;
         public string Nickname = "";
         public string Id = "";
+        public NcsUserData Data = null;
+        public NcsRoom PlayRoom = null;
 
         public void HeartBeatStart()
         {
@@ -29,7 +32,7 @@ namespace Server.Source.User
                 else
                     HeartbeatCount++;
 
-                Send(NcsTemplateBuffer.HeartbeatBuffer1);
+                Send(NcsUserHeartbeat.HeartbeatBuffer1);
 
                 await System.Threading.Tasks.Task.Delay(1000);
 

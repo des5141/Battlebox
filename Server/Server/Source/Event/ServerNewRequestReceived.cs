@@ -43,7 +43,7 @@ namespace Server.Source.Event
                 {
                     if (sendTo == Signal.HeartbeatFirst)
                     {
-                        user.Send(NcsTemplateBuffer.HeartbeatBuffer2);
+                        user.Send(NcsUserHeartbeat.HeartbeatBuffer2);
                         user.Heartbeat = true;
                     }
                 }

@@ -16,7 +16,7 @@ namespace Server.Source.Event
         {
             session.Die = true;
             RemoveUser.Func(session);
-            MatchManagement.Remove(session);
+            MatchOperator.Remove(session);
         }
     }
 }

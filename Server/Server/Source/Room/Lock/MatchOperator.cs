@@ -7,7 +7,7 @@ using Server.Source.User;
 
 namespace Server.Source.Room.Lock
 {
-    class MatchManagement
+    class MatchOperator
     {
         public static void Add(NcsUser user)
         {

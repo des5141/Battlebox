@@ -268,6 +268,7 @@
     <Compile Include="Additional\Discord\Routing\Msg.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Source\Background\MatchManagement.cs" />
     <Compile Include="Source\Config.cs" />
     <Compile Include="Source\Core\AsyncLock.cs" />
     <Compile Include="Source\Core\AsyncSemaphore.cs" />
@@ -279,7 +280,7 @@
     <Compile Include="Source\Core\NcsReceiveFilter.cs" />
     <Compile Include="Source\Core\NcsRequestInfo.cs" />
     <Compile Include="Source\Core\NcsServer.cs" />
-    <Compile Include="Source\Core\NcsTemplateBuffer.cs" />
+    <Compile Include="Source\Core\NcsUserHeartbeat.cs" />
     <Compile Include="Source\Core\NewBuffer.cs" />
     <Compile Include="Source\Core\Ran.cs" />
     <Compile Include="Source\Core\KeyWaiting.cs" />
@@ -293,13 +294,14 @@
     <Compile Include="Source\Event\ServerSessionClosed.cs" />
     <Compile Include="Source\Event\ServerNewSessionConnected.cs" />
     <Compile Include="Source\Event\ServerStarted.cs" />
-    <Compile Include="Source\Room\Lock\MatchManagement.cs" />
+    <Compile Include="Source\Room\Lock\MatchOperator.cs" />
     <Compile Include="Source\Room\NcsRoom.cs" />
     <Compile Include="Source\SignalEvent\Func\Match.cs" />
     <Compile Include="Source\SignalEvent\Func\Login.cs" />
     <Compile Include="Source\Task\RemoveUser.cs" />
     <Compile Include="Source\Task\MoveSpace.cs" />
     <Compile Include="Source\User\NcsUser.cs" />
+    <Compile Include="Source\User\NcsUserData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

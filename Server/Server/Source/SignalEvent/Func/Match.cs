@@ -12,11 +12,11 @@ namespace Server.Source.SignalEvent.Func
                 var playerInput = buffer.extract_byte();
                 if (playerInput == 0)
                 {
-                    MatchManagement.Add(user);
+                    MatchOperator.Add(user);
                 }
                 else if (playerInput == 1)
                 {
-                    MatchManagement.Remove(user);
+                    MatchOperator.Remove(user);
                 }
             };
         }
