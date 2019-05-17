@@ -28,9 +28,8 @@ namespace Server.Source.Room.Lock
             {
                 using (await Source.Lock.MatchingList.LockAsync())
                 {
-                    Data.MatchingList.Dequeue();
+                    Data.MatchingList.Remove(user);
                 }
-
                 ShowList();
             }).Start();
         }

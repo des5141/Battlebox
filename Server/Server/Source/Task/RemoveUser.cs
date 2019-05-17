@@ -11,7 +11,7 @@ namespace Server.Source.Task
             {
                 using (await Lock.UserList.LockAsync())
                 {
-                    for (int i = 0; i < Main.SpaceMax; i++)
+                    for (var i = 0; i < Main.SpaceMax; i++)
                         Data.UserList[i].Remove(user);
                 }
             }).Start();

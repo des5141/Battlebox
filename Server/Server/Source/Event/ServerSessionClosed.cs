@@ -15,8 +15,8 @@ namespace Server.Source.Event
         public static void Func(NcsUser session, CloseReason value)
         {
             session.Die = true;
-            RemoveUser.Func(session);
             MatchOperator.Remove(session);
+            RemoveUser.Func(session);
         }
     }
 }
