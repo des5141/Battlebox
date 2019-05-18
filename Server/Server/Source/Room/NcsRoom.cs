@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Server.Source.Core;
+using Server.Source.Room.Lock;
 using Server.Source.User;
 
 namespace Server.Source.Room
@@ -18,6 +19,15 @@ namespace Server.Source.Room
         public bool GameStart = false;
         public bool End = false;
 
+        public NcsRoom()
+        {
+            Chat.SendLog("룸 생성");
+        }
+        ~NcsRoom()
+        {
+            Chat.SendLog("룸 삭제");
+        }
+
         public void Start()
         {
             new System.Threading.Tasks.Task(async () =>
@@ -25,7 +35,64 @@ namespace Server.Source.Room
                 using (await TaskLockInRoom.LockAsync())
                 {
                     // 유저들에게 맵 이동하라고 전송
+                    foreach (var t in UserList)
+                    {
+                        t.PlayReady = false;
+                        var buf = NewBuffer.Func(16);
+                        buf.append<byte>(1);
+                        buf.append<byte>(t.Data.PlayIndex);
+                        t.Send(buf, Signal.Match);
+                    }
 
+                    GameStartCheck();
+                }
+            }).Start();
+        }
+
+        public void GameStartCheck()
+        {
+            new System.Threading.Tasks.Task(async () =>
+            {
+                GameStart = true;
+                using (await TaskLockInRoom.LockAsync())
+                {
+                    foreach (var t in UserList)
+                    {
+                        if (t.PlayReady == false)
+                            GameStart = false;
+                    }
+                }
+
+                if (GameStart == false)
+                {
+                    await System.Threading.Tasks.Task.Delay(1000);
+                    GameStartCheck();
+                }
+                else
+                {
+                    // 게임 시작
+                    using (await TaskLockInRoom.LockAsync())
+                    {
+                        // 플레이어 초기 데이터 생성
+                        var buf = NewBuffer.Func(4096);
+                        buf.append<ushort>(UserList.Count); // 몇명인지 전달
+                        foreach (var t in UserList)
+                        {
+                            buf.append<byte>(t.PlayCharacter);
+                            buf.append<byte>(t.Data.PlayIndex);
+                            buf.append<ushort>(t.Data.X);
+                            buf.append<ushort>(t.Data.Y);
+                            buf.append_gmlstring(t.Nickname);
+                        }
+                        buf.set_front<uint>(buf.Count);
+                        buf.set_front<short>(Signal.GameStart, 4);
+
+                        // 전달
+                        foreach (var t in UserList)
+                        {
+                            t.Send(buf);
+                        }
+                    }
                 }
             }).Start();
         }

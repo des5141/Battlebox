@@ -25,8 +25,42 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// make system
-instance_create(0, 0, system);
+            <string>/// enum signal
+enum signal {
+    heartbeat_first = -3,
+    heartbeat_second = -4,
+    
+    login = 1,
+    matching = 2,
+    usercount = 3,
+    userReady = 4,
+    gameStart = 5
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// set signal event
+global.signalEvent[signal.login] = signal_login;
+global.signalEvent[signal.usercount] = signal_count;
+global.signalEvent[signal.matching] = signal_match;
+global.signalEvent[signal.gameStart] = signal_gameStart;
 </string>
           </argument>
         </arguments>
@@ -72,36 +106,8 @@ enum sendTo {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// enum signal
-enum signal {
-    heartbeat_first = -3,
-    heartbeat_second = -4,
-    
-    login = 1,
-    matching = 2
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// set signal event
-global.signalEvent[signal.login] = signal_login;
+            <string>/// make system
+instance_create(0, 0, system);
 </string>
           </argument>
         </arguments>

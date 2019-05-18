@@ -176,7 +176,6 @@ if(mode == 0) {
         
         if(mx &gt; 1280 - title_y * 2) and (my &lt; 700) and (my &gt; 600) {
             mode = 1;
-            select = -1;
             zoom = 1;
             global.controller = true;
             target.active = true;
@@ -226,6 +225,7 @@ if(mode == 0) {
                     /// matching start
                     buffer = buf_new(16);
                     buf_write(buffer, buffer_u8, 0);
+                    buf_write(buffer, buffer_u8, select);
                     supersocket_send(buffer, signal.matching, sendTo.Server);
                     buf_del(buffer);
                 }

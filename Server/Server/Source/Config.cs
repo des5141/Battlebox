@@ -32,7 +32,10 @@ namespace Server.Source
             HeartbeatSecond = -4,
 
             Login = 1,
-            Match = 2
+            Match = 2,
+            UserCount = 3,
+            UserReady = 4,
+            GameStart = 5
 
             ;
     }
@@ -42,6 +45,7 @@ namespace Server.Source
         public static LinkedQueue<NcsUser> MatchingList = new LinkedQueue<NcsUser>();
         public static LinkedList<NcsRoom> RoomList = new LinkedList<NcsRoom>();
         public static int MatchingMin = 1;
+        public static int MatchingWait = 1000;
     }
     public class Lock
     {

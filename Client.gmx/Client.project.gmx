@@ -145,8 +145,10 @@
       </scripts>
     </scripts>
     <scripts name="Signal">
-      <script>scripts\signal_test.gml</script>
       <script>scripts\signal_login.gml</script>
+      <script>scripts\signal_match.gml</script>
+      <script>scripts\signal_count.gml</script>
+      <script>scripts\signal_gameStart.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
@@ -190,6 +192,13 @@
       <object>objects\par_wall</object>
       <object>objects\obj_nooutside</object>
     </objects>
+    <objects name="game">
+      <objects name="characters">
+        <object>objects\par_character</object>
+        <object>objects\obj_knight</object>
+        <object>objects\obj_doctor</object>
+      </objects>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_init</room>
@@ -197,6 +206,7 @@
     <room>rooms\rm_connect</room>
     <room>rooms\rm_auth</room>
     <room>rooms\rm_choose</room>
+    <room>rooms\rm_battleroyal</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

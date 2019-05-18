@@ -13,6 +13,7 @@ namespace Server.Source.SignalEvent.Func
                 if (playerInput == 0)
                 {
                     MatchOperator.Add(user);
+                    user.PlayCharacter = buffer.extract_byte();
                 }
                 else if (playerInput == 1)
                 {

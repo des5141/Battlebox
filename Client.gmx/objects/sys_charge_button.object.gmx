@@ -27,8 +27,8 @@
             <kind>1</kind>
             <string>/// Variable
 size = 50;
-x = view_wview[0] - 120;
-y = view_hview[0] - 250;
+x = 1280 - 120;
+y = 720 - 250;
 </string>
           </argument>
         </arguments>
@@ -53,29 +53,52 @@ y = view_hview[0] - 250;
             <kind>1</kind>
             <string>/// touch check and draw
 if(global.controller) {
-var mx, my;
-for( var i = 0; i &lt; 4; i++ ) {
-    if(device_mouse_check_button_pressed(i, mb_left)) {
-        mx = device_mouse_x_to_gui(i);
-        my = device_mouse_y_to_gui(i);
-        
-        if (point_distance(mx, my, x, y) &lt; size) {
-            show_message("눌렀다!");
+    var mx, my;
+    for( var i = 0; i &lt; 4; i++ ) {
+        if(device_mouse_check_button_pressed(i, mb_left)) {
+            mx = device_mouse_x_to_gui(i);
+            my = device_mouse_y_to_gui(i);
+            
+            if (point_distance(mx, my, x, y) &lt; size) {
+                show_message("눌렀다!");
+            }
         }
     }
-}
-
-draw_set_alpha(0.4);
-draw_set_color(c_white);
-draw_circle(x, y, size, false);
-draw_set_alpha(0.5);
-draw_set_color(c_black);
-draw_circle(x, y, (size/10)*9, false);
+    
+    draw_set_alpha(0.4);
+    draw_set_color(c_white);
+    draw_circle(x, y, size, false);
+    draw_set_alpha(0.5);
+    draw_set_color(c_black);
+    draw_circle(x, y, (size/10)*9, false);
 }else {
-size = 50;
-x = 1280 - 120;
-y = 720 - 250;
+    size = 50;
+    x = 1280 - 120;
+    y = 720 - 250;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// non draw
 </string>
           </argument>
         </arguments>

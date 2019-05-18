@@ -27,8 +27,8 @@
             <kind>1</kind>
             <string>/// Variable
 size = 50;
-x = view_wview[0] - 120;
-y = view_hview[0] - 120;
+x = 1280 - 120;
+y = 720 - 120;
 
 gage = 0;
 gage_max = 100;

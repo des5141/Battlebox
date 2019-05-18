@@ -14,10 +14,11 @@ namespace Server.Source.User
     {
         public int Space = -1;
         public int HeartbeatCount = 0;
-        public int Character = -1;
+        public byte PlayCharacter = 0;
         public bool Heartbeat = false;
         public bool Die = false;
         public bool Authentication = false;
+        public bool PlayReady = false;
         public string Nickname = "";
         public string Id = "";
         public NcsUserData Data = null;
@@ -53,14 +54,28 @@ namespace Server.Source.User
 
         public void Send(buffer buffer)
         {
-            this.Send(buffer.buf, 0, buffer.len);
+            try
+            {
+                this.Send(buffer.buf, 0, buffer.len);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         public void Send(buffer buffer, int signal)
         {
-            buffer.set_front<uint>(buffer.Count);
-            buffer.set_front<short>(signal, 4);
-            this.Send(buffer.buf, 0, buffer.Count);
+            try
+            {
+                buffer.set_front<uint>(buffer.Count);
+                buffer.set_front<short>(signal, 4);
+                this.Send(buffer.buf, 0, buffer.Count);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
     }
 }

@@ -35,6 +35,11 @@ namespace Server.Source.Core
             return item;
         }
 
+        public T PeekAt(int index)
+        {
+            return Items.ElementAt(index);
+        }
+
         public void Remove(T item)
         {
             Items.Remove(item);

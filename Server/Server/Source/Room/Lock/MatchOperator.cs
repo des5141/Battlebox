@@ -26,6 +26,19 @@ namespace Server.Source.Room.Lock
         {
             new System.Threading.Tasks.Task(async () =>
             {
+                // 플레이하고 있었던 방이 있으면
+                if (user.PlayRoom != null)
+                {
+                    new System.Threading.Tasks.Task(async () =>
+                    {
+                        using (await user.PlayRoom.TaskLockInRoom.LockAsync())
+                        {
+                            // 리스트에서 제거
+                            user.PlayRoom.UserList.Remove(user);
+                        }
+                    }).Start();
+                }
+
                 using (await Source.Lock.MatchingList.LockAsync())
                 {
                     Data.MatchingList.Remove(user);
