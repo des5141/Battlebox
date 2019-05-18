@@ -55,6 +55,10 @@ zspeed = 0;
 nuckback = 0;
 target_speed = 0;
 move = false;
+target_x = x;
+target_y = y;
+target_z = z;
+mine = false;
 </string>
           </argument>
         </arguments>
@@ -198,7 +202,7 @@ if(global.playerIndex == index) {
           <argument>
             <kind>1</kind>
             <string>/// movement
-if (index == global.playerIndex) {
+if (mine) {
     if(active) {
         if(sys_joystick.joyEnable[0]) and (global.controller == true) and (nuckback == 0){
             dir = sys_joystick.joyDirection[0]
@@ -260,6 +264,10 @@ if (index == global.playerIndex) {
         image_index = 0;
         image_speed = 0;
     }
+}else{
+    x += (target_x - x)/2;
+    y += (target_y - y)/2;
+    z += (target_z - z)/2;
 }
 </string>
           </argument>

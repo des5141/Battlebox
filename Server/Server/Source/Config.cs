@@ -36,7 +36,8 @@ namespace Server.Source
             UserCount = 3,
             UserReady = 4,
             GameStart = 5,
-            UserPosition = 6
+            UserPosition = 6,
+            UserDelete = 7
 
             ;
     }

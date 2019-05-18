@@ -32,7 +32,7 @@ namespace Server.Source.Background
                         if (Data.RoomList.ElementAt(i).UserList.Count <= 0)
                         {
                             Data.RoomList.ElementAt(i).Destroy = true;
-                            Data.RoomList.Remove(Data.RoomList.Skip(i).First());
+                            Data.RoomList.Remove(Data.RoomList.ElementAt(i));
                         }
                         else
                             i++;

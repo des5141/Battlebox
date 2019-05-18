@@ -35,7 +35,8 @@ enum signal {
     usercount = 3,
     userReady = 4,
     gameStart = 5,
-    userPosition = 6
+    userPosition = 6,
+    userDelete = 7
 }
 </string>
           </argument>
@@ -63,6 +64,7 @@ global.signalEvent[signal.usercount] = signal_count;
 global.signalEvent[signal.matching] = signal_match;
 global.signalEvent[signal.gameStart] = signal_gameStart;
 global.signalEvent[signal.userPosition] = signal_userPosition;
+global.signalEvent[signal.userDelete] = signal_userDelete;
 </string>
           </argument>
         </arguments>

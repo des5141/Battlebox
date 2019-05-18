@@ -13,7 +13,13 @@
   <code>/// matching start
 buffer = buf_new(16);
 supersocket_send(buffer, signal.userReady, sendTo.Server);
-buf_del(buffer);</code>
+buf_del(buffer);
+
+for(var i = 0; i &lt; room_height; i+=32) {
+    for(var j = 0; j &lt; room_width; j+=32) {
+        tile_add(tile_ran(), 0, 0, 32, 32, j, i, 9999999);
+    }
+}</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
@@ -34,7 +40,7 @@ buf_del(buffer);</code>
     <yoffset>0</yoffset>
   </makerSettings>
   <backgrounds>
-    <background visible="-1" foreground="0" name="back_choose_wall" x="0" y="0" htiled="0" vtiled="0" hspeed="0" vspeed="0" stretch="0"/>
+    <background visible="-1" foreground="0" name="" x="0" y="0" htiled="0" vtiled="0" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>

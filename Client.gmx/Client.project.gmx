@@ -101,6 +101,13 @@
   <backgrounds name="background">
     <background>background\back_choose</background>
     <background>background\back_choose_wall</background>
+    <backgrounds name="tile">
+      <background>background\tile_1</background>
+      <background>background\tile_2</background>
+      <background>background\tile_3</background>
+      <background>background\tile_4</background>
+      <background>background\tile_5</background>
+    </backgrounds>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -158,7 +165,9 @@
       <script>scripts\signal_count.gml</script>
       <script>scripts\signal_gameStart.gml</script>
       <script>scripts\signal_userPosition.gml</script>
+      <script>scripts\signal_userDelete.gml</script>
     </scripts>
+    <script>scripts\tile_ran.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_debug_text</font>
