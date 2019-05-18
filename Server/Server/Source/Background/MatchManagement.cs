@@ -30,7 +30,10 @@ namespace Server.Source.Background
                         if (i >= Data.RoomList.Count)
                             break;
                         if (Data.RoomList.ElementAt(i).UserList.Count <= 0)
+                        {
+                            Data.RoomList.ElementAt(i).Destroy = true;
                             Data.RoomList.Remove(Data.RoomList.Skip(i).First());
+                        }
                         else
                             i++;
                     }

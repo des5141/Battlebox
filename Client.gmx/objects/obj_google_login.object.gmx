@@ -82,7 +82,8 @@ alarm[1] = 30;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>_str++;
+            <string>/// str add loop
+_str++;
 if(_str &gt; 3)
     _str = 0;
 alarm[1] = 90;

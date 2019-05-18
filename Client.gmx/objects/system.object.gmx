@@ -72,11 +72,22 @@ delta = delta_time/1000000;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// draw
-draw_set_font(fnt_debug_text);
-draw_set_color(c_gray);
-draw_text(0, 0, "delta time divide : " + string(delta_time/1000000)
-                + "#delta time : " + string(delta_time));
+            <string>/// Debug
+with(obj_network) {
+    draw_set_color(c_gray);
+    draw_set_font(fnt_debug_text);
+    draw_text(0, 0, "ping " + string(ping[1])
+                  + "#isConnected " + string(supersocket_isconnected())
+                  + "##recv " + string(global.check_bytes_recv)
+                  + "#send " + string(global.check_bytes_send)
+                  + "#delta time divide : " + string(delta_time/1000000)
+                  + "#delta time : " + string(delta_time)
+              );
+              
+    draw_set_valign(fa_bottom);
+    draw_text(0, 720, room_get_name(room));
+    draw_set_valign(fa_top);
+}
 </string>
           </argument>
         </arguments>

@@ -17,7 +17,7 @@ namespace Server.Source.Room
         public int ReadyTime = 60;
         public int Time = 0;
         public bool GameStart = false;
-        public bool End = false;
+        public bool Destroy = false;
 
         public NcsRoom()
         {
@@ -68,14 +68,15 @@ namespace Server.Source.Room
                     await System.Threading.Tasks.Task.Delay(1000);
                     GameStartCheck();
                 }
+
                 else
                 {
                     // 게임 시작
                     using (await TaskLockInRoom.LockAsync())
                     {
                         // 플레이어 초기 데이터 생성
-                        var buf = NewBuffer.Func(4096);
-                        buf.append<ushort>(UserList.Count); // 몇명인지 전달
+                        var buf = NewBuffer.Func(5120);
+                        buf.append<byte>(UserList.Count); // 몇명인지 전달
                         foreach (var t in UserList)
                         {
                             buf.append<byte>(t.PlayCharacter);
@@ -93,7 +94,42 @@ namespace Server.Source.Room
                             t.Send(buf);
                         }
                     }
+                    UserPosition();
                 }
+            }).Start();
+        }
+
+        public void UserPosition()
+        {
+            new System.Threading.Tasks.Task(async () =>
+            {
+                using (await TaskLockInRoom.LockAsync())
+                {
+                    // 플레이어 초기 데이터 생성
+                    var buf = NewBuffer.Func(1024);
+                    buf.append<byte>(UserList.Count); // 몇명인지 전달
+                    foreach (var t in UserList)
+                    {
+                        buf.append<byte>(t.Data.PlayIndex);
+                        buf.append<ushort>(t.Data.X);
+                        buf.append<ushort>(t.Data.Y);
+                        buf.append<byte>(t.Data.Z);
+                        buf.append<byte>(t.Data.ImageIndex);
+                        buf.append<sbyte>(t.Data.ImageXScale);
+                    }
+                    buf.set_front<uint>(buf.Count);
+                    buf.set_front<short>(Signal.UserPosition, 4);
+
+                    // 전달
+                    foreach (var t in UserList)
+                    {
+                        t.Send(buf);
+                    }
+                }
+
+                await System.Threading.Tasks.Task.Delay(10);
+                if (Destroy != true)
+                    UserPosition();
             }).Start();
         }
     }

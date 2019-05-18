@@ -115,7 +115,8 @@ active = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with (obj_choose_view) {
+            <string>/// Cancel TEST!
+with (obj_choose_view) {
     select = -1;
     target = -1;
     mode = -1;
@@ -189,6 +190,9 @@ if(active) {
         target_speed += (0 - target_speed)/20;
         if(target_speed &lt; 0.2) {
             target_speed = 0;
+        }
+        if(sys_joystick.joyEnable[1]) and (global.controller == true) {
+            dir = sys_joystick.joyDirection[1]
         }
     }
     nuckback += ( 0 - nuckback )/20;
@@ -293,34 +297,6 @@ draw_ellipse(x - 10, y - 2, x + 10, y + 2, false);
 draw_set_alpha(1);
 draw_sprite_ext(sprite_index, image_index, x, y - z, image_xscale, image_yscale, image_angle, c_white, image_alpha);
 draw_sprite_ext(spr_chr_body, type, x, y - z, image_xscale, image_yscale, image_angle, c_white, image_alpha);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="32">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if(active) {
-    dir = irandom_range(0, 360);
-    nuckback = -6;
-    zspeed = 0.8;
-    z = 0;
-}
 </string>
           </argument>
         </arguments>

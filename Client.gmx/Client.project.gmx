@@ -78,17 +78,25 @@
   </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites">
-    <sprite>sprites\spr_chr_leg</sprite>
-    <sprite>sprites\spr_chr_body</sprite>
-    <sprite>sprites\spr_chr_mask</sprite>
-    <sprite>sprites\spr_item_clothes</sprite>
-    <sprite>sprites\spr_item_weapon</sprite>
-    <sprite>sprites\spr_item_suplies</sprite>
-    <sprites name="wall">
+    <sprites name="character">
+      <sprite>sprites\spr_chr_leg</sprite>
+      <sprite>sprites\spr_chr_body</sprite>
+      <sprite>sprites\spr_chr_mask</sprite>
+      <sprite>sprites\spr_item_clothes</sprite>
+      <sprite>sprites\spr_item_weapon</sprite>
+      <sprite>sprites\spr_item_suplies</sprite>
+    </sprites>
+    <sprites name="choose">
       <sprite>sprites\spr_choose_wall</sprite>
+      <sprite>sprites\spr_door</sprite>
       <sprite>sprites\spr_nooutside</sprite>
     </sprites>
-    <sprite>sprites\spr_door</sprite>
+    <sprites name="game">
+      <sprites name="block">
+        <sprite>sprites\spr_block</sprite>
+        <sprite>sprites\spr_boxes</sprite>
+      </sprites>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\back_choose</background>
@@ -149,6 +157,7 @@
       <script>scripts\signal_match.gml</script>
       <script>scripts\signal_count.gml</script>
       <script>scripts\signal_gameStart.gml</script>
+      <script>scripts\signal_userPosition.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
@@ -191,6 +200,11 @@
       <object>objects\par_unit</object>
       <object>objects\par_wall</object>
       <object>objects\obj_nooutside</object>
+    </objects>
+    <objects name="battleroyal">
+      <object>objects\obj_block1</object>
+      <object>objects\obj_box1</object>
+      <object>objects\obj_battleroyal_view</object>
     </objects>
     <objects name="game">
       <objects name="characters">

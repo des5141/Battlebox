@@ -3,8 +3,8 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>727379969</depth>
-  <persistent>-1</persistent>
+  <depth>0</depth>
+  <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -25,16 +25,20 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// init
-only_single();
-supersocket_connect("127.0.0.1", 20000);
-//supersocket_connect("61.84.196.75", 20000);
+            <string>/// instance init
+x = view_wview/2
+y = view_hview/2
+target_x = x;
+target_y = y;
+target = -1;
+zoom = 1;
+mode = -1; // -1 is non mode, 0 is start animation mode, 1 is character mode
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="1">
+    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -51,8 +55,24 @@ supersocket_connect("127.0.0.1", 20000);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Network status
-supersocket_status();
+            <string>/// view movement
+
+// zoom
+view_wview += (16*(30*zoom) - view_wview)/10;
+view_hview += (9*(30*zoom) - view_hview)/10;
+
+if(mode == 0) {
+    x += (target_x - x)/5;
+    y += (target_y-16 - y)/5;
+}else if(mode != -1){
+    if (mode == 1) {
+        x += (target.x - x)/5;
+        y += (target.y-16 - y)/5;
+    }
+}
+
+view_xview = x - view_wview/2;
+view_yview = y - view_hview/2;
 </string>
           </argument>
         </arguments>

@@ -4,7 +4,7 @@ global.controller = true;
 
 // 게임 시작
 var buf = argument0;
-var userCount = buf_read(buf, buffer_u16);
+var userCount = buf_read(buf, buffer_u8);
 for(var i = 0; i < userCount; i++) {
     var ins;
     switch(buf_read(buf, buffer_u8)) {
@@ -21,6 +21,11 @@ for(var i = 0; i < userCount; i++) {
     ins.y = buf_read(buf, buffer_u16);
     ins.nickname = buf_read(buf, buffer_string);
     ins.active = true;
-    show_debug_message(ins.index);
-    show_debug_message(global.playerIndex);
+    
+    if(ins.index == global.playerIndex) {
+        obj_battleroyal_view.target = ins;
+        obj_battleroyal_view.x = ins.x;
+        obj_battleroyal_view.y = ins.y;
+        obj_battleroyal_view.mode = 1;
+    }
 }
