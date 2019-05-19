@@ -80,6 +80,7 @@
   <sprites name="sprites">
     <sprites name="character">
       <sprite>sprites\spr_chr_leg</sprite>
+      <sprite>sprites\spr_weapon</sprite>
       <sprite>sprites\spr_chr_body</sprite>
       <sprite>sprites\spr_chr_mask</sprite>
       <sprite>sprites\spr_item_clothes</sprite>

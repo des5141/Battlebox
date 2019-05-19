@@ -84,6 +84,10 @@ index = -1;
 nickname = "";
 type = -1;
 active = false;
+
+weapon = 0;
+weapon_scale = 1;
+weapon_dir = 0;
 </string>
           </argument>
         </arguments>
@@ -303,6 +307,39 @@ draw_sprite_ext(spr_chr_body, type, x, y - z, image_xscale, image_yscale, image_
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// weapon draw
+
+if(mine == true) {
+    if(sys_joystick.joyEnable[0]) {
+        weapon_dir = sys_joystick.joyDirection[0];
+    }
+    
+    if(sys_joystick.joyEnable[1]) {
+        weapon_dir = sys_joystick.joyDirection[1];
+    }
+}
+
+draw_sprite_ext(spr_weapon, weapon, x, y - 16 - z, 1, image_xscale, weapon_dir, c_white, 1);
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="9" enumb="32">
       <action>
@@ -327,6 +364,7 @@ if(active) {
     nuckback = -6;
     zspeed = 0.8;
     z = 0;
+    weapon_dir += 180;
 }
 </string>
           </argument>

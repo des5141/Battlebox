@@ -8,6 +8,7 @@
   <sprites name="sprites">
     <sprite>sprites\spr_leg</sprite>
     <sprite>sprites\spr_body</sprite>
+    <sprite>sprites\spr_weapon</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\back_want_sleep</background>
