@@ -53,6 +53,8 @@ namespace Server.Source.Room
                                 continue;
                             if (check_rect(1, x, y, 5)) continue;
                             Map[y, x] = 1;
+                            UserList[i].Data.X = Convert.ToUInt16(x * 32 + 16);
+                            UserList[i].Data.Y = Convert.ToUInt16(y * 32 + 16);
                             break;
                         }
                     }

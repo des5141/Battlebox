@@ -10,8 +10,8 @@ namespace Server.Source.User
     public class NcsUserData
     {
         public byte PlayIndex = 0;
-        public ushort X = Convert.ToUInt16((Ran.Next(64, 320)));
-        public ushort Y = Convert.ToUInt16((Ran.Next(64, 200)));
+        public ushort X = 0;
+        public ushort Y = 0;
         public byte Z;
         public byte ImageIndex;
         public sbyte ImageXScale;

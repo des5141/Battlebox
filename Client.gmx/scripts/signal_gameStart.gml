@@ -10,6 +10,15 @@ var map_width = buf_read(buf, buffer_u8);
 for(var i = 0; i < map_height; i++) {
     for(var j = 0; j < map_width; j++) {
         global.map[i, j] = buf_read(buf, buffer_u8);
+        switch(global.map[i, j]) {
+            case 2:
+                instance_create(j*32, i*32, obj_box1);
+            break;
+            
+            case 3:
+                instance_create(j*32, i*32, obj_block1);
+            break;
+        }
     }
 }
 
