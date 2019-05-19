@@ -112,6 +112,7 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\only_single.gml</script>
+    <script>scripts\tile_ran.gml</script>
     <scripts name="easing_library">
       <script>scripts\ease_in_quad.gml</script>
       <script>scripts\ease_out_quad.gml</script>
@@ -167,7 +168,7 @@
       <script>scripts\signal_userPosition.gml</script>
       <script>scripts\signal_userDelete.gml</script>
     </scripts>
-    <script>scripts\tile_ran.gml</script>
+    <script>scripts\get_color.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_debug_text</font>
@@ -214,6 +215,7 @@
       <object>objects\obj_block1</object>
       <object>objects\obj_box1</object>
       <object>objects\obj_battleroyal_view</object>
+      <object>objects\obj_battleroyal_map</object>
     </objects>
     <objects name="game">
       <objects name="characters">

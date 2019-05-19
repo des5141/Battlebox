@@ -18,10 +18,18 @@ namespace Server.Source.Room
         public int Time = 0;
         public bool GameStart = false;
         public bool Destroy = false;
+        public byte[,] Map = new byte[25, 40];
 
         public NcsRoom()
         {
             Chat.SendLog("룸 생성");
+            for (var i = 0; i < 25; i++)
+            {
+                for (var j = 0; j < 40; j++)
+                {
+                    Map[i, j] = 0;
+                }
+            }
         }
         ~NcsRoom()
         {
@@ -34,6 +42,50 @@ namespace Server.Source.Room
             {
                 using (await TaskLockInRoom.LockAsync())
                 {
+                    // 유저들의 위치를 맵에서 지정
+                    for (var i = 0; i < UserList.Count; i++)
+                    {
+                        while (true)
+                        {
+                            var x = Ran.Next(0, 39);
+                            var y = Ran.Next(0, 24);
+                            if (Map[y, x] != 0)
+                                continue;
+                            if (check_rect(1, x, y, 5)) continue;
+                            Map[y, x] = 1;
+                            break;
+                        }
+                    }
+
+                    // 상자 설정
+                    for (var i = 0; i < 25; i++)
+                    {
+                        while (true)
+                        {
+                            var x = Ran.Next(0, 39);
+                            var y = Ran.Next(0, 24);
+                            if (Map[y, x] != 0)
+                                continue;
+                            if (check_rect(2, x, y, 7)) continue;
+                            Map[y, x] = 2;
+                            break;
+                        }
+                    }
+
+                    // 벽 설정
+                    for (var i = 0; i < 50; i++)
+                    {
+                        while (true)
+                        {
+                            var x = Ran.Next(0, 39);
+                            var y = Ran.Next(0, 24);
+                            if (Map[y, x] != 0)
+                                continue;
+                            Map[y, x] = 3;
+                            break;
+                        }
+                    }
+
                     // 유저들에게 맵 이동하라고 전송
                     foreach (var t in UserList)
                     {
@@ -76,6 +128,16 @@ namespace Server.Source.Room
                     {
                         // 플레이어 초기 데이터 생성
                         var buf = NewBuffer.Func(5120);
+                        buf.append<byte>(25); // height
+                        buf.append<byte>(40); // width
+                        for (var i = 0; i < 25; i++)
+                        {
+                            for (var j = 0; j < 40; j++)
+                            {
+                                buf.append<byte>(Map[i, j]);
+                            }
+                        }
+
                         buf.append<byte>(UserList.Count); // 몇명인지 전달
                         foreach (var t in UserList)
                         {
@@ -131,6 +193,29 @@ namespace Server.Source.Room
                 if (Destroy != true)
                     UserPosition();
             }).Start();
+        }
+
+        private protected bool check_rect(int value, int getX, int getY, int depth)
+        {
+            var x = getX - depth / 2;
+            var y = getY - depth / 2;
+            var tempX = x;
+            var tempY = y;
+
+            for (var i = 0; i < depth; i++)
+            {
+                for (var j = 0; j < depth; j++)
+                {
+                    if ((tempX < 0) || (tempX > 39) || (tempY < 0) || (tempY > 24)) continue;
+                    if (Map[tempY, tempX] == value)
+                        return true;
+                    tempX++;
+                }
+                tempY++;
+                tempX = x;
+            }
+
+            return false;
         }
     }
 }
