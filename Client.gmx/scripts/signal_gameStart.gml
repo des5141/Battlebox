@@ -6,17 +6,20 @@ global.controller = true;
 var buf = argument0;
 var map_height = buf_read(buf, buffer_u8);
 var map_width = buf_read(buf, buffer_u8);
+var ins, box_count = 1;
 
 for(var i = 0; i < map_height; i++) {
     for(var j = 0; j < map_width; j++) {
         global.map[i, j] = buf_read(buf, buffer_u8);
         switch(global.map[i, j]) {
             case 2:
-                instance_create(j*32, i*32, obj_box1);
+                ins = instance_create(j*32, i*32, obj_box);
+                ins.index = box_count;
+                box_count++;
             break;
             
             case 3:
-                instance_create(j*32, i*32, obj_block1);
+                instance_create(j*32, i*32, obj_block);
             break;
         }
     }

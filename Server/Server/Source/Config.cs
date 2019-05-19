@@ -37,7 +37,8 @@ namespace Server.Source
             UserReady = 4,
             GameStart = 5,
             UserPosition = 6,
-            UserDelete = 7
+            UserDelete = 7,
+            BoxDamage = 8
 
             ;
     }
@@ -48,6 +49,7 @@ namespace Server.Source
         public static LinkedList<NcsRoom> RoomList = new LinkedList<NcsRoom>();
         public static int MatchingMin = 2;
         public static int MatchingWait = 1000;
+        public static int BoxMax = 25;
     }
     public class Lock
     {

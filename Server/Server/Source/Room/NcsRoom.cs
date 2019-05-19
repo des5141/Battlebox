@@ -16,9 +16,11 @@ namespace Server.Source.Room
         public List<NcsUser> UserList = new List<NcsUser>();
         public int ReadyTime = 60;
         public int Time = 0;
-        public bool GameStart = false;
+        public bool GameStart;
         public bool Destroy = false;
         public byte[,] Map = new byte[25, 40];
+        public byte[,] Box = new byte[Data.BoxMax, 1];
+        public List<List<int>> Item = new List<List<int>>();
 
         public NcsRoom()
         {
@@ -43,7 +45,7 @@ namespace Server.Source.Room
                 using (await TaskLockInRoom.LockAsync())
                 {
                     // 유저들의 위치를 맵에서 지정
-                    for (var i = 0; i < UserList.Count; i++)
+                    foreach (var t in UserList)
                     {
                         while (true)
                         {
@@ -53,14 +55,14 @@ namespace Server.Source.Room
                                 continue;
                             if (check_rect(1, x, y, 5)) continue;
                             Map[y, x] = 1;
-                            UserList[i].Data.X = Convert.ToUInt16(x * 32 + 16);
-                            UserList[i].Data.Y = Convert.ToUInt16(y * 32 + 16);
+                            t.Data.X = Convert.ToUInt16(x * 32 + 16);
+                            t.Data.Y = Convert.ToUInt16(y * 32 + 16);
                             break;
                         }
                     }
 
                     // 상자 설정
-                    for (var i = 0; i < 25; i++)
+                    for (var i = 0; i < Data.BoxMax; i++)
                     {
                         while (true)
                         {
@@ -70,6 +72,7 @@ namespace Server.Source.Room
                                 continue;
                             if (check_rect(2, x, y, 7)) continue;
                             Map[y, x] = 2;
+                            Box[i, 0] = 20; // 박스 체력
                             break;
                         }
                     }

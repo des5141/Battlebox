@@ -297,6 +297,7 @@
     <Compile Include="Source\Room\Lock\MatchOperator.cs" />
     <Compile Include="Source\Room\NcsRoom.cs" />
     <Compile Include="Source\SignalEvent\Func\UserPosition.cs" />
+    <Compile Include="Source\SignalEvent\Func\BoxDamage.cs" />
     <Compile Include="Source\SignalEvent\Func\UserReady.cs" />
     <Compile Include="Source\SignalEvent\Func\Match.cs" />
     <Compile Include="Source\SignalEvent\Func\Login.cs" />

@@ -167,6 +167,7 @@
       <script>scripts\signal_gameStart.gml</script>
       <script>scripts\signal_userPosition.gml</script>
       <script>scripts\signal_userDelete.gml</script>
+      <script>scripts\signal_boxDamage.gml</script>
     </scripts>
     <script>scripts\get_color.gml</script>
   </scripts>
@@ -212,8 +213,8 @@
       <object>objects\obj_nooutside</object>
     </objects>
     <objects name="battleroyal">
-      <object>objects\obj_block1</object>
-      <object>objects\obj_box1</object>
+      <object>objects\obj_block</object>
+      <object>objects\obj_box</object>
       <object>objects\obj_battleroyal_view</object>
       <object>objects\obj_battleroyal_map</object>
     </objects>
