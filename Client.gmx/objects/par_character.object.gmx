@@ -86,8 +86,8 @@ type = -1;
 active = false;
 
 weapon = 0;
-weapon_scale = 1;
 weapon_dir = 0;
+weapon_len = 10;
 </string>
           </argument>
         </arguments>
@@ -216,7 +216,7 @@ if (mine) {
             if(target_speed &lt; 0.2) {
                 target_speed = 0;
             }
-            if(sys_joystick.joyEnable[1]) and (global.controller == true) {
+            if(sys_joystick.joyEnable[1]) and (global.controller == true) and (nuckback == 0) {
                 dir = sys_joystick.joyDirection[1]
             }
         }
@@ -335,7 +335,7 @@ if(mine == true) {
     }
 }
 
-draw_sprite_ext(spr_weapon, weapon, x, y - 16 - z, 1, image_xscale, weapon_dir, c_white, 1);
+draw_sprite_ext(spr_weapon, weapon, x + lengthdir_x(weapon_len, weapon_dir), y - 16 - z + lengthdir_y(weapon_len, weapon_dir), 1, image_xscale, weapon_dir, c_white, 1);
 </string>
           </argument>
         </arguments>
@@ -364,7 +364,10 @@ if(active) {
     nuckback = -6;
     zspeed = 0.8;
     z = 0;
-    weapon_dir += 180;
+    if(dir &gt; 90) and (dir &lt; 270)
+        weapon_dir = 180;
+    else
+        weapon_dir = 0;
 }
 </string>
           </argument>

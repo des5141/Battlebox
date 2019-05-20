@@ -60,6 +60,7 @@ namespace Server.Source.User
             }
             catch (Exception e)
             {
+                this.Close();
                 Console.WriteLine(e);
             }
         }
@@ -74,6 +75,7 @@ namespace Server.Source.User
             }
             catch (Exception e)
             {
+                this.Close();
                 Console.WriteLine(e);
             }
         }
