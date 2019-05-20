@@ -24,18 +24,15 @@ namespace Server.Source.Background
             {
                 using (await Lock.RoomList.LockAsync())
                 {
-                    var i = 0;
-                    while (true)
+                    for (var i = 0; i < Data.RoomList.Count; i++)
                     {
-                        if (i >= Data.RoomList.Count)
-                            break;
-                        if (Data.RoomList.ElementAt(i).UserList.Count <= 0)
+                        var temp_room = Data.RoomList.PeekAt(i);
+                        if (temp_room.UserList.Count <= 0)
                         {
-                            Data.RoomList.ElementAt(i).Destroy = true;
-                            Data.RoomList.Remove(Data.RoomList.ElementAt(i));
+                            temp_room.Destroy = true;
+                            Data.RoomList.Remove(temp_room);
+                            continue;
                         }
-                        else
-                            i++;
                     }
                 }
                 await System.Threading.Tasks.Task.Delay(1000);
@@ -66,7 +63,7 @@ namespace Server.Source.Background
                             {
                                 var room = new NcsRoom();
                                 var roomIndex = Data.RoomList.Count + 1;
-                                Data.RoomList.AddLast(room);
+                                Data.RoomList.Enqueue(room);
 
                                 for (var i = 0; i < Data.MatchingMin; i++)
                                 {

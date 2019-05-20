@@ -46,7 +46,7 @@ namespace Server.Source
     {
         public static List<List<NcsUser>> UserList = new List<List<NcsUser>>();
         public static LinkedQueue<NcsUser> MatchingList = new LinkedQueue<NcsUser>();
-        public static LinkedList<NcsRoom> RoomList = new LinkedList<NcsRoom>();
+        public static LinkedQueue<NcsRoom> RoomList = new LinkedQueue<NcsRoom>();
         public static int MatchingMin = 1;
         public static int MatchingWait = 1000;
         public static int BoxMax = 25;
