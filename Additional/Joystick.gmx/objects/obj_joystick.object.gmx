@@ -183,11 +183,11 @@ if (active == true) {
     /// Set 
     joyEnable[0] = point_index[0] != -1;
     joyEnable[1] = point_index[1] != -1;
-    joyDistance[0] = min(left_size, point_distance(left_point[0], left_point[1], left_basic[0], left_basic[1]));
-    joyDistance[1] = min(right_size, point_distance(right_point[0], right_point[1], right_basic[0], right_basic[1]));
-    joyDirection[0] = point_direction(left_point[0], left_point[1], left_basic[0], left_basic[1]);
+    joyDistance[0] = min(left_size, point_distance(left_basic[0], left_basic[1], left_point[0], left_point[1]));
+    joyDistance[1] = min(right_size, point_distance(right_basic[0], right_basic[1], right_point[0], right_point[1]));
+    joyDirection[0] = point_direction(left_basic[0], left_basic[1], left_point[0], left_point[1]);
     if(point_distance(right_point_basic[0],right_point_basic[1],right_point[0],right_point[1]) &gt; 10)
-        joyDirection[1] = point_direction(right_point[0], right_point[1], right_basic[0], right_basic[1]);
+        joyDirection[1] = point_direction(right_basic[0], right_basic[1], right_point[0], right_point[1]);
         
     if(joyEnable[0] == false)
         joyDistance[0] = 0;
