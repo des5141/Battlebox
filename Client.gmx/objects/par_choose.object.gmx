@@ -85,6 +85,28 @@ active = false;
       </action>
       <action>
         <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// variables init
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
         <id>604</id>
         <kind>0</kind>
         <userelative>0</userelative>
@@ -96,6 +118,46 @@ active = false;
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// weapon init
+weapon = 0;
+
+// 공격할때 사용되는 변수들
+weapon_len = 5; // 멀리 떨어져있는 정도
+weapon_delay = 0; // 딜레이
+weapon_dir = 0; // 전체적인 각도
+
+// gun variables
+weapon_add_x = 0; // 추가되는 x 위치
+weapon_add_y = 0; // 추가되는 y 위치
+weapon_add_dir_hand = 0; // 손에서 추가되는 각도
+weapon_step = 0;
+weapon_step_max = 0;
+weapon_step_trigger = false;
+weapon_step_mode = 0; // 0 is knife, 1 is gun
+
+// knife variables
+weapon_add_dir = 0;
+weapon_add_len = 0;
+</string>
+          </argument>
+        </arguments>
       </action>
     </event>
     <event eventtype="6" enumb="57">
@@ -322,6 +384,134 @@ draw_ellipse(x - 10, y - 2, x + 10, y + 2, false);
 draw_set_alpha(1);
 draw_sprite_ext(sprite_index, image_index, x, y - z, image_xscale, image_yscale, image_angle, c_white, image_alpha);
 draw_sprite_ext(spr_chr_body, type, x, y - z, image_xscale, image_yscale, image_angle, c_white, image_alpha);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// weapon draw
+if(active == true) {
+    if(sys_joystick.joyEnable[0]) {
+        weapon_dir = sys_joystick.joyDirection[0];
+    }
+    
+    if(sys_joystick.joyEnable[1]) {
+        weapon_dir = sys_joystick.joyDirection[1];
+    }
+}else{
+    weapon_dir = 0;
+}
+
+
+var _x, _y, _dir;
+_x = x + lengthdir_x(weapon_len, weapon_dir);
+_y = y - 16 - z + lengthdir_y(weapon_len, weapon_dir);
+_dir = weapon_dir;
+
+if(weapon_step_max != 0) {
+    
+    switch(weapon_step_mode) {
+        // 0 is knife
+        case 0:
+            var temp_add_dir, temp_step;
+            temp_step = ease_in_out_quintic((1/weapon_step_max)*weapon_step);
+            temp_add_dir = point_direction(0, 0, -weapon_add_x, -weapon_add_y) * image_xscale;
+            _dir += -weapon_add_dir * temp_step * image_xscale - 90;
+            _x += lengthdir_x(-weapon_add_len, _dir) * image_xscale;
+            _y += lengthdir_y(-weapon_add_len, _dir) * image_xscale;
+            
+             if(weapon_step_trigger == false)
+                if(weapon_step &lt; weapon_step_max)
+                    weapon_step++;
+                else {
+                    weapon_step = 0;
+                    weapon_step_trigger = true;
+                    weapon_step_max = 0;
+                } 
+        break;
+        
+        // 1 is gun
+        case 1:
+            var temp_add_dir, temp_step;
+            temp_step = ease_in_quintic((1/weapon_step_max)*weapon_step);
+            temp_add_dir = point_direction(0, 0, -weapon_add_x, -weapon_add_y) * image_xscale;
+            _dir += weapon_add_dir_hand * temp_step * image_xscale;
+            _x += lengthdir_x(weapon_add_x * temp_step, temp_add_dir) * image_xscale;
+            _y += lengthdir_y(weapon_add_y * temp_step, temp_add_dir) * image_xscale;
+            
+             if(weapon_step_trigger == false)
+                if(weapon_step &lt; weapon_step_max)
+                    weapon_step++;
+                else {
+                    weapon_step = weapon_step_max;
+                    weapon_step_trigger = true;
+                }
+            else
+                if(weapon_step &gt; 0)
+                    weapon_step--;
+                else
+                    weapon_step = 0;
+        break;
+    }
+}
+
+draw_sprite_ext(spr_weapon, weapon, _x, _y, 1, image_xscale, _dir, c_white, 1);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="32">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// TEST!
+if(active) {
+    /*weapon_add_x = 5;
+    weapon_add_y = 3;
+    weapon_add_dir_hand = 40;
+    
+    weapon_step = 0;
+    weapon_step_max = 20;
+    weapon_step_trigger = false;
+    weapon_step_mode = 1;*/
+    
+    weapon_add_len = 10;
+    weapon_add_dir = 180;
+    
+    weapon_step = 0;
+    weapon_step_max = 120;
+    weapon_step_trigger = false;
+    weapon_step_mode = 0;
+}
 </string>
           </argument>
         </arguments>

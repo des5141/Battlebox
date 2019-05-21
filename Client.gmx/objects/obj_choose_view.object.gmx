@@ -197,6 +197,8 @@ if(mode == 0) {
                 target_y = 270/2;
                 global.controller = false;
                 target.active = false;
+                target.image_xscale = 1;
+                target.weapon_dir = 0;
                 target.x = target.xstart
                 target.y = target.ystart
                 target = -1

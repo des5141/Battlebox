@@ -16,8 +16,7 @@ namespace Server.Additional.Discord.Message
                 if (message.Author.Id == Config.Admin)
                 {
                     var embed = new EmbedBuilder()
-                        .WithTitle("Server Info")
-                        .WithDescription("서버의 **종료 명령**이 시작되었습니다")
+                        .WithDescription("TURN OFF")
                         .WithTimestamp(DateTimeOffset.Now)
                         .Build();
                     Program.Discord.GetGuild(573111073616560128).GetTextChannel(573111191468245002).SendMessageAsync("", embed: embed).Wait();
