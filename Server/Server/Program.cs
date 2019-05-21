@@ -72,8 +72,7 @@ namespace Server
             Discord.SetGameAsync("--help 으로 도움말", "https://www.twitch.tv/libertycode").Wait();
 
             var embed = new EmbedBuilder()
-                .WithTitle("Server Info")
-                .WithDescription("서버의 **동작**이 시작되었습니다 :D and this is test text")
+                .WithDescription("TURN ON")
                 .WithTimestamp(DateTimeOffset.Now)
                 .Build();
             Channel = Discord.GetGuild(573111073616560128).GetTextChannel(573111191468245002);

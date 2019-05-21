@@ -18,8 +18,6 @@ namespace Server.Source.Room.Lock
                 {
                     Data.MatchingList.Enqueue(user);
                 }
-
-                ShowList();
             }).Start();
         }
 
@@ -54,7 +52,6 @@ namespace Server.Source.Room.Lock
                 {
                     Data.MatchingList.Remove(user);
                 }
-                ShowList();
             }).Start();
         }
 

@@ -12,7 +12,6 @@ namespace Server.Source
         public static void SendLog(string message)
         {
             var embed = new EmbedBuilder()
-                .WithTitle("Server log")
                 .WithDescription(message ?? "~~null string~~")
                 .WithTimestamp(DateTimeOffset.Now)
                 .Build();

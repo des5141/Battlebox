@@ -14,31 +14,9 @@ namespace Server.Source.Background
     {
         public static void Func()
         {
-            AliveCheck();
             Matching();
         }
 
-        private static void AliveCheck()
-        {
-            new System.Threading.Tasks.Task(async () =>
-            {
-                using (await Lock.RoomList.LockAsync())
-                {
-                    for (var i = 0; i < Data.RoomList.Count; i++)
-                    {
-                        var temp_room = Data.RoomList.PeekAt(i);
-                        if (temp_room.UserList.Count <= 0)
-                        {
-                            temp_room.Destroy = true;
-                            Data.RoomList.Remove(temp_room);
-                            continue;
-                        }
-                    }
-                }
-                await System.Threading.Tasks.Task.Delay(1000);
-                AliveCheck();
-            }).Start();
-        }
         private static void Matching()
         {
             new System.Threading.Tasks.Task(async () =>

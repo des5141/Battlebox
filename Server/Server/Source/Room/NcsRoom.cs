@@ -24,7 +24,7 @@ namespace Server.Source.Room
 
         public NcsRoom()
         {
-            Chat.SendLog("룸 생성");
+            Chat.SendLog("Create Room");
             for (var i = 0; i < 25; i++)
             {
                 for (var j = 0; j < 40; j++)
@@ -35,7 +35,7 @@ namespace Server.Source.Room
         }
         ~NcsRoom()
         {
-            Chat.SendLog("룸 삭제");
+            Chat.SendLog("Delete Room");
         }
 
         public void Start()
@@ -53,7 +53,7 @@ namespace Server.Source.Room
                             var y = Ran.Next(0, 24);
                             if (Map[y, x] != 0)
                                 continue;
-                            if (check_rect(1, x, y, 5)) continue;
+                            if (CheckRect(1, x, y, 5)) continue;
                             Map[y, x] = 1;
                             t.Data.X = Convert.ToUInt16(x * 32 + 16);
                             t.Data.Y = Convert.ToUInt16(y * 32 + 16);
@@ -70,7 +70,7 @@ namespace Server.Source.Room
                             var y = Ran.Next(0, 24);
                             if (Map[y, x] != 0)
                                 continue;
-                            if (check_rect(2, x, y, 7)) continue;
+                            if (CheckRect(2, x, y, 7)) continue;
                             Map[y, x] = 2;
                             Box[i, 0] = 20; // 박스 체력
                             break;
@@ -102,6 +102,7 @@ namespace Server.Source.Room
                     }
 
                     GameStartCheck();
+                    CheckAlive();
                 }
             }).Start();
         }
@@ -200,7 +201,7 @@ namespace Server.Source.Room
             }).Start();
         }
 
-        private protected bool check_rect(int value, int getX, int getY, int depth)
+        private protected bool CheckRect(int value, int getX, int getY, int depth)
         {
             var x = getX - depth / 2;
             var y = getY - depth / 2;
@@ -221,6 +222,29 @@ namespace Server.Source.Room
             }
 
             return false;
+        }
+
+        private protected void CheckAlive()
+        {
+            new System.Threading.Tasks.Task(async () =>
+            {
+                using (await TaskLockInRoom.LockAsync())
+                {
+                    if (UserList.Count <= 0)
+                    {
+                        Destroy = true;
+                        using (await Source.Lock.RoomList.LockAsync())
+                        {
+                            Data.RoomList.Remove(this);
+                        }
+                        Chat.SendLog("Destroy Room Action !");
+                    }
+                }
+
+                await System.Threading.Tasks.Task.Delay(5000);
+                if (Destroy != true)
+                    CheckAlive();
+            }).Start();
         }
     }
 }

@@ -183,6 +183,31 @@ with (obj_choose_view) {
             <kind>1</kind>
             <string>/// movement
 if(active) {
+    with(par_interact) { active = false; }
+    with(par_interact_solid) { active = false; }
+    var ins, trigger_ins = false;
+    if(instance_exists(par_interact)) {
+        ins = instance_nearest(x, y, par_interact);
+        if(point_distance(x, y, ins.x, ins.y) &lt; 50) {
+            ins.active = true;
+            if(sys_joystick.joyClicked == true)
+                with(ins){event_user(15);}
+        }else {
+            trigger_ins = true;
+        }
+    }else
+        trigger_ins = true;
+        
+    if(instance_exists(par_interact_solid)) and (trigger_ins) {
+        ins = instance_nearest(x, y, par_interact_solid);
+        if(point_distance(x, y, ins.x, ins.y) &lt; 50) {
+            ins.active = true;
+            if(sys_joystick.joyClicked == true)
+                with(ins){event_user(15);}
+        }  
+    }
+    sys_joystick.joyClicked = false;
+    
     if(sys_joystick.joyEnable[0]) and (global.controller == true) and (nuckback == 0){
         dir = sys_joystick.joyDirection[0]
         target_speed += sys_joystick.joyDistance[0] / 30 * system.delta;

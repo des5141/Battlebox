@@ -87,7 +87,12 @@ active = false;
 
 weapon = 0;
 weapon_dir = 0;
+
+// 공격할때 사용되는 변수들
 weapon_len = 10;
+weapon_delay = 0;
+weapon_delay_max = 0;
+weapon_add_dir = 0;
 </string>
           </argument>
         </arguments>
@@ -208,6 +213,36 @@ if(global.playerIndex == index) {
             <string>/// movement
 if (mine) {
     if(active) {
+        if(weapon_delay &gt; 0)
+            weapon_delay--;
+        else
+            weapon_delay = 0;
+            
+        with(par_interact) { active = false; }
+        with(par_interact_solid) { active = false; }
+        var ins, trigger_ins = false;
+        if(instance_exists(par_interact)) {
+            ins = instance_nearest(x, y, par_interact);
+            if(point_distance(x, y, ins.x, ins.y) &lt; 50) {
+                ins.active = true;
+                if(sys_joystick.joyClicked == true)
+                    with(ins){event_user(15);}
+            }else {
+                trigger_ins = true;
+            }
+        }else
+            trigger_ins = true;
+            
+        if(instance_exists(par_interact_solid)) and (trigger_ins) {
+            ins = instance_nearest(x, y, par_interact_solid);
+            if(point_distance(x, y, ins.x, ins.y) &lt; 50) {
+                ins.active = true;
+                if(sys_joystick.joyClicked == true)
+                    with(ins){event_user(15);}
+            }  
+        }
+        sys_joystick.joyClicked = false;
+        
         if(sys_joystick.joyEnable[0]) and (global.controller == true) and (nuckback == 0){
             dir = sys_joystick.joyDirection[0]
             target_speed += sys_joystick.joyDistance[0] / 30 * system.delta;
@@ -359,7 +394,7 @@ draw_sprite_ext(spr_weapon, weapon, x + lengthdir_x(weapon_len, weapon_dir), y -
           <argument>
             <kind>1</kind>
             <string>/// NUCKBACK!! TEST!!
-if(active) {
+/*if(active) {
     dir = irandom_range(0, 360);
     nuckback = -6;
     zspeed = 0.8;
@@ -368,6 +403,30 @@ if(active) {
         weapon_dir = 180;
     else
         weapon_dir = 0;
+}*/
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// attack test!!
+if(active) {
+    
 }
 </string>
           </argument>

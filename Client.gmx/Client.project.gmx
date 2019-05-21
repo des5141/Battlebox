@@ -225,6 +225,10 @@
         <object>objects\obj_knight</object>
         <object>objects\obj_doctor</object>
       </objects>
+      <objects name="interact">
+        <object>objects\par_interact</object>
+        <object>objects\par_interact_solid</object>
+      </objects>
     </objects>
   </objects>
   <rooms name="rooms">

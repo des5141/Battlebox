@@ -46,6 +46,7 @@ joyDistance = array_create(2);
 joyDirection = array_create(2);
 joyStickTrigger = false;
 joyRightTrigger = false;
+joyClicked = false;
 </string>
           </argument>
         </arguments>
@@ -125,7 +126,7 @@ if (global.controller == true) {
                 right_basic[0] = 1280 - right_size - left_padding - 120;
                 right_basic[1] = 720 - right_size - 70;
                 if(point_distance(right_point_basic[0],right_point_basic[1],right_point[0],right_point[1]) &lt; 10) and (joyRightTrigger) {
-                    show_message("clicked");
+                    joyClicked = true;
                 }
                 joyRightTrigger = false;
             }
@@ -148,6 +149,8 @@ if (global.controller == true) {
         joyDistance[0] = 0;
     if(joyEnable[1] == false)
         joyDistance[1] = 0;
+    if(joyDistance[1] &lt; 10)
+        joyEnable[1] = false;
     // ---------
     
     /// Draw
