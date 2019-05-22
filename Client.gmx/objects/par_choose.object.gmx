@@ -428,12 +428,12 @@ if(weapon_step_max != 0) {
     switch(weapon_step_mode) {
         // 0 is knife
         case 0:
-            var temp_add_dir, temp_step;
+            /*var temp_add_dir, temp_step;
             temp_step = ease_in_out_quintic((1/weapon_step_max)*weapon_step);
-            temp_add_dir = point_direction(0, 0, -weapon_add_x, -weapon_add_y) * image_xscale;
-            _dir += -weapon_add_dir * temp_step * image_xscale - 90;
-            _x += lengthdir_x(-weapon_add_len, _dir) * image_xscale;
-            _y += lengthdir_y(-weapon_add_len, _dir) * image_xscale;
+            temp_add_dir = -weapon_add_dir * temp_step * image_xscale - 90 * image_xscale + weapon_dir;
+            _dir = 90 - weapon_add_dir * temp_step * image_xscale
+            _x += lengthdir_x(-weapon_add_len, temp_add_dir) * image_xscale;
+            _y += lengthdir_y(-weapon_add_len, temp_add_dir) * image_xscale;
             
              if(weapon_step_trigger == false)
                 if(weapon_step &lt; weapon_step_max)
@@ -442,7 +442,9 @@ if(weapon_step_max != 0) {
                     weapon_step = 0;
                     weapon_step_trigger = true;
                     weapon_step_max = 0;
-                } 
+                } */
+             draw_set_color(c_red);
+             draw_circle(_x, _y, 10, false);
         break;
         
         // 1 is gun
