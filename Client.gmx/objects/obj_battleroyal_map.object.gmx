@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>/// draw array
-if(global.GameStart) {
+/*if(global.GameStart) {
     draw_set_alpha(0.5);
     for(var i = 0; i &lt; room_height/32; i++) {
         for(var j = 0; j &lt; room_width/32; j++) {
@@ -34,6 +34,9 @@ if(global.GameStart) {
             draw_rectangle(j*32, i*32, (j+1)*32, (i+1)*32, false);
         }
     }
+    draw_set_alpha(1);
+}*/
+if(global.GameStart) {
     draw_set_alpha(1);
 }
 </string>

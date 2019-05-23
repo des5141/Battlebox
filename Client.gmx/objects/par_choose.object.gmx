@@ -139,7 +139,7 @@ active = false;
 weapon = 0;
 
 // 공격할때 사용되는 변수들
-weapon_len = 5; // 멀리 떨어져있는 정도
+weapon_len = 7; // 멀리 떨어져있는 정도
 weapon_delay = 0; // 딜레이
 weapon_dir = 0; // 전체적인 각도
 
@@ -246,27 +246,14 @@ with (obj_choose_view) {
             <string>/// movement
 if(active) {
     with(par_interact) { active = false; }
-    with(par_interact_solid) { active = false; }
-    var ins, trigger_ins = false;
+    var ins;
     if(instance_exists(par_interact)) {
         ins = instance_nearest(x, y, par_interact);
         if(point_distance(x, y, ins.x, ins.y) &lt; 50) {
             ins.active = true;
             if(sys_joystick.joyClicked == true)
                 with(ins){event_user(15);}
-        }else {
-            trigger_ins = true;
         }
-    }else
-        trigger_ins = true;
-        
-    if(instance_exists(par_interact_solid)) and (trigger_ins) {
-        ins = instance_nearest(x, y, par_interact_solid);
-        if(point_distance(x, y, ins.x, ins.y) &lt; 50) {
-            ins.active = true;
-            if(sys_joystick.joyClicked == true)
-                with(ins){event_user(15);}
-        }  
     }
     sys_joystick.joyClicked = false;
     
@@ -311,7 +298,7 @@ if(active) {
     }
     
     if ( (hspeed != 0) or (vspeed != 0) )and(nuckback == 0) {
-        image_speed = (0.2)*target_speed;
+        image_speed = (0.15)*target_speed;
     }else {
         image_speed = 0;
         image_index = 0;
@@ -475,8 +462,6 @@ if(weapon_step_max != 0) {
 }
 
 draw_sprite_ext(spr_weapon, weapon, _x, _y, 1, image_xscale, _dir, c_white, 1);
-draw_set_color(c_red);
-draw_circle(_x, _y, 2, false);
 </string>
           </argument>
         </arguments>

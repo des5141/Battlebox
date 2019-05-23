@@ -174,7 +174,7 @@ namespace Server.Source.Room
                 using (await TaskLockInRoom.LockAsync())
                 {
                     // 플레이어 초기 데이터 생성
-                    var buf = NewBuffer.Func(1024);
+                    var buf = NewBuffer.Func(4096);
                     buf.append<byte>(UserList.Count); // 몇명인지 전달
                     foreach (var t in UserList)
                     {
@@ -184,6 +184,8 @@ namespace Server.Source.Room
                         buf.append<byte>(t.Data.Z);
                         buf.append<byte>(t.Data.ImageIndex);
                         buf.append<sbyte>(t.Data.ImageXScale);
+                        buf.append<byte>(t.Data.WeaponIndex);
+                        buf.append<short>(t.Data.WeaponDir);
                     }
                     buf.set_front<uint>(buf.Count);
                     buf.set_front<short>(Signal.UserPosition, 4);

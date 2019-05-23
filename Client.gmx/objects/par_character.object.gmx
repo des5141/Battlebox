@@ -161,6 +161,8 @@ if(global.playerIndex == index) {
     buf_write(buf, buffer_u8, z);
     buf_write(buf, buffer_u8, image_index);
     buf_write(buf, buffer_s8, image_xscale);
+    buf_write(buf, buffer_u8, weapon);
+    buf_write(buf, buffer_s16, weapon_dir);
     supersocket_send(buf, signal.userPosition, sendTo.Server);
     buf_del(buf);
 }
@@ -213,33 +215,23 @@ if(global.playerIndex == index) {
             <string>/// movement
 if (mine) {
     if(active) {
+        obj_minimap.player[0] = floor(y/32);
+        obj_minimap.player[1] = floor(x/32);
+        
         if(weapon_delay &gt; 0)
             weapon_delay--;
         else
             weapon_delay = 0;
-            
+        
         with(par_interact) { active = false; }
-        with(par_interact_solid) { active = false; }
-        var ins, trigger_ins = false;
+        var ins;
         if(instance_exists(par_interact)) {
             ins = instance_nearest(x, y, par_interact);
             if(point_distance(x, y, ins.x, ins.y) &lt; 50) {
                 ins.active = true;
                 if(sys_joystick.joyClicked == true)
                     with(ins){event_user(15);}
-            }else {
-                trigger_ins = true;
             }
-        }else
-            trigger_ins = true;
-            
-        if(instance_exists(par_interact_solid)) and (trigger_ins) {
-            ins = instance_nearest(x, y, par_interact_solid);
-            if(point_distance(x, y, ins.x, ins.y) &lt; 50) {
-                ins.active = true;
-                if(sys_joystick.joyClicked == true)
-                    with(ins){event_user(15);}
-            }  
         }
         sys_joystick.joyClicked = false;
         
@@ -284,7 +276,7 @@ if (mine) {
         }
         
         if ( (hspeed != 0) or (vspeed != 0) )and(nuckback == 0) {
-            image_speed = (0.2)*target_speed;
+            image_speed = (0.15)*target_speed;
         }else {
             image_speed = 0;
             image_index = 0;

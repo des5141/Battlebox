@@ -15,6 +15,8 @@ namespace Server.Source.User
         public byte Z;
         public byte ImageIndex;
         public sbyte ImageXScale;
+        public byte WeaponIndex;
+        public short WeaponDir = 0;
         private readonly string _uuid = Guid.NewGuid().ToString();
 
         public NcsUserData()

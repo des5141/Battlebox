@@ -14,6 +14,8 @@ namespace Server.Source.SignalEvent.Func
                 user.Data.Z = buffer.extract_byte();
                 user.Data.ImageIndex = buffer.extract_byte();
                 user.Data.ImageXScale = buffer.extract_sbyte();
+                user.Data.WeaponIndex = buffer.extract_byte();
+                user.Data.WeaponDir = buffer.extract_short();
             };
         }
     }

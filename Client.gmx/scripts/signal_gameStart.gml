@@ -61,3 +61,5 @@ for(var i = 0; i < userCount; i++) {
     
     global.userList[ins.index] = ins;
 }
+
+with(obj_minimap) { enable = true; event_user(0); }

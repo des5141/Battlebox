@@ -218,6 +218,7 @@
       <object>objects\obj_box</object>
       <object>objects\obj_battleroyal_view</object>
       <object>objects\obj_battleroyal_map</object>
+      <object>objects\obj_minimap</object>
     </objects>
     <objects name="game">
       <objects name="characters">
@@ -227,7 +228,6 @@
       </objects>
       <objects name="interact">
         <object>objects\par_interact</object>
-        <object>objects\par_interact_solid</object>
       </objects>
     </objects>
   </objects>
