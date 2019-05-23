@@ -97,6 +97,11 @@
         <sprite>sprites\spr_block</sprite>
         <sprite>sprites\spr_boxes</sprite>
       </sprites>
+      <sprites name="ui">
+        <sprite>sprites\spr_killog_back</sprite>
+        <sprite>sprites\spr_killlog_item</sprite>
+        <sprite>sprites\spr_skull</sprite>
+      </sprites>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -113,6 +118,7 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\only_single.gml</script>
+    <script>scripts\get_color.gml</script>
     <script>scripts\tile_ran.gml</script>
     <scripts name="easing_library">
       <script>scripts\ease_in_quad.gml</script>
@@ -170,10 +176,14 @@
       <script>scripts\signal_userDelete.gml</script>
       <script>scripts\signal_boxDamage.gml</script>
     </scripts>
-    <script>scripts\get_color.gml</script>
+    <scripts name="killLog">
+      <script>scripts\killInfo_add.gml</script>
+      <script>scripts\append_kill.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_debug_text</font>
+    <font>fonts\fnt_text</font>
   </fonts>
   <objects name="objects">
     <objects name="init">
@@ -228,6 +238,11 @@
       </objects>
       <objects name="interact">
         <object>objects\par_interact</object>
+      </objects>
+      <objects name="killLog">
+        <object>objects\obj_killLog</object>
+        <object>objects\obj_killLog_node</object>
+        <object>objects\obj_killInfo</object>
       </objects>
     </objects>
   </objects>
