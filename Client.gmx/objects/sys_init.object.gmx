@@ -272,8 +272,8 @@ global.font[30] = font_add('NanumSquareRoundR.ttf', 30, false, false, 0, 0);
             <kind>1</kind>
             <string>/// controller load
 instance_create(0, 0, sys_joystick);
-instance_create(0, 0, sys_skill_button);
-instance_create(0, 0, sys_charge_button);
+//instance_create(0, 0, sys_skill_button);
+instance_create(0, 0, sys_change_button);
 
 global.controller = false;
 </string>

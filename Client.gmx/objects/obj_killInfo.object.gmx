@@ -128,8 +128,8 @@ draw_sprite_ext(sprite_index, 0, x, y, image_xscale, image_yscale, 0, c_white, a
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 draw_set_font(fnt_text);
-if(size &gt; 0.1)
-    draw_text(x, y + size*image_yscale+15, global.kill_count);
+if not((step &gt;= 20)and(trigger == true))
+    draw_text_ext_transformed(x, y + size*image_yscale+15, global.kill_count, -1, -1, image_xscale, image_yscale, 0);
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
 </string>

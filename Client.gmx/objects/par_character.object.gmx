@@ -87,12 +87,6 @@ active = false;
 
 weapon = 0;
 weapon_dir = 0;
-
-// 공격할때 사용되는 변수들
-weapon_len = 10;
-weapon_delay = 0;
-weapon_delay_max = 0;
-weapon_add_dir = 0;
 </string>
           </argument>
         </arguments>
@@ -132,6 +126,47 @@ weapon_add_dir = 0;
           <argument>
             <kind>4</kind>
             <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// weapon init
+weapon = 0;
+
+// 공격할때 사용되는 변수들
+weapon_len = 7; // 멀리 떨어져있는 정도
+weapon_delay = 0; // 딜레이
+weapon_delay_max = 0; // 딜레이 최고치
+weapon_dir = 0; // 전체적인 각도
+
+// gun variables
+weapon_add_x = 0; // 추가되는 x 위치
+weapon_add_y = 0; // 추가되는 y 위치
+weapon_add_dir_hand = 0; // 손에서 추가되는 각도
+weapon_step = 0;
+weapon_step_max = 0;
+weapon_step_trigger = false;
+weapon_step_mode = 0; // 0 is knife, 1 is gun
+
+// knife variables
+weapon_add_dir = 0;
+weapon_add_len = 0;
+</string>
           </argument>
         </arguments>
       </action>
@@ -235,17 +270,40 @@ if (mine) {
         }
         sys_joystick.joyClicked = false;
         
-        if(sys_joystick.joyEnable[0]) and (global.controller == true) and (nuckback == 0){
-            dir = sys_joystick.joyDirection[0]
-            target_speed += sys_joystick.joyDistance[0] / 30 * system.delta;
-        }else {
-            target_speed += (0 - target_speed)/20;
-            if(target_speed &lt; 0.2) {
-                target_speed = 0;
+        if(nuckback == 0)and(global.controller) {
+            if(sys_joystick.joyEnable[0]){
+                dir = sys_joystick.joyDirection[0]
+                target_speed += sys_joystick.joyDistance[0] / 30 * system.delta;
+            }else {
+                target_speed += (0 - target_speed)/20;
+                if(target_speed &lt; 0.2) {
+                    target_speed = 0;
+                }
+                if(sys_joystick.joyEnable[1]){
+                    dir = sys_joystick.joyDirection[1]
+                }
             }
-            if(sys_joystick.joyEnable[1]) and (global.controller == true) and (nuckback == 0) {
-                dir = sys_joystick.joyDirection[1]
+            
+            if(sys_joystick.joyEnable[1]) {
+                // 공격 부분
+                if(sys_joystick.joyDistance[1] &gt; 70) {
+                    if(weapon_delay &lt;= 0) {
+                        // attack!
+                        
+    weapon_add_len = 10;
+    weapon_add_dir = 180;
+    weapon_delay_max = 80;
+    weapon_step = 0;
+    weapon_step_max = 40;
+    weapon_step_trigger = false;
+    weapon_step_mode = 0;
+                        
+                        weapon_delay = weapon_delay_max;
+                    }
+                }
             }
+        if(weapon_delay &gt; 0)
+            weapon_delay--;
         }
         nuckback += ( 0 - nuckback )/20;
         z += zspeed;
@@ -362,7 +420,64 @@ if(mine == true) {
     }
 }
 
-draw_sprite_ext(spr_weapon, weapon, x + lengthdir_x(weapon_len, weapon_dir), y - 16 - z + lengthdir_y(weapon_len, weapon_dir), 1, image_xscale, weapon_dir, c_white, 1);
+
+var _x, _y, _dir;
+_x = x + lengthdir_x(weapon_len, weapon_dir);
+_y = y - 16 - z + lengthdir_y(weapon_len, weapon_dir);
+_dir = weapon_dir;
+
+if(weapon_step_max != 0) {
+    
+    switch(weapon_step_mode) {
+        // 0 is knife
+        case 0:
+            var temp_add_dir, temp_step;
+            temp_step = ease_in_out_quintic((1/weapon_step_max)*weapon_step);
+            
+            
+            temp_add_dir = -weapon_add_dir * temp_step * image_xscale - 90 * image_xscale;
+            _dir = 90 - weapon_add_dir * temp_step * image_xscale
+            
+            
+            _x += lengthdir_x(-weapon_add_len, temp_add_dir) * image_xscale;
+            _y += lengthdir_y(-weapon_add_len, temp_add_dir) * image_xscale;
+            
+             if(weapon_step_trigger == false)
+                if(weapon_step &lt; weapon_step_max)
+                    weapon_step++;
+                else {
+                    weapon_step = 0;
+                    weapon_step_trigger = true;
+                    weapon_step_max = 0;
+                }
+        break;
+        
+        // 1 is gun
+        case 1:
+            var temp_add_dir, temp_step;
+            temp_step = ease_in_quintic((1/weapon_step_max)*weapon_step);
+            temp_add_dir = point_direction(0, 0, -weapon_add_x, -weapon_add_y) * image_xscale;
+            _dir += weapon_add_dir_hand * temp_step * image_xscale;
+            _x += lengthdir_x(weapon_add_x * temp_step, temp_add_dir) * image_xscale;
+            _y += lengthdir_y(weapon_add_y * temp_step, temp_add_dir) * image_xscale;
+            
+             if(weapon_step_trigger == false)
+                if(weapon_step &lt; weapon_step_max)
+                    weapon_step++;
+                else {
+                    weapon_step = weapon_step_max;
+                    weapon_step_trigger = true;
+                }
+            else
+                if(weapon_step &gt; 0)
+                    weapon_step--;
+                else
+                    weapon_step = 0;
+        break;
+    }
+}
+
+draw_sprite_ext(spr_weapon, weapon, _x, _y, 1, image_xscale, _dir, c_white, 1);
 </string>
           </argument>
         </arguments>
