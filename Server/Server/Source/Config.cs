@@ -37,7 +37,9 @@ namespace Server.Source
             GameStart = 5,
             UserPosition = 6,
             UserDelete = 7,
-            BoxDamage = 8
+            BoxDamage = 8,
+            UserAttack = 9,
+            UserCountInRoom = 10
 
             ;
     }

@@ -33,6 +33,8 @@ target_y = y;
 target = -1;
 zoom = 1;
 mode = -1; // -1 is non mode, 0 is start animation mode, 1 is character mode
+alive = 0;
+kill = 0;
 </string>
           </argument>
         </arguments>
@@ -99,8 +101,19 @@ view_yview = y - view_hview/2;
 draw_set_alpha(0.5);
 draw_set_color(c_black);
 draw_rectangle(20, 20, 170, 70, false);
+draw_rectangle(190, 20, 340, 70, false);
 draw_set_color(c_white);
 draw_set_alpha(1);
+
+draw_set_halign(fa_center);
+draw_set_valign(fa_middle);
+draw_set_font(global.font[15]);
+draw_text(95 - 20, 45, "생존");
+draw_text(95 + 30, 45, alive);
+draw_text(95+170 - 20, 45, "킬");
+draw_text(95+170 + 30, 45, kill);
+draw_set_halign(fa_top);
+draw_set_valign(fa_left);
 </string>
           </argument>
         </arguments>

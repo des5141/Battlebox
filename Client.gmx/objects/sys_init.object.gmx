@@ -32,12 +32,14 @@ enum signal {
     
     login = 1,
     matching = 2,
-    usercount = 3,
+    userCount = 3,
     userReady = 4,
     gameStart = 5,
     userPosition = 6,
     userDelete = 7,
-    boxDamage = 8
+    boxDamage = 8,
+    userAttack = 9,
+    userCountInRoom = 10
     
 }
 </string>
@@ -62,12 +64,14 @@ enum signal {
             <kind>1</kind>
             <string>/// set signal event
 global.signalEvent[signal.login] = signal_login;
-global.signalEvent[signal.usercount] = signal_count;
+global.signalEvent[signal.userCount] = signal_count;
 global.signalEvent[signal.matching] = signal_match;
 global.signalEvent[signal.gameStart] = signal_gameStart;
 global.signalEvent[signal.userPosition] = signal_userPosition;
 global.signalEvent[signal.userDelete] = signal_userDelete;
 global.signalEvent[signal.boxDamage] = signal_boxDamage;
+global.signalEvent[signal.userAttack] = signal_userAttack;
+global.signalEvent[signal.userCountInRoom] = signal_userCountInRoom;
 </string>
           </argument>
         </arguments>

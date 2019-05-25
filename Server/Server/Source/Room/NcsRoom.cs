@@ -100,10 +100,10 @@ namespace Server.Source.Room
                         buf.append<byte>(t.Data.PlayIndex);
                         t.Send(buf, Signal.Match);
                     }
-
-                    GameStartCheck();
-                    CheckAlive();
                 }
+                GameStartCheck();
+                CheckAlive();
+                SendUserCount();
             }).Start();
         }
 
@@ -248,5 +248,29 @@ namespace Server.Source.Room
                     CheckAlive();
             }).Start();
         }
+
+        private protected void SendUserCount()
+        {
+            new System.Threading.Tasks.Task(async () =>
+            {
+                using (await TaskLockInRoom.LockAsync())
+                {
+                    var buf = NewBuffer.Func(16);
+                    buf.append<byte>(UserList.Count); // 몇명이나 있습니까? 닝겐?
+                    buf.set_front<uint>(buf.Count);
+                    buf.set_front<short>(Signal.UserCountInRoom, 4);
+
+                    // 전달
+                    foreach (var t in UserList)
+                    {
+                        t.Send(buf);
+                    }
+                }
+
+                await System.Threading.Tasks.Task.Delay(2000);
+                if (Destroy != true)
+                    SendUserCount();
+            }).Start();
+            }
     }
 }

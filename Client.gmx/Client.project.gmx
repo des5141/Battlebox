@@ -175,11 +175,14 @@
       <script>scripts\signal_userPosition.gml</script>
       <script>scripts\signal_userDelete.gml</script>
       <script>scripts\signal_boxDamage.gml</script>
+      <script>scripts\signal_userAttack.gml</script>
+      <script>scripts\signal_userCountInRoom.gml</script>
     </scripts>
     <scripts name="killLog">
       <script>scripts\killInfo_add.gml</script>
       <script>scripts\append_kill.gml</script>
     </scripts>
+    <script>scripts\weapon_value_set.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_debug_text</font>
