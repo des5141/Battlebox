@@ -34,7 +34,7 @@ x = 1280/2;
 y = 720 - 200;
 size = sprite_get_height(sprite_index)/2 + 10;
 trigger = false;
-alarm[0] = 60;
+alarm[0] = 144*2;
 </string>
           </argument>
         </arguments>
@@ -84,15 +84,15 @@ trigger = true;
             <kind>1</kind>
             <string>/// Step
 if (trigger == false) {
-    if (step &lt; 60) {
-        image_xscale = ease_out_elastic((1/60)*step);
+    if (step &lt; 20) {
+        image_xscale = ease_out_elastic((1/20)*step);
         image_yscale = image_xscale;
         step++;
     } 
     alpha += (0.6 - alpha)/8;
 }else {
-    if (step &lt; 20) {
-        image_xscale = 1 - ease_out_cubic((1/20)*step);
+    if (step &lt; 40) {
+        image_xscale = 1 - ease_out_cubic((1/40)*step);
         image_yscale = image_xscale;
         step++;
     }

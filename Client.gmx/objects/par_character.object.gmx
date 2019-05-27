@@ -85,8 +85,8 @@ nickname = "";
 type = -1;
 active = false;
 
-weapon = 0;
-weapon_dir = 0;
+hp_max = 1;
+hp = hp_max;
 </string>
           </argument>
         </arguments>

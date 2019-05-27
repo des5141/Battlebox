@@ -103,7 +103,25 @@ if(image_alpha &lt;= 0)
           <argument>
             <kind>1</kind>
             <string>/// hp decrease
-
+if(trigger = true) {
+    if(mine != true) {
+        if(other.mine == true) {
+            trigger = false;
+            with(other) {
+                dir = other.image_angle - 180;
+                nuckback = -4;
+                zspeed = 0.8;
+                z = 0;
+                if(dir &gt; 90) and (dir &lt; 270)
+                    weapon_dir = 180;
+                else
+                    weapon_dir = 0;
+                myHp_decrease(other.damage);
+            }
+            hp_send(global.playerIndex, damage);
+        }
+    }
+}
 </string>
           </argument>
         </arguments>

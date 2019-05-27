@@ -4,7 +4,7 @@ var _userIndex = buf_read(buf, buffer_u8);
 
 if(_userIndex != global.playerIndex) {
     with(par_character) {
-        if(userIndex == _userIndex){
+        if(index == _userIndex){
             x = buf_read(buf, buffer_u16);
             y = buf_read(buf, buffer_u16);
             weapon = buf_read(buf, buffer_u8);

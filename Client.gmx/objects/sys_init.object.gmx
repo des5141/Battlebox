@@ -39,7 +39,8 @@ enum signal {
     userDelete = 7,
     boxDamage = 8,
     userAttack = 9,
-    userCountInRoom = 10
+    userCountInRoom = 10,
+    userHp = 11
     
 }
 </string>
@@ -72,6 +73,7 @@ global.signalEvent[signal.userDelete] = signal_userDelete;
 global.signalEvent[signal.boxDamage] = signal_boxDamage;
 global.signalEvent[signal.userAttack] = signal_userAttack;
 global.signalEvent[signal.userCountInRoom] = signal_userCountInRoom;
+global.signalEvent[signal.userHp] = signal_userHp;
 </string>
           </argument>
         </arguments>

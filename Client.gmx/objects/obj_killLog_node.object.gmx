@@ -36,7 +36,7 @@ image_xscale = 1;
 image_yscale = 1;
 step = 0;
 step2 = 0;
-alarm[0] = 60;
+alarm[0] = 144*2;
 </string>
           </argument>
         </arguments>
@@ -98,8 +98,8 @@ if (trigger == true) {
         }
     }
 }
-if (step &lt; 40) {
-    image_xscale = ease_out_elastic((1/40)*step);
+if (step &lt; 80) {
+    image_xscale = ease_out_elastic((1/80)*step);
     image_yscale = image_xscale;
     step++
 }
