@@ -41,6 +41,7 @@
             <kind>1</kind>
             <string>/// ident set
 type = 2; // knight
+hp_set(5);
 </string>
           </argument>
         </arguments>

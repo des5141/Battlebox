@@ -1,6 +1,6 @@
 ///weapon_set(index);
 switch(argument0) {
-    case 0:
+    case 1:
         weapon_add_len = 10;
         weapon_add_dir = 180;
         weapon_delay_max = 80;
@@ -10,7 +10,7 @@ switch(argument0) {
         weapon_damage = 2;
     break;
     
-    case 1:
+    case 2:
         weapon_add_x = 10;
         weapon_add_y = 20;
         weapon_delay_max = 40;

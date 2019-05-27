@@ -184,10 +184,11 @@
       <script>scripts\killInfo_add.gml</script>
       <script>scripts\append_kill.gml</script>
     </scripts>
-    <script>scripts\weapon_set.gml</script>
     <script>scripts\weapon_attack.gml</script>
-    <script>scripts\hp_send.gml</script>
+    <script>scripts\weapon_set.gml</script>
     <script>scripts\weapon_instance.gml</script>
+    <script>scripts\hp_set.gml</script>
+    <script>scripts\hp_send.gml</script>
     <script>scripts\myHp_decrease.gml</script>
   </scripts>
   <fonts name="fonts">
@@ -254,6 +255,7 @@
         <object>objects\obj_killInfo</object>
       </objects>
       <object>objects\object31</object>
+      <object>objects\par_collision</object>
     </objects>
   </objects>
   <rooms name="rooms">

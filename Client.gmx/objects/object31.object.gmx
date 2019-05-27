@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>-9999</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>par_collision</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -27,37 +27,23 @@
             <kind>1</kind>
             <string>/// variables init
 image_single = 1;
-mine = false;
-damaged = false;
-trigger = true;
-damage = 0;
-alarm[0] = 5;
 </string>
           </argument>
         </arguments>
       </action>
-    </event>
-    <event eventtype="2" enumb="0">
       <action>
         <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
+        <id>604</id>
+        <kind>0</kind>
         <userelative>0</userelative>
         <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_inherited</functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>trigger = false;
-</string>
-          </argument>
-        </arguments>
       </action>
     </event>
     <event eventtype="3" enumb="0">
@@ -80,79 +66,6 @@ alarm[0] = 5;
             <string>image_alpha -= 0.025;
 if(image_alpha &lt;= 0)
     instance_destroy();
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="par_character">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// hp decrease
-if(trigger = true) {
-    if(mine != true) {
-        if(other.mine == true) {
-            trigger = false;
-            with(other) {
-                dir = other.image_angle - 180;
-                nuckback = -4;
-                zspeed = 0.8;
-                z = 0;
-                if(dir &gt; 90) and (dir &lt; 270)
-                    weapon_dir = 180;
-                else
-                    weapon_dir = 0;
-                myHp_decrease(other.damage);
-            }
-            hp_send(global.playerIndex, damage);
-        }
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_box">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// box hp decrease
-if(mine == true)and(trigger == true){
-    buf = buf_new(64);
-    buf_write(buf, buffer_u8, other.index);
-    buf_write(buf, buffer_u8, damage);
-    supersocket_send(buf, signal.boxDamage, sendTo.Server);
-    buf_del(buf);
-    trigger = false;
-}
 </string>
           </argument>
         </arguments>

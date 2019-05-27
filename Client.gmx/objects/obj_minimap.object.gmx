@@ -34,6 +34,7 @@ surf = surface_create(width, height);
 player = array_create(2); // 0 is i, 1 is j
 before_player = array_create(2);
 enable = false;
+update = false;
 
 alarm[0] = 30;
 </string>
@@ -93,6 +94,11 @@ if(enable) {
     
     if not(array_equals(before_player, player))
         trigger = true;
+    
+    if (update) {
+        trigger = true;
+        update = false;
+    }
     
     if(trigger) {
         surface_set_target(surf);

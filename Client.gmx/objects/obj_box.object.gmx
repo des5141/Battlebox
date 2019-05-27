@@ -116,7 +116,7 @@ tri_height = 6;
           <argument>
             <kind>1</kind>
             <string>global.map[istart, jstart] = 0;
-with(obj_minimap){event_user(0);}
+with(obj_minimap){update = true; event_user(0);}
 </string>
           </argument>
         </arguments>
@@ -191,8 +191,12 @@ if(hp &gt; maxhp)
 draw_self();
 
 if(hp != -1) {
+    draw_set_color(c_gray);
+    draw_rectangle(x - 16, y - 40, x + 16, y - 37, false);
     draw_set_color(c_red);
-    draw_rectangle(x - 16, y - 40, x - 16 + (32/maxhp)*hp, y - 30, false);
+    draw_rectangle(x - 16, y - 40, x - 16 + (32/maxhp)*hp, y - 37, false);
+    draw_set_color(c_black);
+    draw_rectangle(x - 17, y - 41, x + 16, y - 37, true);
     draw_set_color(c_white);
 }
 </string>

@@ -41,6 +41,8 @@
             <kind>1</kind>
             <string>/// ident set
 type = 1; // knight
+weapon = 1;
+hp_set(10);
 </string>
           </argument>
         </arguments>
