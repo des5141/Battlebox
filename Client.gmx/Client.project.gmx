@@ -183,7 +183,9 @@
       <script>scripts\killInfo_add.gml</script>
       <script>scripts\append_kill.gml</script>
     </scripts>
-    <script>scripts\weapon_value_set.gml</script>
+    <script>scripts\weapon_set.gml</script>
+    <script>scripts\weapon_attack.gml</script>
+    <script>scripts\weapon_instance.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_debug_text</font>
@@ -248,6 +250,7 @@
         <object>objects\obj_killLog_node</object>
         <object>objects\obj_killInfo</object>
       </objects>
+      <object>objects\object31</object>
     </objects>
   </objects>
   <rooms name="rooms">

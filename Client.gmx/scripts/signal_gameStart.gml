@@ -15,6 +15,8 @@ for(var i = 0; i < map_height; i++) {
             case 2:
                 ins = instance_create(j*32, i*32, obj_box);
                 ins.index = box_count;
+                ins.istart = i;
+                ins.jstart = j;
                 box_count++;
             break;
             

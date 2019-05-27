@@ -1,4 +1,5 @@
 ﻿using System;
+using Server.Source.Core;
 using Server.Source.Room.Lock;
 
 namespace Server.Source.SignalEvent.Func
@@ -9,8 +10,28 @@ namespace Server.Source.SignalEvent.Func
         {
             Msg[Signal.UserAttack] = (user, requestinfo, buffer) =>
             {
-                // 공격 부분 처리
 
+                new System.Threading.Tasks.Task(async () =>
+                {
+                    using (await user.PlayRoom.TaskLockInRoom.LockAsync())
+                    {
+                        var buf = NewBuffer.Func(64);
+                        buf.append<byte>(buffer.extract_byte());
+                        buf.append<ushort>(buffer.extract_ushort());
+                        buf.append<ushort>(buffer.extract_ushort());
+                        buf.append<byte>(buffer.extract_byte());
+                        buf.append<short>(buffer.extract_short());
+                        buf.append<sbyte>(buffer.extract_sbyte());
+                        buf.append<byte>(buffer.extract_byte());
+                        buf.set_front<uint>(buf.Count);
+                        buf.set_front<short>(Signal.UserAttack, 4);
+
+                        foreach (var t in user.PlayRoom.UserList)
+                        {
+                            t.Send(buf);
+                        }
+                    }
+                }).Start();
             };
         }
     }
