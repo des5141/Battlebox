@@ -43,6 +43,7 @@
 type = 1; // knight
 weapon = 1;
 hp_set(10);
+mp_set(100);
 </string>
           </argument>
         </arguments>

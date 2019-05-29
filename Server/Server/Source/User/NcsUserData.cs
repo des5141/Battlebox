@@ -9,6 +9,7 @@ namespace Server.Source.User
 {
     public class NcsUserData
     {
+        public bool Die = false;
         public byte PlayIndex = 0;
         public ushort X = 0;
         public ushort Y = 0;

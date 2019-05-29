@@ -256,7 +256,13 @@ namespace Server.Source.Room
                 using (await TaskLockInRoom.LockAsync())
                 {
                     var buf = NewBuffer.Func(16);
-                    buf.append<byte>(UserList.Count); // 몇명이나 있습니까? 닝겐?
+                    var userCounting = 0;
+                    foreach (var t in UserList)
+                    {
+                        if (t.Data.Die == false)
+                            userCounting++;
+                    }
+                    buf.append<byte>(userCounting); // 몇명이나 있습니까? 닝겐?
                     buf.set_front<uint>(buf.Count);
                     buf.set_front<short>(Signal.UserCountInRoom, 4);
 

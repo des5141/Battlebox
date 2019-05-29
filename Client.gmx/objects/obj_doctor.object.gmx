@@ -42,6 +42,7 @@
             <string>/// ident set
 type = 2; // knight
 hp_set(5);
+mp_set(200);
 </string>
           </argument>
         </arguments>

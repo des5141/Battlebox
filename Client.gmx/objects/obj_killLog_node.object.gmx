@@ -36,7 +36,7 @@ image_xscale = 1;
 image_yscale = 1;
 step = 0;
 step2 = 0;
-alarm[0] = 144*2;
+alarm[0] = 144*4;
 </string>
           </argument>
         </arguments>
@@ -127,15 +127,15 @@ depth = -index;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_color(c_black);
+            <string>draw_set_color(c_white);
 draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, image_yscale, image_angle, c_white, alpha);
 draw_set_font(fnt_text);
 draw_set_valign(fa_middle);
-draw_set_halign(fa_right);
-draw_text_transformed_colour(x + 10 - sprite_get_width(sprite_index)/2 + string_width(A), y, A, image_xscale, image_yscale, 0, c_black, c_black, c_black, c_black, alpha);
-draw_sprite_ext(spr_killlog_item, item, x + 20 - sprite_get_width(sprite_index)/2 + string_width(A) + sprite_get_width(spr_killlog_item)/2, y, image_xscale, image_yscale, 0, c_white, alpha);
+draw_set_halign(fa_center);
+draw_text_transformed_colour(x - sprite_get_width(sprite_index)/2 + 50, y, A, image_xscale, image_yscale, 0, c_white, c_white, c_white, c_white, alpha);
+draw_text(x, y, "&gt;");
 draw_set_halign(fa_left);
-draw_text_transformed_colour(x + 30 - sprite_get_width(sprite_index)/2 + string_width(A) + sprite_get_width(spr_killlog_item), y, B, image_xscale, image_yscale, 0, c_black, c_black, c_black, c_black, alpha);
+draw_text_transformed_colour(x + sprite_get_width(sprite_index)/2 - 80, y, B, image_xscale, image_yscale, 0, c_white, c_white, c_white, c_white, alpha);
 </string>
           </argument>
         </arguments>

@@ -118,6 +118,84 @@ draw_set_valign(fa_left);
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// draw HP
+if(global.GameStart) {
+    draw_set_color(c_gray);
+    draw_rectangle(640 - 200, 680, 640 + 200, 700, false);
+    
+    if(global.userList[global.playerIndex].hp &gt; 0) {
+        draw_set_color(c_red);
+        draw_rectangle(440, 680, 440 + (400/global.userList[global.playerIndex].hp_max)*global.userList[global.playerIndex].hp, 700, false);
+    }
+    
+    draw_set_color(c_black);
+    draw_rectangle(440 - 1, 679, 640 + 200, 700, true);
+    
+    draw_set_color(c_white);
+    draw_set_font(fnt_debug_text);
+    draw_set_halign(fa_center);
+    draw_set_valign(fa_middle);
+    draw_text(640, 690, string(global.userList[global.playerIndex].hp) + " / " + string(global.userList[global.playerIndex].hp_max));
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// draw MP
+if(global.GameStart) {
+    draw_set_color(c_gray);
+    draw_rectangle(640 - 150, 705, 640 + 150, 715, false);
+    
+    if(global.userList[global.playerIndex].mp &gt; 0) {
+        draw_set_color(c_blue);
+        draw_rectangle(490, 705, 490 + (300/global.userList[global.playerIndex].mp_max)*global.userList[global.playerIndex].mp, 715, false);
+    }
+    
+    draw_set_color(c_black);
+    draw_rectangle(490 - 1, 705 - 1, 640 + 150, 715, true);
+    
+    
+    draw_set_color(c_white);
+    draw_text(640, 710, string(global.userList[global.playerIndex].mp) + " / " + string(global.userList[global.playerIndex].mp_max));
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_top);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
   </events>
   <PhysicsObject>0</PhysicsObject>

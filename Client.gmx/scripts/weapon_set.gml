@@ -8,6 +8,7 @@ switch(argument0) {
         weapon_step_max = 40;
         weapon_step_mode = 0;
         weapon_damage = 2;
+        weapon_mp = 10;
     break;
     
     case 2:
@@ -18,6 +19,7 @@ switch(argument0) {
         weapon_step_max = 40;
         weapon_step_mode = 1;
         weapon_damage = 10;
+        weapon_mp = 5;
     break;
 }
 weapon_delay = weapon_delay_max;

@@ -84,8 +84,10 @@ index = -1;
 nickname = "";
 type = -1;
 active = false;
+damaged = 0;
 
 hp_set(1);
+mp_set(1);
 die = false;
 </string>
           </argument>
@@ -153,6 +155,8 @@ weapon_len = 7; // 멀리 떨어져있는 정도
 weapon_delay = 0; // 딜레이
 weapon_delay_max = 0; // 딜레이 최고치
 weapon_dir = 0; // 전체적인 각도
+weapon_damage = 0;
+weapon_mp = 0; // 한번의 공격에 소모되는 마나의 량
 
 // gun variables
 weapon_add_x = 0; // 추가되는 x 위치
@@ -167,6 +171,30 @@ weapon_step_mode = 0; // 0 is knife, 1 is gun
 weapon_add_dir = 0;
 weapon_add_len = 0;
 </string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>301</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_set_alarm</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>20</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>1</string>
           </argument>
         </arguments>
       </action>
@@ -187,8 +215,41 @@ weapon_add_len = 0;
           <argument>
             <kind>1</kind>
             <string>/// TEST : weapon set
+//weapon = 1;
 weapon_set(weapon);
 weapon_step_max = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// 마나 복구
+if(mine) {
+    if(mp &lt; mp_max) {
+        mp++;
+    }else {
+        mp = mp_max;
+    }    
+    
+    alarm[1] = 20;
+}
 </string>
           </argument>
         </arguments>
@@ -213,7 +274,7 @@ weapon_step_max = 0;
             <kind>1</kind>
             <string>/// network send
 if(global.playerIndex == index) {
-    buf = buf_new(1024);
+    buf = buf_new(128);
     buf_write(buf, buffer_u16, x);
     buf_write(buf, buffer_u16, y);
     buf_write(buf, buffer_u8, z);
@@ -271,13 +332,19 @@ if(global.playerIndex == index) {
           <argument>
             <kind>1</kind>
             <string>/// alive check
-if(mine) and (active) and (die == false) {
-    dir = irandom_range(0, 360);
-    nuckback = -10;
-    zspeed = 1.3;
-    z = 0;
-    weapon = 0;
-    die = true;
+if(hp &lt;= 0) {
+    if(mine) and (active) and (die == false) {
+        die_set(true);
+        
+        // send my die data to another
+        buf = buf_new(16);
+        buf_write(buf, buffer_u8, global.playerIndex);
+        supersocket_send(buf, signal.userDie, sendTo.Server);
+        buf_del(buf);
+        
+        target_speed = 0;
+        global.controller = false;
+    }
 }
 </string>
           </argument>
@@ -427,12 +494,43 @@ if (mine) {
 if (z &gt; 0)
     image_index = 14;
     
-draw_set_alpha(0.5);
-draw_set_color(c_black);
-draw_ellipse(x - 10, y - 2, x + 10, y + 2, false);
-draw_set_alpha(1);
-draw_sprite_ext(sprite_index, image_index, x, y - z, image_xscale, image_yscale, image_angle, c_white, image_alpha);
-draw_sprite_ext(spr_chr_body, type, x, y - z, image_xscale, image_yscale, image_angle, c_white, image_alpha);
+
+
+
+if(die == false) {
+    draw_set_alpha(0.5);
+    draw_set_color(c_black);
+    draw_ellipse(x - 10, y - 2, x + 10, y + 2, false);
+    draw_set_alpha(1);
+    
+    draw_sprite_ext(sprite_index, image_index, x, y - z, image_xscale, image_yscale, image_angle, c_white, image_alpha);
+    draw_sprite_ext(spr_chr_body, type, x, y - z, image_xscale, image_yscale, image_angle, c_white, image_alpha);
+    
+    if (damaged &gt; 0) {
+        d3d_set_fog(true, c_white, 0, 0);
+        
+        draw_set_alpha(damaged);
+        draw_sprite_ext(sprite_index, image_index, x, y - z, image_xscale, image_yscale, image_angle, c_white, image_alpha);
+        draw_sprite_ext(spr_chr_body, type, x, y - z, image_xscale, image_yscale, image_angle, c_white, image_alpha);
+        draw_set_alpha(1);
+        
+        d3d_set_fog(false, c_white, 0, 0);
+        
+        damaged -= 0.05;
+    }else
+        damaged = 0;
+}else {
+    // 죽은 상태
+    draw_set_alpha(0.5);
+    draw_set_color(c_black);
+    draw_ellipse(x - 13, y - 2, x + 13, y + 2, false);
+    draw_set_alpha(1);
+    
+    draw_sprite_ext(sprite_index, 6, x + 16, y - z - 4, 1, image_yscale, 90, c_white, image_alpha);
+    draw_sprite_ext(spr_chr_body, type, x + 16, y - z - 4, 1, image_yscale, 90, c_gray, image_alpha);
+    
+    
+}
 </string>
           </argument>
         </arguments>
@@ -544,16 +642,15 @@ draw_sprite_ext(spr_weapon, weapon, _x, _y, 1, image_xscale, _dir, c_white, 1);
           <argument>
             <kind>1</kind>
             <string>/// hp bar draw
-draw_set_color(c_gray);
-draw_rectangle(x - 16, y - 24-10, x + 16, y - 21-10, false);
-
 if(hp &gt; 0) {
+    draw_set_color(c_gray);
+    draw_rectangle(x - 16, y - 24-10, x + 16, y - 21-10, false);
     draw_set_color(c_red);
     draw_rectangle(x - 16, y - 24-10, x - 16 + (32/hp_max)*hp, y - 21-10, false);
+    draw_set_color(c_black);
+    draw_rectangle(x - 17, y - 25-10, x + 16, y - 21-10, true);
+    draw_set_color(c_white);
 }
-draw_set_color(c_black);
-draw_rectangle(x - 17, y - 25-10, x + 16, y - 21-10, true);
-draw_set_color(c_white);
 </string>
           </argument>
         </arguments>
@@ -607,9 +704,10 @@ draw_set_color(c_white);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// attack test!!
-if(active) {
-    
+            <string>/// TEST : die
+if(mine) and (active) {
+    hp = 0;
+    weapon = 0;
 }
 </string>
           </argument>

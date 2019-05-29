@@ -40,7 +40,9 @@ namespace Server.Source
             BoxDamage = 8,
             UserAttack = 9,
             UserCountInRoom = 10,
-            UserHp = 11
+            UserHp = 11,
+            UserDie = 12,
+            KillLog = 13
 
             ;
     }
@@ -49,7 +51,7 @@ namespace Server.Source
         public static List<List<NcsUser>> UserList = new List<List<NcsUser>>();
         public static LinkedQueue<NcsUser> MatchingList = new LinkedQueue<NcsUser>();
         public static LinkedQueue<NcsRoom> RoomList = new LinkedQueue<NcsRoom>();
-        public static int MatchingMin = 2;
+        public static int MatchingMin = 1;
         public static int MatchingWait = 1000;
         public static int BoxMax = 25;
     }

@@ -179,6 +179,8 @@
       <script>scripts\signal_userAttack.gml</script>
       <script>scripts\signal_userCountInRoom.gml</script>
       <script>scripts\signal_userHp.gml</script>
+      <script>scripts\signal_userDie.gml</script>
+      <script>scripts\signal_killLog.gml</script>
     </scripts>
     <scripts name="killLog">
       <script>scripts\killInfo_add.gml</script>
@@ -188,8 +190,11 @@
     <script>scripts\weapon_set.gml</script>
     <script>scripts\weapon_instance.gml</script>
     <script>scripts\hp_set.gml</script>
+    <script>scripts\mp_set.gml</script>
     <script>scripts\hp_send.gml</script>
     <script>scripts\myHp_decrease.gml</script>
+    <script>scripts\die_set.gml</script>
+    <script>scripts\killLog_send.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_debug_text</font>
@@ -256,6 +261,7 @@
       </objects>
       <object>objects\object31</object>
       <object>objects\par_collision</object>
+      <object>objects\obj_damage_counter</object>
     </objects>
   </objects>
   <rooms name="rooms">

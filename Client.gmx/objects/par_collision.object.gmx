@@ -34,6 +34,7 @@ zspeed = 0.8;
 // no touch this
 mine = false;
 trigger = true;
+whos = -1;
 alarm[0] = 5;
 </string>
           </argument>
@@ -88,7 +89,7 @@ if(trigger = true) {
     // 이 공격이 메인 플레이어 것이 아니라면,
     if(mine != true) {
         // 근데 내가 메인 플레이어라면
-        if(other.mine == true) {
+        if(other.mine == true) and (other.hp &gt; 0) {
             with(other) {
                 dir = other.image_angle - 180;
                 nuckback = -other.nuckback;
@@ -100,8 +101,24 @@ if(trigger = true) {
                     weapon_dir = 0;
                 myHp_decrease(other.damage);
                 hp_send(global.playerIndex, hp);
+                
+                if(hp == 0) {
+                    killLog_send(global.playerIndex, other.whos);
+                }
+                damaged = 1;
             }
             trigger = false;
+            var ins = instance_create(x, y - 20, obj_damage_counter);
+            ins.str = damage;
+        }
+    }
+    
+    // 내꺼
+    else {
+        if(other.mine == false) and (other.hp &gt; 0) {
+            trigger = false;
+            var ins = instance_create(x, y - 20, obj_damage_counter);
+            ins.str = damage;
         }
     }
 }

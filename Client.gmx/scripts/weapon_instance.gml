@@ -1,7 +1,9 @@
-///weapon_instance(index, x, y, dir, xscale, bool);
+///weapon_instance(index, x, y, dir, xscale, bool, userIndex);
 var ins;
 var xscale = argument4;
 var damage = argument5;
+var _userIndex = argument7;
+
 switch(argument0) {
     // 검
     case 1:
@@ -18,3 +20,5 @@ switch(argument0) {
     
     break;
 }
+
+ins.whos = _userIndex;
