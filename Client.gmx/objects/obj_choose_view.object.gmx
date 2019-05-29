@@ -63,7 +63,34 @@ title_y = 0;
 title_text = "";
 time_dot = 0;
 matching_user_count = 0;
+select_text_angle = -30;
+select_text_trigger = 1;
 alarm[0] = 50;
+alarm[1] = 60;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>select_text_trigger *= -1;
+alarm[1] = 60;
 </string>
           </argument>
         </arguments>
@@ -452,6 +479,41 @@ if(mode == 2) {
     draw_text(90, 40, "나가기");
     draw_set_halign(fa_left);
     draw_set_valign(fa_top);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// draw select text
+if(select_text_trigger)
+    select_text_angle++;
+else
+    select_text_angle--;
+
+if(mode == -1) {
+draw_set_color(c_white);
+draw_set_font(global.font[30]);
+draw_set_halign(fa_center);
+draw_set_valign(fa_middle);
+draw_text_transformed(640, 60, "원하는 캐릭터를 선택하세요!", 1, 1, floor(select_text_angle/4));
+draw_set_halign(fa_left);
+draw_set_valign(fa_top);
 }
 </string>
           </argument>

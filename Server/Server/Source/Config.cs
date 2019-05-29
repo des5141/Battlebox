@@ -42,7 +42,9 @@ namespace Server.Source
             UserCountInRoom = 10,
             UserHp = 11,
             UserDie = 12,
-            KillLog = 13
+            KillLog = 13,
+            ItemSignal = 14
+
 
             ;
     }

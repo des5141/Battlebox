@@ -20,6 +20,8 @@ namespace Server.Source.Room
         public bool Destroy = false;
         public byte[,] Map = new byte[25, 40];
         public byte[,] Box = new byte[Data.BoxMax, 1];
+        public byte[,] Electric = new byte[25, 40];
+
         public List<List<int>> Item = new List<List<int>>();
 
         public NcsRoom()
@@ -99,6 +101,15 @@ namespace Server.Source.Room
                         buf.append<byte>(1);
                         buf.append<byte>(t.Data.PlayIndex);
                         t.Send(buf, Signal.Match);
+                    }
+
+                    // 자기장 설정
+                    for (var i = 0; i < 25; i++)
+                    {
+                        for (var j = 0; j < 40; j++)
+                        {
+                            Electric[i, j] = 0;
+                        }
                     }
                 }
                 GameStartCheck();

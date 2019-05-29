@@ -410,7 +410,11 @@ if (mine) {
                 if(sys_joystick.joyDistance[1] &gt; 70) {
                     if(weapon_delay &lt;= 0) {
                         // attack!
-                        weapon_attack(true);
+                        if(mp &gt;= weapon_mp) {
+                            weapon_attack(true);
+                        }else { 
+                            message(id, -70, "마나가 부족하다");
+                        }
                     }
                 }
             }

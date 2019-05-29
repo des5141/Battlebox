@@ -104,6 +104,7 @@
       </sprites>
       <sprite>sprites\spr_weaponEffect</sprite>
     </sprites>
+    <sprite>sprites\spr_bullet</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\back_choose</background>
@@ -115,6 +116,10 @@
       <background>background\tile_4</background>
       <background>background\tile_5</background>
     </backgrounds>
+    <background>background\back_intro</background>
+    <background>background\back_intro2</background>
+    <background>background\back_test_line</background>
+    <background>background\back_test</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -195,6 +200,7 @@
     <script>scripts\myHp_decrease.gml</script>
     <script>scripts\die_set.gml</script>
     <script>scripts\killLog_send.gml</script>
+    <script>scripts\message.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_debug_text</font>
@@ -203,6 +209,9 @@
   <objects name="objects">
     <objects name="init">
       <object>objects\sys_init</object>
+    </objects>
+    <objects name="intro">
+      <object>objects\obj_intro</object>
     </objects>
     <objects name="system">
       <object>objects\system</object>
@@ -227,6 +236,7 @@
       <object>objects\obj_door</object>
       <object>objects\obj_choose_wall</object>
       <object>objects\obj_choose_view</object>
+      <object>objects\obj_screen_on</object>
       <objects name="characters">
         <object>objects\par_choose</object>
         <object>objects\obj_choose_knight</object>
@@ -244,6 +254,8 @@
       <object>objects\obj_battleroyal_view</object>
       <object>objects\obj_battleroyal_map</object>
       <object>objects\obj_minimap</object>
+      <object>objects\obj_battleroyal_screen_on</object>
+      <object>objects\obj_battleroyal_die</object>
     </objects>
     <objects name="game">
       <objects name="characters">
@@ -262,6 +274,9 @@
       <object>objects\object31</object>
       <object>objects\par_collision</object>
       <object>objects\obj_damage_counter</object>
+      <object>objects\obj_message</object>
+      <object>objects\obj_eff1</object>
+      <object>objects\obj_eff2</object>
     </objects>
   </objects>
   <rooms name="rooms">
@@ -271,6 +286,8 @@
     <room>rooms\rm_auth</room>
     <room>rooms\rm_choose</room>
     <room>rooms\rm_battleroyal</room>
+    <room>rooms\rm_intro</room>
+    <room>rooms\rm_intro2</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

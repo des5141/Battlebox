@@ -4,10 +4,7 @@ if(weapon > 0) {
     
     // 네트워크 전송
     if(argument0 == true) {
-        if(mp < weapon_mp)
-            return -1;
-        else
-            mp -= weapon_mp;
+        mp -= weapon_mp;
             
         buf = buf_new(64);
         buf_write(buf, buffer_u8, global.playerIndex);

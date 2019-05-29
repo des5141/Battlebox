@@ -1,12 +1,12 @@
 /// signal_gameStart(buffer);
 global.GameStart = true;
-global.controller = true;
+global.myRank = -1;
 
 // 게임 시작
 var buf = argument0;
 var map_height = buf_read(buf, buffer_u8);
 var map_width = buf_read(buf, buffer_u8);
-var ins, box_count = 1;
+var ins, box_count = 0;
 
 for(var i = 0; i < map_height; i++) {
     for(var j = 0; j < map_width; j++) {
@@ -63,5 +63,6 @@ for(var i = 0; i < userCount; i++) {
     
     global.userList[ins.index] = ins;
 }
-
+with(obj_battleroyal_view) { zoom = 2; }
 with(obj_minimap) { enable = true; event_user(0); }
+with(obj_battleroyal_screen_on) { trigger = 0; }

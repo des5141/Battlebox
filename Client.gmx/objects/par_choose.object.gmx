@@ -523,7 +523,7 @@ if(active) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_create(x, y - 16, obj_damage_counter);
+            <string>instance_create(x, y - 16, obj_eff1);
 </string>
           </argument>
         </arguments>

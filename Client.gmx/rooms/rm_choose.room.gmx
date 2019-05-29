@@ -88,6 +88,7 @@
     <instance objName="obj_nooutside" x="480" y="224" name="inst_7899F338" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_nooutside" x="480" y="256" name="inst_8683F34D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_door" x="235" y="68" name="inst_8D482BB7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_screen_on" x="32" y="0" name="inst_75D1FD4A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="back_choose" x="0" y="0" w="480" h="270" xo="0" yo="0" id="10000257" name="inst_27F7F6ED" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

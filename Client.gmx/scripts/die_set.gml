@@ -6,4 +6,6 @@ if(argument0 == true) {
     z = 0;
     weapon = 0;
     die = true;
+    global.myRank = obj_battleroyal_view.alive;
+    instance_create(0, 0, obj_battleroyal_die);
 }
