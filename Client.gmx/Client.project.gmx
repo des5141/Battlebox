@@ -103,6 +103,7 @@
         <sprite>sprites\spr_skull</sprite>
       </sprites>
       <sprite>sprites\spr_weaponEffect</sprite>
+      <sprite>sprites\spr_item</sprite>
     </sprites>
     <sprite>sprites\spr_bullet</sprite>
   </sprites>
@@ -277,6 +278,7 @@
       <object>objects\obj_message</object>
       <object>objects\obj_eff1</object>
       <object>objects\obj_eff2</object>
+      <object>objects\obj_item</object>
     </objects>
   </objects>
   <rooms name="rooms">

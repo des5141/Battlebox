@@ -75,6 +75,8 @@ namespace Server.Source.Room
                             if (CheckRect(2, x, y, 7)) continue;
                             Map[y, x] = 2;
                             Box[i, 0] = 20; // 박스 체력
+                            Box[i, 1] = (byte) y;
+                            Box[i, 2] = (byte) x;
                             break;
                         }
                     }

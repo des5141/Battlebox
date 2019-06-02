@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Server.Source.Core;
 using Server.Source.Room.Lock;
 
@@ -31,6 +32,14 @@ namespace Server.Source.SignalEvent.Func
                             {
                                 t.Send(buf, Signal.BoxDamage);
                             }
+
+                            // 아이템 추가
+                            user.PlayRoom.Item.Add(new List<int>());
+                            var arrayIndex = user.PlayRoom.Item.Count - 1;
+                            user.PlayRoom.Item[arrayIndex].Add(user.PlayRoom.Box[index, 1]); // i
+                            user.PlayRoom.Item[arrayIndex].Add(user.PlayRoom.Box[index, 2]); // j
+                            user.PlayRoom.Item[arrayIndex].Add(1); // index
+                            user.PlayRoom.Item[arrayIndex].Add(Ran.Next(1, 99)); // count
                         }
                     }).Start();
                 }
